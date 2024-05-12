@@ -1,4 +1,3 @@
-<%@page import="vo.SpotListVO"%>
 <%@page import="dao.SpotManagementDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
@@ -21,7 +20,7 @@
 
 <!--jQuery CDN 끝-->
 <style type="text/css">
-	textarea{width: 600px; height: 300px; }
+	
 	
 </style>
 <script type ="text/javascript">
@@ -31,43 +30,12 @@
 </script>
 </head>
 <body>
-<%
-request.setCharacterEncoding("UTF-8");
-
-
-String spotcode = request.getParameter("spot_code");
-SpotManagementDAO sDAO = SpotManagementDAO.getInstance();
-
-SpotListVO sVO = sDAO.selectSpot(spotcode);
-pageContext.setAttribute("sVO", sVO);
-%>
-<form action="modify_spot_process.jsp" method="post" enctype="multipart/form-data">
 <div>
-<table>
-<thead>
-<tr>
-	<th style="width:100px">코드</th>
-	<th style="width:100px">이름</th>
-	<th style="width:600px">설명</th>
-	<th style="width:100px">이미지이름</th>
-	<th style="width:100px">경도</th>
-	<th style="width:100px">위도</th>
-	<th style="width:100px">위치</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-	<td><input type="text"  name ="spot_code" value ="${ sVO.spot_code }"/></td>
-	<td><input type="text"  name ="spot_name" value ="${ sVO.spot_name }"/></td>
-	<td><textarea  name ="spot_desc">"${ sVO.spot_desc }"</textarea></td>
-	<td><input type="file" name ="img_name"/></td>
-	<td><input type="text" name ="longitude" value ="${ sVO.longitude }"/></td>
-	<td><input type="text" name ="latitude" value ="${ sVO.latitude }"/></td>
-	<td><input type="text" name ="spt_loc" value ="${ sVO.spt_loc }"/></td>
-</tr>
-</table>
+<%
+String spot_code =request.getParameter("spot_code");
+SpotManagementDAO sDAO = SpotManagementDAO.getInstance();
+sDAO.deleteSpot(spot_code);
+%>
 </div>
-<input type ="submit" value ="내용 수정" />
-</form>
 </body>
 </html>

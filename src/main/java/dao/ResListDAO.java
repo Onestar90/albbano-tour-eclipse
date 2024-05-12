@@ -41,7 +41,7 @@ public class ResListDAO {
             Class.forName("oracle.jdbc.OracleDriver");
             con = dbCon.getConn("jdbc/abn");
 
-            String sql = "select * from RESTAURANT" ;
+            String sql = "select * from RESTAURANT where DEL_YN ='N'" ;
             pstmt = con.prepareStatement(sql);
             rs=pstmt.executeQuery();
             while(rs.next()) {

@@ -25,8 +25,9 @@ if(login_id == null){ %>
 <html lang="ko">
 <head>
     <title>질문답변 1 페이지 | 알빠노관광</title>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+    
         // 자바스크립트에서 사용하는 전역변수 선언
         var g5_url = "../index.html";
         var g5_bbs_url = "index.html";
@@ -37,6 +38,38 @@ if(login_id == null){ %>
         var g5_sca = "";
         var g5_editor = "smarteditor2";
         var g5_cookie_domain = "";
+    </script>
+    <script>
+    window.onpageshow = function(event) { //뒤로가기시 페이지를 새로고침하는 코드
+        if (event.persisted) {
+            window.location.reload();
+        }
+    };
+    $(function() {
+        function faq_open(el) {
+            var $con = $(el).closest("li").find(".con_inner");
+
+            if ($con.is(":visible")) {
+                $con.slideUp();
+            } else {
+                $(".con_inner").slideUp(); // 모든 슬라이드 닫기
+                $con.slideDown(function() {
+                    // 이미지 리사이즈
+                    $con.viewimageresize2();
+                });
+            }
+            return false;
+        }
+
+        $(".bo_tit a").on("click", function() {
+            var $answerRow = $(this).closest("tr").next(".answer-row");
+            $answerRow.slideToggle(); // 제목 클릭 시 답변 열고 닫기 토글
+        });
+
+        $(".closer_btn").on("click", function() {
+            $(this).closest(".answer-row").slideUp(); // 버튼 클릭 시 답변 닫기
+        });
+    }); 
     </script>
     <%@ include file="common_head.jsp" %>
 </head>
@@ -51,7 +84,7 @@ QnaDAO qDao = QnaDAO.getInstance();
 
 
 int totalCount=qDao.selecttotalCount(qsVO);
-int pageScale=5;
+int pageScale=10;
 
 int totalPage=(int)Math.ceil((double)totalCount/pageScale);
 
@@ -129,7 +162,7 @@ pageContext.setAttribute("qVO", qVO);
                             <li><a href="faq.jsp?fm_id=1" target="_self">자주 묻는 질문</a></li>
 
 
-                            <li><a href="qna.html?bo_table=qa" target="_self">질문답변</a></li>
+                            <li><a href="#void" target="_self">질문답변</a></li>
 
 
                             <li><a href="question.jsp" target="_self">1:1문의</a></li>
@@ -169,8 +202,7 @@ pageContext.setAttribute("qVO", qVO);
             <!-- 게시판 페이지 정보 및 버튼 시작 { -->
             <div id="bo_btn_top">
                 <div id="bo_list_total">
-                    <span>Total 725건</span>
-                    1 페이지
+                    
                 </div>
 
                 <ul class="btn_bo_user">
@@ -181,193 +213,84 @@ pageContext.setAttribute("qVO", qVO);
             <!-- 게시판 카테고리 시작 { -->
             <!-- } 게시판 카테고리 끝 -->
 
-            <form name="fboardlist" id="fboardlist" action="https://cmtour.co.kr/bbs/board_list_update.php"
-                  onsubmit="return fboardlist_submit(this);" method="post">
-                <input type="hidden" name="bo_table" value="qa">
-                <input type="hidden" name="sfl" value="">
-                <input type="hidden" name="stx" value="">
-                <input type="hidden" name="spt" value="">
-                <input type="hidden" name="sca" value="">
-                <input type="hidden" name="sst" value="wr_num, wr_reply">
-                <input type="hidden" name="sod" value="">
-                <input type="hidden" name="page" value="1">
-                <input type="hidden" name="sw" value="">
+           
 
                 <div class="tbl_head01 tbl_wrap">
                     <table>
                         <caption>질문답변 목록</caption>
                         <thead>
                         <tr>
-                            <th scope="col">번호</th>
+                            <th scope="col"></th>
                             <th scope="col">제목</th>
                             <th scope="col" class="lview">글쓴이</th>
-                            <th scope="col" class="lview"><a
-                                    href="boarda809.html?bo_table=qa&amp;sop=and&amp;sst=wr_hit&amp;sod=desc&amp;sfl=&amp;stx=&amp;sca=&amp;page=1">조회
-                                <i class="fa fa-sort" aria-hidden="true"></i></a></th>
+                            
                             <th scope="col" class="lview"><a
                                     href="board62f0.html?bo_table=qa&amp;sop=and&amp;sst=wr_datetime&amp;sod=desc&amp;sfl=&amp;stx=&amp;sca=&amp;page=1">날짜
                                 <i class="fa fa-sort" aria-hidden="true"></i></a></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="">
-                            <td class="td_num2">
-                                712
-                            </td>
-
-                            <td class="td_subject" style="padding-left:0px">
-
-                                <div class="bo_tit">
-
-                                    <a href="boardf4f9.html?bo_table=qa&amp;wr_id=800">
-                                        <i class="fa fa-lock" aria-hidden="true"></i> 예약취소
-                                    </a>
-                                    <img src="../front_util/images/icon_new.gif" class="title_icon"
-                                         alt="새글"></div>
-                                <div class="mview">
-                                    <div class="gall_info">
-                                        <span class="sv_member">livecafe</span></div>
-                                    <div class="gall_info">
-                                        <span class="sound_only">조회 </span>Hit 1 <span class="gall_date"><span
-                                            class="sound_only">작성일 </span>Date  2024-04-03</span>
-                                    </div>
-                                </div>
-
-                            </td>
-                            <td class="td_name sv_use lview"><span class="sv_member">livecafe</span></td>
-                            <td class="td_num lview">1</td>
-                            <td class="td_datetime lview">2024-04-03</td>
-
-                        </tr>
-                        <tr class="">
-                            <td class="td_num2">
-                                711
-                            </td>
-
-                            <td class="td_subject" style="padding-left:0px">
-
-                                <div class="bo_tit">
-
-                                    <a href="board9f5f.html?bo_table=qa&amp;wr_id=798">
-                                        공휴일 시티투어버스 운행여부
-                                    </a>
-                                </div>
-                                <div class="mview">
-                                    <div class="gall_info">
-                                        <span class="sv_member">이선영1</span></div>
-                                    <div class="gall_info">
-                                        <span class="sound_only">조회 </span>Hit 2 <span class="gall_date"><span
-                                            class="sound_only">작성일 </span>Date  2024-03-30</span>
-                                    </div>
-                                </div>
-
-                            </td>
-                            <td class="td_name sv_use lview"><span class="sv_member">이선영1</span></td>
-                            <td class="td_num lview">2</td>
-                            <td class="td_datetime lview">2024-03-30</td>
-
-                        </tr>
-                        <tr class="">
-                            <td class="td_num2">
-                                710
-                            </td>
-
-                            <td class="td_subject" style="padding-left:10px">
-
-                                <div class="bo_tit">
-
-                                    <a href="board6dc5.html?bo_table=qa&amp;wr_id=799">
-                                        <img src="../front_util/images/icon_reply.gif"
-                                             class="icon_reply" alt="답변글"> Re: 공휴일 시티투어버스 운행여부
-                                    </a>
-                                </div>
-                                <div class="mview">
-                                    <div class="gall_info">
-                                        <span class="sv_member">관리자</span></div>
-                                    <div class="gall_info">
-                                        <span class="sound_only">조회 </span>Hit 5 <span class="gall_date"><span
-                                            class="sound_only">작성일 </span>Date  2024-03-31</span>
-                                    </div>
-                                </div>
-
-                            </td>
-                            <td class="td_name sv_use lview"><span class="sv_member">관리자</span></td>
-                            <td class="td_num lview">5</td>
-                            <td class="td_datetime lview">2024-03-31</td>
-                        </tr>
-                        
-      <c:forEach var="qna" items="${list}" varStatus="i">
-    <tr class="">
-        <td class="td_num2">
-            <c:out value="${qna.ASK_DOC_NO}"/>
-        </td>
-        <td class="td_subject" style="padding-left:0px">
-            <div class="bo_tit">
-                <a href="#none" onclick="return faq_open(this);" style="display: block;">
-                    <p style="    display: inline;">
-                    <c:out value="${qna.ASK_TITLE}"/>
-                    </p>
-                </a>
-                <h3>
-                <div class="con_inner">
-                <span class="tit_bg">내용 : </span>
-                <c:out value=" ${qna.ASK_CONTENTS }"/><br>
-                <div class="con_closer">
-                <button type="button" class="closer_btn btn_b03">닫기</button>
-                </div>
-                </div>
-                </h3>   
-            </div>
-        </td>
-        <td class="td_name sv_use lview">
-            <span class="sv_member">
-                <c:out value="${qna.ID}"/>
-            </span>
-        </td>
-        <td class="td_num lview">2</td>
-        <td class="td_datetime lview">
-            <c:out value="${qna.CREATE_DATE}"/>
-        </td>
-    </tr>
-</c:forEach>
+                  
+                <form method="post" name="frmDetail" id="frmDetail">       
+ <c:forEach var="qna" items="${list}" varStatus="i">
+ 
+                                <tr class="">
+                                    <td class="td_num2"></td>
+                                    <td class="td_subject" style="padding-left:0px">
+                                   
+                                   
+                                        <div class="bo_tit">
+                                            <c:choose>
+                                                <c:when test="${not empty qna.ANSWER_CONTENTS}">
+                                                    <!-- ANSWER_CONTENTS가 null이 아닌 경우에는 클릭 이벤트 처리 -->
+                                                    <a href="javascript:void(0);" onclick="toggleAnswer(${i.index})">
+                                                        <c:out value="${qna.ASK_TITLE}"/>
+                                                    </a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <!-- ANSWER_CONTENTS가 null인 경우에는 링크 작동 -->
+                                                    <a href="question_read_frm.jsp?ASK_DOC_NO=${qna.ASK_DOC_NO}">
+                                                        <c:out value="${qna.ASK_TITLE}"/>
+                                                    </a>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            
+                                        </div>
+                                        <c:choose>
+                                    <c:when test="${not empty qna.ANSWER_CONTENTS}">
+                                    문의답변이 달렸습니다.
+                                    </c:when>
+                                    </c:choose>
+                                    </td>
+                                    <td class="td_name sv_use lview">
+                                        <span class="sv_member">
+                                            <c:out value="${qna.ID}"/>
+                                        </span>
+                                    </td>
+                                    <td class="td_datetime lview">
+                                        <c:out value="${qna.CREATE_DATE}"/>
+                                    </td>
+                                </tr>
+                                <tr class="answer-row" style="display: none;">
+                                    <td colspan="4">
+                                        <div class="con_inner">
+                                            <p>문의내용: <c:out value="${qna.ASK_CONTENTS}"/></p>
+                                            <p>답변내용:<c:out value="${qna.ANSWER_CONTENTS}"/></p>
+                                          
+                                        </div>
+                                    </td>
+                                </tr>
+                            </c:forEach>
 
 
-
-
-                        
+       </form>                  
                    </tbody>
                     </table>
                 </div>
 
-            </form>
+           
 
-            <!-- 게시판 검색 시작 { -->
-            <fieldset id="bo_sch">
-                <legend>게시물 검색</legend>
-
-                <form name="fsearch" method="get">
-                    <input type="hidden" name="bo_table" value="qa">
-                    <input type="hidden" name="sca" value="">
-                    <input type="hidden" name="sop" value="and">
-                    <label for="sfl" class="sound_only">검색대상</label>
-                    <select name="sfl" id="sfl">
-                        <option value="wr_subject">제목</option>
-                        <option value="wr_content">내용</option>
-                        <option value="wr_subject||wr_content">제목+내용</option>
-                        <option value="mb_id,1">회원아이디</option>
-                        <option value="mb_id,0">회원아이디(코)</option>
-                        <option value="wr_name,1">글쓴이</option>
-                        <option value="wr_name,0">글쓴이(코)</option>
-                    </select>
-                    <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
-                    <input type="text" name="stx" value="" required id="stx" class="sch_input" size="25" maxlength="20"
-                           placeholder="검색어를 입력해주세요">
-                    <button type="submit" value="검색" class="sch_btn"><i class="fa fa-search"
-                                                                        aria-hidden="true"></i><span class="sound_only">검색</span>
-                    </button>
-                </form>
-            </fieldset>
-            <!-- } 게시판 검색 끝 -->
+         
         </div>
 
 
@@ -380,37 +303,7 @@ pageContext.setAttribute("qVO", qVO);
 		<%} %>
 </span></nav>
 
-		<script>
-		 $(function(){
-		       
-		        $(".con_inner").hide();
 
-		        $(".closer_btn").on("click", function(){
-		            $(this).closest(".con_inner").slideUp();
-		        });
-
-		        $(".bo_tit a").on("click", function(e){
-		            var $con = $(this).closest("tr").find(".con_inner");
-
-		           
-		            if ($con.is(":visible")) {
-		                $con.slideUp();
-		            } else {
-		                
-		                $(".con_inner").slideUp();
-		               
-		                $con.slideDown();
-		            }
-		            
-		            return true;
-		        });
-		    });
-
-		  
-		    $(window).on("load", function() {
-		        $(".con_inner").css("display", "");
-		    });
-		</script>
 
         <!-- } 게시판 목록 끝 -->
 

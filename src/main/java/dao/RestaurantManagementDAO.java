@@ -29,6 +29,35 @@ public class RestaurantManagementDAO {
 	}
 
 	/**
+	 * 사용자의 편의를 위해서 DB내의 max값을 가져와서 반환하는 method
+	 * @return
+	 * @throws SQLException
+	 */
+	public String selectMaxRes() throws SQLException {
+		String code ="";
+		StringBuilder sb= new StringBuilder("REST_");
+		DbConnection dbCon = DbConnection.getInstance();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dbCon.getConn("jdbc/abn");
+			String str ="select max(RES_CODE) RES_CODE from RESTAURANT";
+			pstmt =con.prepareStatement(str);
+			rs =pstmt.executeQuery();
+			if(rs.next()) {
+				code =rs.getString("RES_CODE");
+			}
+			int num =Integer.parseInt(code.substring(5));
+			sb.append(String.format("%05d", num+1));
+			code =sb.toString();
+		}finally {
+			dbCon.closeCon(rs, pstmt, con);
+		}
+		
+		return code;
+	}
+	/**
 	 * 맛집을 추가하는 method 24.05.06 김일신
 	 * 
 	 * @return int
@@ -80,7 +109,7 @@ public class RestaurantManagementDAO {
 		ResultSet rs = null;
 		try {
 			con = dbCon.getConn("jdbc/abn");
-			String select = "select * from RESTAURANT ";
+			String select = "select * from RESTAURANT where DEL_YN ='N' ";
 			pstmt = con.prepareStatement(select);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -166,7 +195,7 @@ public class RestaurantManagementDAO {
 			
 			sb.append("	update  RESTAURANT  ")
 			.append("	set   RES_CAT = ? , RES_NAME = ? , HOLIDAY = ? , BUSI_HOUR =?, 	")
-			.append("	RES_LOC =? , IMG_NAME =? ,	LONGITUDE =? , LATITUDE= ?, INTRO=?  ")
+			.append("	RES_LOC =? , IMG_NAME =? ,	LONGITUDE =? , LATITUDE= ?, INTRO=? , EDIT_DATE= sysdate ")
 			.append("	where RES_CODE = ? ");
 			pstmt = con.prepareStatement(sb.toString());
 			System.out.println(rVO);
@@ -223,5 +252,30 @@ public class RestaurantManagementDAO {
 		
 		return list;
 		
+	}
+	
+	/**
+	 * 해당 맛집의 논리삭제를 변경하는 method
+	 * 24.05.10 김일신
+	 * @param RES_CODE
+	 * @return
+	 * @throws SQLException
+	 */
+	public int deleteRes(String res_code) throws SQLException {
+		int cnt = 0;
+		DbConnection dbCon = DbConnection.getInstance();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dbCon.getConn("jdbc/abn");
+			String update ="update   RESTAURANT set      DEL_YN ='Y' where    RES_CODE = ?";
+			pstmt = con.prepareStatement(update);
+			pstmt.setString(1, res_code);
+			
+			pstmt.executeUpdate();
+		} finally {
+			dbCon.closeCon(null, pstmt, con);
+		}
+		return cnt;
 	}
 }

@@ -35,8 +35,28 @@
 </style>
 <script type="text/javascript">
 	$(function(){
+		$("#btnSearch").click(function(){
+			chkNull;
+		});//click
 		
+		$("#btnAllSearch").click(function(){
+			location.href="a_userInfo_list.jsp";
+		});//click
+		
+		$("#keyword").keydown(function(evt){
+			if(evt.which == 13 ){
+				chkNull();
+			}//end if
+		});//keydown
 	});//ready
+	
+	function chkNull(){
+		if($("#keyword").val().trim() != ""){
+			$("#frmBoard").submit();
+		}//end if
+	}//chkNull
+	
+	
 </script>
 </head>
 <body>
@@ -94,6 +114,7 @@ try{
 	<table class="table">
 		<thead>
 		<tr>
+		<th class="num">번호</th>
 		<th class="id">아이디</th>
 		<th class="email">이메일</th>
 		<th class="date">가입일</th>
@@ -102,6 +123,7 @@ try{
 		<tbody>
 		<c:forEach var="uiVO" items="${ list }" varStatus="i">
 		<tr>
+		<td><c:out value="${ i.index+1 }"/></td>
 		<td><c:out value="${ uiVO.id }"/></td>
 		<td><c:out value="${ uiVO.email }"/></td>
 		<td><c:out value="${ uiVO.create_date }"/></td>
@@ -109,6 +131,48 @@ try{
 		</c:forEach>
 		</tbody>
 	</table>
+	</div>
+	
+	<div>
+	<form action="a_userInfo_list.jsp" name="frmBoard" id="frmBoard">
+		<select name="field" id="field">
+			<option value="0"${ param.field eq 0?"selected='selected'":"" }>아이디</option>
+			<option value="1"${ param.field eq 1?"selected='selected'":"" }>이메일</option>
+		</select>
+		<input type="text" name="keyword" id="keyword" value="${ param.keyword }" style="width: 230px"/>
+		<input type="button" name="검색" id="btnSearch"/>
+		<input type="button" name="전체글" id="btnAllSearch"/>
+		<input type="text" style="display: none;"/>
+	</form>
+	</div>
+	
+	<div style="text-align: center;"> 
+	<%
+	String param="";
+	%>
+	<c:if test="${ not empty param.keyword }">
+	<%
+		param="&field="+request.getParameter("field")+"&keyword="
+			+request.getParameter("keyword");
+	%>
+	<c:set var="link2" value="&field=${ param.field }&keyword=${param.keyword }"/>
+	</c:if>
+	<%-- <% for(int i=1 ; i <= totalPage ;i++){ %>
+	[ <a href="board_list.jsp?currentPage=<%= i %>${link2}"><%= i %></a> ]
+	<% }//end for %> --%>  
+	
+	<!-- ////////////////////////////////여기서 부터 수정 -->
+	<%-- <%= BoardUtil.getInstance().pageNation("board_list.jsp",param,
+ 			totalPage, currentPage)
+
+ 	%> --%>
+	
+	
+	<%-- <br/>
+	시작번호 <%= startPage %> 
+	마지막번호 <%= endPage %> 
+	
+	<%= prevMark %>...<%= pageLink %>...<%= endMark %> --%>
 	</div>
 	
 <%

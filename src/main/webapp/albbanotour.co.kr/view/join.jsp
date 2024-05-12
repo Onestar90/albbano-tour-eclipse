@@ -91,8 +91,8 @@
         <div class="register">
             <script src="https://cmtour.co.kr/js/jquery.register_form.js"></script>
 
-            <form id="fregisterform" name="fregisterform" action="join_process.jsp"
-                  onsubmit="return fregisterform_submit(this);" method="post" enctype="multipart/form-data"
+            <form id="fregisterform" name="fregisterform" action="join_process.jsp" 
+                  onsubmit="return fregisterform_submit(this);" method="post" 
                   autocomplete="off">
                 <!-- <input type="hidden" name="w" value="">
                 <input type="hidden" name="url" value="%2Fbbs%2Fregister_form.php">
@@ -113,7 +113,7 @@
                                         <span class="sound_only">설명보기</span></button>
                                     <span class="tooltip">영문자, 숫자, _ 만 입력 가능. 최소 3자이상 입력하세요.</span>
                                 </label>
-                                <input type="text" name="mb_id" value="" id="reg_mb_id" required
+                                <input type="text" name="id" value="" id="id" required
                                        class="frm_input full_input required " minlength="3" maxlength="20" style="width: 200px;"
                                        placeholder="아이디">
                                 <input type="button" value="ID 중복확인" class="btn btn-outline-dark" id="idChk"/>
@@ -121,7 +121,7 @@
                             </li>
                             <li class="half_input left_input margin_input">
                                 <label for="reg_mb_password">비밀번호<strong class="sound_only">필수</strong></label>
-                                <input type="password" name="mb_password" id="reg_mb_password" required
+                                <input type="password" name="pass" id="pass" required
                                        class="frm_input full_input required" minlength="3" maxlength="20" style="width: 200px;"
                                        placeholder="비밀번호">
                             </li>
@@ -139,7 +139,7 @@
                         <ul>
                             <li>
                                 <label for="reg_mb_name">이름<strong class="sound_only">필수</strong></label>
-                                <input type="text" id="reg_mb_name" name="mb_name" value="" required
+                                <input type="text" id="name" name="name" value="" required
                                        class="frm_input full_input required " size="10" style="width: 200px;" placeholder="이름">
                             </li>
 
@@ -167,7 +167,7 @@
                             <li>
                                 <label for="reg_mb_hp">휴대폰번호<strong class="sound_only">필수</strong></label>
 
-                                <input type="text" name="mb_hp" value="" id="reg_mb_hp" required
+                                <input type="text" name="tel" value="" id="tel" required
                                        class="frm_input full_input required" maxlength="20" style="width: 200px;" placeholder="휴대폰번호">
                             </li>
 
@@ -191,8 +191,8 @@
         function idDupWin(){
         	//부모창 > 자식창으로 값 전달
         	//자식창에서는 JSP 코드로 값 받기
-        	var id = document.fregisterform.mb_id.value;
-    		window.open('id_duplication.jsp?mb_id=' + id, 'idDup', 
+        	var id = document.fregisterform.id.value;
+    		window.open('id_duplication.jsp?id=' + id, 'idDup', 
     			'width=472, height=340, top=' + (window.screenY + 100) + ', left=' + (window.screenX + 100));	// 첫 번째 파라미터엔 http:// 로 시작하는 값을 줘도 됨
     		
         }

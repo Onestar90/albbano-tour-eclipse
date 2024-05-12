@@ -76,7 +76,7 @@ pageContext.setAttribute("sList", sList);
 	<td><c:out value ="${ spt.spot_code }"/></td>
 	<td onclick="submitForm('${spt.spot_code}')"><c:out value ="${ spt.spot_name }"/></td>
 	<td ><c:out value ="${ spt.spot_desc }"/></td>
-	<td><c:out value ="${ spt.img_name }"/></td>
+	<td><img src ="http://localhost/albbano-tour-eclipse/upload/${ spt.img_name }" width="150px" height="150px"/></td>
 	<td><c:out value ="${ spt.create_date }"/></td>
 	<td><c:out value ="${ spt.longitude }"/></td>
 	<td><c:out value ="${ spt.latitude }"/></td>

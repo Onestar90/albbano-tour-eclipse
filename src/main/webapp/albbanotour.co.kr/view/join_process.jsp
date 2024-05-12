@@ -1,3 +1,4 @@
+<%@page import="java.sql.SQLException"%>
 <%@page import="dao.UserInfoManagementDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
@@ -25,9 +26,9 @@
 	
 </style>
 <script type="text/javascript">
-	$(function(){
-		
-	});//ready
+	function goToMainPage() {
+	    window.location.href = 'index_user.jsp'; 
+	}
 </script>
 </head>
 <body>
@@ -38,21 +39,19 @@ request.setCharacterEncoding("UTF-8");
 <jsp:useBean id="uiVO" class="vo.UserInfoVO" scope="page"/>
 <jsp:setProperty property="*" name="uiVO"/>
 
+${ uiVO }
 <c:catch var="e"> 
 <%
 //입력값 전처리
 uiVO.setEmail( uiVO.getEmail1()+"@"+uiVO.getEmail2());
-	System.out.println("--------------------메일합침");
 
 /* uiVO.setIp(request.getRemoteAddr());
 uiVO.setPass(DataEncrypt.messageDigest("MD5", uiVO.getPass())); */
 
 //db 추가
-	System.out.println("--------------------1번인가");
 UserInfoManagementDAO uiDAO = UserInfoManagementDAO.getInstance();
-	System.out.println("--------------------졸려");
+try{
 	if(!"".equals(uiDAO.selectId(uiVO.getId()))){
-	System.out.println("--------------------아이디 중복");
 %>
 	입력하신 아이디는 이미 사용 중 입니다.<br/>
 	다른 아이디로 재가입 해주세요.<br>
@@ -60,28 +59,35 @@ UserInfoManagementDAO uiDAO = UserInfoManagementDAO.getInstance();
 <%
 	}else{
 	uiDAO.insertMember(uiVO);
-	System.out.println("---------------------------dkdkdkdkdk");
-	//uiDAO.insertPassword(id, uiVO);
+	uiDAO.insertPassword(uiVO.getId(), uiVO);
+}
+}catch(SQLException se){
+	se.printStackTrace();
 }
 %>
 <div id="success">
 	<div id="result">
 		<h2>회원가입해주셔서 감사합니다.</h2>
-		<strong>${ param.reg_mb_name }</strong>님의 회원가입을 축하드립니다.<br>
+		<strong>${ param.name }</strong>님의 회원가입을 축하드립니다.<br>
 		입력하신 정보는 아래와 같습니다.<br/>
 		<ul>
-			<li><strong>아이디 : </strong><c:out value="${ param.reg_mb_id }"/></li>
-			<li><strong>이메일 : </strong><c:out value="${ param.email1 }@${param.email2 }"/></li>
-			<li><strong>전화번호 : </strong><c:out value="${ param.reg_mb_hp }"/></li>
+			<li><strong>아이디 : </strong><c:out value="${ param.id }"/></li>
+			<li><strong>이메일 : </strong><c:out value="${ param.email1 }@${param.email2 }"/></li> 
+			<li><strong>전화번호 : </strong><c:out value="${ param.tel }"/></li>
 		</ul>
 		
 	</div>
+	<div style="text-align: center; margin-top: 20px;">
+    <button onclick="goToMainPage()" class="btn btn-primary">메인화면으로 이동</button>
+</div>
 </div>
 
 </c:catch>
 <c:if test="${ not empty e }">
+${ e }
 죄송합니다. 잠시 후 다시 시도해주세요.<br/>
 <a href="user_index.jsp">메인으로</a>
+
 <a href="#void" onclick="history.back()">뒤로</a>
 </c:if>
 

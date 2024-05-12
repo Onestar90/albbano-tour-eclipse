@@ -59,7 +59,7 @@ jQuery CDN 끝 -->
 	function sendId( id ){
 		//2. 현재창에 입력된 id를 얻어와서 부모창(opener)에 전달
 		//opener.window.document.frm.id.value=document.subFrm.id.value;
-		opener.window.document.getElementById("reg_mb_id").value=id;
+		opener.window.document.getElementById("id").value=id;
 		//3. 자식창을 닫는다.
 		self.close();
 	}
@@ -68,7 +68,7 @@ jQuery CDN 끝 -->
 <body>
 <%
 	//웹 파라메터 받는다.
-	String id=request.getParameter("mb_id");
+	String id=request.getParameter("id");
 	boolean flag=false;
 	
 	if(id != null ){//parameter가 존재하면 
@@ -87,20 +87,20 @@ jQuery CDN 끝 -->
 	<div id="background">
 	<div id="inputWrap">
 	<form name="subFrm">
-		<input type="text" name="id" id="id" value="${ param.mb_id }" class="inputTxt inputIdtype" />
+		<input type="text" name="id" id="id" value="${ param.id }" class="inputTxt inputIdtype" />
 		<input type="text" style="display: none"/>
 		<input type="button" value="중복검사" id="btn" class="btn btn-success btn-sm"/>
 	</form>
 	</div>
 	<div id="dupResult">
-	<c:if test="${ not empty param.mb_id }">
-		입력하신 [ <strong style="font-size: 25px"><c:out value="${ param.mb_id }"/></strong> ] 는
+	<c:if test="${ not empty param.id }">
+		입력하신 [ <strong style="font-size: 25px"><c:out value="${ param.id }"/></strong> ] 는
 		<c:choose>
 			<c:when test="${ pageScope.flag }">
 			사용 <strong style="color:#E53E30">불가능</strong> 합니다.
 			</c:when>
 			<c:otherwise>
-			사용 <strong style="color:#2B7BED">가능</strong> 합니다. <a href="#void" onclick="sendId('${ param.mb_id }')">사용</a>
+			사용 <strong style="color:#2B7BED">가능</strong> 합니다. <a href="#void" onclick="sendId('${ param.id }')">사용</a>
 			</c:otherwise>
 		</c:choose>
 	

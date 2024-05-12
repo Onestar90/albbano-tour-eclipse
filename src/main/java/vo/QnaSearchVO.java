@@ -7,7 +7,7 @@ public class QnaSearchVO {
 	public QnaSearchVO(String currentPage, int startNum, int endNum) {
 		super();
 		this.currentPage = currentPage;
-		StartNum = startNum;
+		this.StartNum = startNum;
 		this.endNum = endNum;
 	}
 	public QnaSearchVO() {
@@ -24,7 +24,7 @@ public class QnaSearchVO {
 		return StartNum;
 	}
 	public void setStartNum(int startNum) {
-		StartNum = startNum;
+		this.StartNum = startNum;
 	}
 	public int getEndNum() {
 		return endNum;

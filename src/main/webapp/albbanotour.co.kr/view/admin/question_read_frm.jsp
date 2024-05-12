@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: potatomoong
-  Date: 2024-04-17
-  Time: 오후 02:20
-  To change this template use File | Settings | File Templates.
---%>
+<%@page import="java.sql.SQLException"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@page import="org.eclipse.jdt.internal.compiler.IDebugRequestor"%>
@@ -12,16 +6,7 @@
 <%@ page import="dao.QnaDAO" %>
 <%@page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%String login_id =(String)session.getAttribute("idKey");
-if(login_id == null){ %>
-	<script>
-	alert("로그인이 필요한 페이지 입니다.");
-	location.href = "login.jsp";
-	</script>
-	<% 
-	}
-	%>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -40,7 +25,7 @@ if(login_id == null){ %>
         var g5_editor = "smarteditor2";
         var g5_cookie_domain = "";
     </script>
-    <%@ include file="common_head.jsp" %>
+   
 </head>
 
 <body>
@@ -48,8 +33,58 @@ if(login_id == null){ %>
 <jsp:setProperty property="*" name="qVO"/>
 <% request.setCharacterEncoding("UTF-8"); %>
 
-<%@ include file="common_m_header.jsp" %>
-<%@ include file="common_desktop_header.jsp" %>
+
+
+
+<script type="text/javascript">
+		
+	$(function(){
+		$("#btnUpdate").click(function(){
+			if(confirm("글을 수정하시겠습니까")){
+				$("#questionForm")[0].action="../admin/qna_answer_process.jsp";
+				$("#questionForm").submit();
+			}
+		})
+
+		$(".btnDelete").click(function(){
+			if(confirm("글을 삭제하시겠습니까?")){
+				$("#questionForm")[0].action="../admin/qna_delete_process.jsp";
+				$("#questionForm").submit();
+			}
+		})
+		
+	
+	
+	
+	})
+
+</script>
+
+<%
+// ASK_DOC_NO 파라미터 받기
+String ASK_DOC_NO = request.getParameter("ASK_DOC_NO");
+
+// ASK_DOC_NO가 비어 있거나 null인 경우 예외 처리
+if (ASK_DOC_NO == null || ASK_DOC_NO.isEmpty()) {
+    out.println("게시글 번호가 올바르지 않습니다.");
+    return; // 예외 처리 후 페이지 종료
+}
+
+// 게시글 조회
+QnaVO qVo = null;
+try {
+    QnaDAO qDao = QnaDAO.getInstance(); // DAO 인스턴스 생성
+    qVo = qDao.selectDetailqna(ASK_DOC_NO); // 해당 게시글 정보 조회
+} catch (SQLException se) {
+    se.printStackTrace();
+    out.println("게시글 조회 중 오류가 발생했습니다.");
+    return; // 예외 처리 후 페이지 종료
+}
+
+// 조회된 게시글 정보를 화면에 출력
+
+%>
+
 
 
 <section id="sub_visual">
@@ -83,17 +118,9 @@ if(login_id == null){ %>
                         <span>질문답변</span>
                         <ul>
                             <li><a href="/bbs/board.php?bo_table=notice" target="_self">공지사항</a></li>
-
-
                             <li><a href="/bbs/faq.php?fm_id=1" target="_self">자주 묻는 질문</a></li>
-
-
                             <li><a href="/bbs/board.php?bo_table=qa" target="_self">질문답변</a></li>
-
-
                             <li><a href="/bbs/qalist.php" target="_self">1:1문의</a></li>
-
-
                         </ul>
                     </li>
                 </ul>
@@ -112,68 +139,45 @@ if(login_id == null){ %>
         <div class="title">고객센터</div>
         <p class="normal_txt"></p>
     </div>
-
     <div class="scontents">
-
-
         <div class="bg_vline"></div>
         <p class="eng"><em></em> 질문답변</p>
         <p class="stitle"></p>
-
-
-    
+        <!-- skin : theme/daon_basic -->
         <section id="bo_w">
             <h2 class="sound_only">질문답변</h2>
-
-           
-          <form name="questionForm" id="questionForm" action="question_process.jsp" method="post">
-                <div class="write_div">
-                    <label for="wr_subject" class="sound_only">제목 <strong>필수</strong></label>
-                    <div id="autosave_wrapper write_div">
-                       <input type="text" name="ASK_TITLE" required
-                               class="frm_input full_input required" placeholder="제목을 적으세요" size="50" maxlength="20">
-
-                    </div>
-                </div>
-                <div class="write_div">
-                    <label for="wr_content" class="sound_only">내용<strong>필수</strong></label>
-                    <div class="wr_content smarteditor2">
-                       <textarea name="ASK_CONTENTS" placeholder="내용을 적으세요" maxlength="65536"
-                                  style="width:100%;height:300px"></textarea>
-
-                    </div>
-                </div>
+            <!-- 게시물 작성/수정 시작 { -->
+          <form name="questionForm" id="questionForm" method="post">
+          
+                <input type="hidden" name="ASK_DOC_NO" value="${ qVO.ASK_DOC_NO }"/>
+                
+<div class="write_div">
+    <label for="wr_subject" class="sound_only">제목 <strong>필수</strong></label>
+    <div id="autosave_wrapper write_div">
+        <span class="readonly-text"><%= qVo != null ? qVo.getASK_TITLE() : "" %></span>
+    </div>
+</div>
+<div class="write_div">
+    <label for="wr_content" class="sound_only">내용<strong>필수</strong></label>
+    <div class="wr_content smarteditor2">
+         <div class="readonly-text" style="width:100%;height:300px" ><%= qVo != null ? qVo.getASK_CONTENTS() : "" %></div>
+    </div>
+    <input name="ANSWER_CONTENTS" id="ANSWER_CONTENTS" placeholder="답변을 작성하세요" size="50">
+    <%=qVo != null? qVo.getANSWER_CONTENTS():"" %>
+</div>
                 <div class="btn_confirm write_div" style="text-align:center;">
+                <input type="button" value="답변작성" class="btn btn-info btn-sm" id="btnUpdate" />
+                 <input type="button" value="글삭제" class="btn btn-success btn-sm btnDelete" style="float: right;"/>   
                     <a href="qna.jsp" class="btn_cancel btn">취소</a>
-                    <button type="submit" id="submitBtn" class="btn_submit btn">작성완료</button>
                     
 </div>
             </form>
-            
-       
-
-           
         </section>
-       
     </div>
 </section>
 
 
 
-
-<%--footer_jsp_적용_시작--%>
-<footer>
-    <%@ include file="common_footer.jsp" %>
-</footer>
-<%--footer_jsp_적용_끝--%>
-
-<%@ include file="common_m_footer.jsp" %>
-<%@ include file="common_sidebar.jsp" %>
-<%@ include file="common_lower_container.jsp" %>
-
-<%--스크롤_애니메이션_리셋--%>
-<script src="../front_util/js/wow.min.js"></script>
-<script> new WOW().init(); </script>
-
 </body>
 </html>
+

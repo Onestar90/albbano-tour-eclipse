@@ -12,6 +12,7 @@ RestaurantManagementDAO rDAO = RestaurantManagementDAO.getInstance();
 List<ResListVO> list = new ArrayList<ResListVO>();
 list = rDAO.selectAllRes();
 pageContext.setAttribute("list", list);
+rDAO.selectMaxRes();
 %>
 <html>
 <head>
@@ -29,7 +30,7 @@ pageContext.setAttribute("list", list);
 
 <!--jQuery CDN 끝-->
 <style type="text/css">
-	
+	#img{width: 150px;height: 150px}
 	
 </style>
 <script type ="text/javascript">
@@ -57,9 +58,9 @@ pageContext.setAttribute("list", list);
 <div>
 <h3>맛집 리스트</h3>
 </div>
-<table>
+<table style="width:100%">
 <thead>
-<tr>
+<tr style="height: 100px">
 <th>번호</th>
 <th>코드</th>
 <th>상호명</th>
@@ -75,7 +76,7 @@ pageContext.setAttribute("list", list);
 </thead>
 <tbody>
 <c:forEach var ="res" items="${ list }" varStatus="i">
-<tr>
+<tr style="height: ">
 <td><c:out value="${ i.count }"/></td>
 <td><c:out value="${ res.res_code }"/></td>
 <td onclick="submitFrm('${res.res_code}')"><c:out value="${ res.res_name }"/></td>
@@ -83,7 +84,7 @@ pageContext.setAttribute("list", list);
 <td><c:out value="${ res.holiday }"/></td>
 <td><c:out value="${ res.busi_hour }"/></td>
 <td><c:out value="${ res.res_loc }"/></td>
-<td><img src="http://localhost/albbano-tour-eclipse/upload/%EC%A7%A411.jpg" ${ res.img_name }"/></td>
+<td id="img"><img src="http://192.168.10.221/albbano-tour-eclipse/upload/${ res.img_name }" width="150px" height="150px"/></td>
 <td><c:out value="${ res.edit_date }"/></td>
 <td><c:out value="${ res.latitude }"/></td>
 <td><c:out value="${ res.longitude }"/></td>
@@ -91,6 +92,9 @@ pageContext.setAttribute("list", list);
 </c:forEach>
 </tbody>
 </table>
+</div>
+<div>
+<a href ="insert_res.jsp">맛집추가</a>
 </div>
 </body>
 </html>

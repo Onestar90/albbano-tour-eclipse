@@ -5,10 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import util.DbConnection;
+import vo.ChartVO;
 
 public class AdminDashboardDAO {
 	
@@ -150,7 +153,7 @@ public void selectTotalspotcnt() throws SQLException{
 			ResultSet rs = null;
 			
 			try {
-			String selectQuery ="select count (*) ANSWER_CONTENTS from QNA";
+			String selectQuery ="SELECT COUNT(*) FROM QNA WHERE ANSWER_CONTENTS IS NULL";
 			con = dbCon.getConn("jdbc/abn");
 			pstmt = con.prepareStatement(selectQuery);
 			rs = pstmt.executeQuery();
@@ -249,7 +252,7 @@ public void selectReservationcnt() throws SQLException{
 	ResultSet rs = null;
 	
 	try {
-	String selectQuery ="select count (*)  RESV_FLAG from RESERVATION";
+	String selectQuery ="SELECT COUNT(*) FROM RESERVATION WHERE  RESV_FLAG IS NULL";
 	con = dbCon.getConn("jdbc/abn");
 	pstmt = con.prepareStatement(selectQuery);
 	rs = pstmt.executeQuery();
@@ -264,37 +267,34 @@ public void selectReservationcnt() throws SQLException{
 	}
 	}//selectReservationcnt
 
-public Map<String, Integer> selectchart() throws SQLException{
-	
-	DbConnection dbCon=DbConnection.getInstance();
-	Connection con = null;
-	PreparedStatement pstmt = null;
-	int resultCount = 0;
-	ResultSet rs = null;
-	 Map<String, Integer> chartData = new HashMap<>();
-	
-	try {
-		String selectQuery ="SELECT r.TOUR_DATE, SUM(r.PERSON) AS TOTAL_PERSON"
-				+ "FROM course c\r\n"
-				+ "INNER JOIN RESERVATION r ON c.CRS_CODE = r.CRS_CODE"
-				+ "WHERE r.TOUR_DATE >= TRUNC(SYSDATE) - INTERVAL '7' DAY "
-				+ "AND r.TOUR_DATE < TRUNC(SYSDATE) + INTERVAL '1' DAY "
-				+ "GROUP BY r.TOUR_DATE"
-				+ "ORDER BY r.TOUR_DATE DESC;";
-		con = dbCon.getConn("jdbc/abn");
-		pstmt = con.prepareStatement(selectQuery);
-		rs = pstmt.executeQuery();
-		while(rs.next()) {
-			 resultCount = rs.getInt("TOTAL_PERSON");
-			 this.resultCount = resultCount;
-		}
-	}catch(Exception e) {
-		e.printStackTrace();
-	}finally {
-		dbCon.closeCon(rs, pstmt, con);
-	}
-	return chartData;
-}//selectReservationcnt
+public List<ChartVO> selectChart() throws SQLException {
+    List<ChartVO> list = new ArrayList<>();
+    DbConnection dbCon = DbConnection.getInstance();
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+
+    try {
+        con = dbCon.getConn("jdbc/abn");
+        
+        StringBuilder selectQuery = new StringBuilder();
+        selectQuery.append("SELECT c.CRS_CODE, c.CRS_NAME, r.TOUR_DATE, r.PERSON ")
+                   .append("FROM course c, RESERVATION r ")
+                   .append("WHERE c.CRS_CODE = r.CRS_CODE");
+
+        pstmt = con.prepareStatement(selectQuery.toString());
+        rs = pstmt.executeQuery();
+        
+        while (rs.next()) {
+            ChartVO chartVO = new ChartVO(rs.getString("CRS_CODE"), rs.getString("CRS_NAME"),
+                                          rs.getInt("PERSON"), rs.getDate("TOUR_DATE"));
+            list.add(chartVO);
+        }
+    } finally {
+        dbCon.closeCon(rs, pstmt, con);
+    }
+    return list;
+}
 	
 	
 
