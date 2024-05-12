@@ -5,14 +5,17 @@ import java.sql.Date;
 public class NoticeVO {
 	private String doc_No, title, img_Name, id, doc_Cont, del_yn;
 	private Date create_Date;
+	private int num;
+	
 	
 	public NoticeVO() {
-		super();
+		
+	}
+	public NoticeVO(String string, String string2, String string3, Object object, Date date, String string4) {
 	}
 
-	public NoticeVO(String doc_No, String title, String img_Name, String id, String doc_Cont, String del_yn,
+	public NoticeVO(int num,String doc_No, String title, String img_Name, String id, String doc_Cont, String del_yn,
 			Date create_Date) {
-		super();
 		this.doc_No = doc_No;
 		this.title = title;
 		this.img_Name = img_Name;
@@ -20,6 +23,7 @@ public class NoticeVO {
 		this.doc_Cont = doc_Cont;
 		this.del_yn = del_yn;
 		this.create_Date = create_Date;
+		this.num=num;
 	}
 
 	/**
@@ -119,13 +123,30 @@ public class NoticeVO {
 	public void setCreate_Date(Date create_Date) {
 		this.create_Date = create_Date;
 	}
+	
+
+	/**
+	 * @return the num
+	 */
+	public int getNum() {
+		return num;
+	}
+
+	/**
+	 * @param num the num to set
+	 */
+	public void setNum(int num) {
+		this.num = num;
+	}
 
 	@Override
 	public String toString() {
 		return "NoticeVO [doc_No=" + doc_No + ", title=" + title + ", img_Name=" + img_Name + ", id=" + id
-				+ ", doc_Cont=" + doc_Cont + ", del_yn=" + del_yn + ", create_Date=" + create_Date + "]";
+				+ ", doc_Cont=" + doc_Cont + ", del_yn=" + del_yn + ", create_Date=" + create_Date + ", num=" + num
+				+ "]";
 	}
-
+	
+	
 	
 	
 	

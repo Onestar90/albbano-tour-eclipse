@@ -14,13 +14,15 @@
 String noticeNo= request.getParameter("noticeNo"); 
 NoticeDAO noticeDAO= NoticeDAO.getInstance();
 NoticeVO ntVO=noticeDAO.selectOne(noticeNo);
+out.print(noticeNo);
 //List<NoticeVO> list= noticeDAO.selectAll();
 pageContext.setAttribute("ntVO", ntVO);
+out.print(ntVO);
 %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <title>2022년 투어요금 변경안내 > 공지사항 | 알빠노관광</title>
+    <title> 공지사항 | 알빠노관광</title>
 
     <script>
         // 자바스크립트에서 사용하는 전역변수 선언
@@ -115,10 +117,10 @@ pageContext.setAttribute("ntVO", ntVO);
         <!-- 게시물 읽기 시작 { -->
 
         <article id="bo_v" style="width:100%"> 
-            <c:forEach var="notice" items="${ list }">
+          <%--   <c:forEach var="notice" items="${ list }"> --%>
             <header>
                 <h2 id="bo_v_title">
-                        <span class="bo_v_tit"><c:out value="${notice.getTitle }"/></span>
+                        <span class="bo_v_tit">${ntVO.title }</span>
                 </h2>
             </header>
 
@@ -128,7 +130,7 @@ pageContext.setAttribute("ntVO", ntVO);
                 <span class="sound_only">댓글</span><strong><a href="#bo_vc"> <i class="fas fa-comment-dots"></i>
                 0건</a></strong>
                 <span class="sound_only">조회</span><strong>Hit 16,503회</strong>
-                <strong class="if_date"><span class="sound_only">작성일</span><c:out value="${notice.getCreate_Date()}" /></strong>
+                <strong class="if_date"><span class="sound_only">작성일</span>${ntVO.create_Date}</strong>
             </section>
 
             <section id="bo_v_atc">
@@ -137,8 +139,8 @@ pageContext.setAttribute("ntVO", ntVO);
                 </div>
 
                 <!-- 본문 내용 시작 { -->
-                <div id="bo_v_con"><p style="text-align:center;" align="center">
-			  	<span><c:out value="${notice.doc_Cont}"/></span> 
+                <div id="bo_v_con"><p style="text-align:center;" >
+			  	<span>${ntVO.doc_Cont}</span> 
                   
                   <!--  
                   <img
@@ -153,7 +155,7 @@ pageContext.setAttribute("ntVO", ntVO);
                 <!--  추천 비추천 시작 { -->
                 <!-- }  추천 비추천 끝 -->
             </section>
-			</c:forEach>
+			<%-- </c:forEach> --%>
             <div id="bo_v_share">
 
             </div>
@@ -163,8 +165,6 @@ pageContext.setAttribute("ntVO", ntVO);
             <div id="bo_v_top">
 
                 <ul class="bo_v_left">
-                <input type="submit" value="수정" id="btn_submit" class="btn_submit btn" />
-                <!--  <a href="modify_notice.jsp?docNo=${notice.doc_No}"></a> -->
                 </ul>
 
                 <ul class="bo_v_com">
@@ -177,11 +177,11 @@ pageContext.setAttribute("ntVO", ntVO);
                     <li class="btn_prv"><span class="nb_tit"><i class="fa fa-caret-up"
                                                                 aria-hidden="true"></i> 이전글</span><a
                             href="desc_notice.jsp?noticeNo=NOTI_00002">포항-경주-김해공항 공항리무진 운행안내</a> <span
-                            class="nb_date"><c:out value="${notice.create_Date}"/></span></li>
+                            class="nb_date">${ntVO.create_Date}"</span></li>
                     <li class="btn_next"><span class="nb_tit"><i class="fa fa-caret-down"
                                                                  aria-hidden="true"></i> 다음글</span><a
                             href="desc_notice.jsp?noticeNo=NOTI_00003">KTX + 알빠노관광 상품판매(코레일)</a> <span
-                            class="nb_date"><c:out value="${notice.create_Date}"/></span></li>
+                            class="nb_date">${ntVO.create_Date}"</span></li>
                 </ul>
             </div>
             <!-- } 게시물 상단 버튼 끝 -->

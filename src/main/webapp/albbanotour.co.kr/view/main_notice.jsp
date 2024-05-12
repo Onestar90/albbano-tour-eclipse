@@ -121,11 +121,9 @@ pageContext.setAttribute("list", list);
                 </div>
 
                 <ul class="btn_bo_user">
-                   <!--   <li><a href="rss8497.php?bo_table=notice" class="btn_b01 btn"><i class="fa fa-rss"
-                                                                                     aria-hidden="true"></i> RSS</a>
+                   <li><a href="albbanotour.co.kr/view/admin/registNotice.jsp" class="btn_b01 btn"> 글쓰기</a>
                     </li>
-                    -->
-                    <li><a href="registNotice.jsp" class="btn_b01 btn" >글쓰기</a></li>
+                   
                 </ul>
             </div>
             <!-- } 게시판 페이지 정보 및 버튼 끝 -->
