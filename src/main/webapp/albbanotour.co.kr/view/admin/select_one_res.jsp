@@ -25,7 +25,7 @@
 	
 </style>
 <script type ="text/javascript">
-function submitForm(res_code) {
+function submitModify(res_code) {
 	var form = document.createElement('form');
 	form.method = 'POST';
 	form.action = 'modify_res.jsp';
@@ -39,6 +39,21 @@ function submitForm(res_code) {
 	document.body.appendChild(form);
 	form.submit();
 	}
+function submitDelete(res_code) {
+	var form = document.createElement('form');
+	form.method = 'POST';
+	form.action = 'delete_res.jsp';
+
+	var input = document.createElement('input');
+	input.type = 'hidden';
+	input.name = 'res_code';
+	input.value = res_code;
+
+	form.appendChild(input);
+	document.body.appendChild(form);
+	form.submit();
+	}
+	
 </script>
 </head>
 <body>
@@ -85,6 +100,7 @@ pageContext.setAttribute("rVO", rVO);
 </table>
 </div>
 </form>
-<input type="button" value="내용 수정" onclick="submitForm('${rVO.res_code}')">
+<input type="button" value="맛집 수정" onclick="submitModify('${rVO.res_code}')">
+<input type="button" value="맛집 삭제" onclick="submitDelete('${rVO.res_code}')">
 </body>
 </html>

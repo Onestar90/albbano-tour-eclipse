@@ -1,3 +1,6 @@
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
+<%@page import="java.io.File"%>
 <%@page import="dao.SpotManagementDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
@@ -31,16 +34,54 @@
 </head>
 <body>
 <div>
+<jsp:useBean id="SpotListVO" class="vo.SpotListVO" scope ="page"/>
 <%
 request.setCharacterEncoding("UTF-8");
+File saveDir = new File("C:/dev/albbano-tour-eclipse/src/main/webapp/upload");
+int maxSize =1024*1024*100;
+try{
+MultipartRequest mr = new MultipartRequest(request, saveDir.getAbsolutePath(),
+maxSize,"UTF-8", new DefaultFileRenamePolicy());
+String newName = mr.getFilesystemName("img_name");
+int limitSize =1024*1024*5;
+File readFile = new File(saveDir.getAbsolutePath()+"/"+newName);
+boolean flag = false;
+if(readFile.length()>limitSize){
+	flag =true;
+	readFile.delete();
+}//end if
+if(!flag){
+//curVO.setImgName(newName);
+//out.println(newName);
 %>
-<jsp:useBean id="SpotListVO" class="vo.SpotListVO" scope="page"/>
-<jsp:setProperty property="*" name="SpotListVO"/>
-<%
-pageContext.setAttribute("SpotListVO", SpotListVO);
+<% 
+
+SpotListVO.setImg_name(newName);
+String spot_code =mr.getParameter("spot_code");
+SpotListVO.setSpot_code(spot_code);
+String spot_name =mr.getParameter("spot_name");
+SpotListVO.setSpot_name(spot_name);
+String spot_desc =mr.getParameter("spot_desc");
+SpotListVO.setSpot_desc(spot_desc);
+String spt_loc =mr.getParameter("spt_loc");
+SpotListVO.setSpt_loc(spt_loc);
+
+double longitude = Double.parseDouble(mr.getParameter("longitude"));
+SpotListVO.setLongitude(longitude);
+double latitude = Double.parseDouble(mr.getParameter("latitude"));
+SpotListVO.setLatitude(latitude);
 SpotManagementDAO smDAO = SpotManagementDAO.getInstance();
 smDAO.updateSpot(SpotListVO);
 %>
+<%
+}else{
+	out.println("파일은 5MByte까지만 가능합니다.");
+}//end else
+}catch(Exception e){
+e.printStackTrace();
+}
+%>
+<a href ="select_spot.jsp">관광지 리스트로 돌아가기</a>
 </div>
 </body>
 </html>

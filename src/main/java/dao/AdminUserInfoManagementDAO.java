@@ -16,6 +16,8 @@ public class AdminUserInfoManagementDAO {
 
 	private static AdminUserInfoManagementDAO aduiDAO;
 	
+	private String[] columnNames;
+	
 	private AdminUserInfoManagementDAO() {
 		
 	}
@@ -59,6 +61,13 @@ public class AdminUserInfoManagementDAO {
 		return totalCnt;
 	}//totalCount
 	
+	
+	/**
+	 * 회원 리스트
+	 * @param asVO
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<UserInfoVO> selectInfo(AdminSearchVO asVO) throws SQLException{
 		List<UserInfoVO> list = new ArrayList<UserInfoVO>();
 		
@@ -69,35 +78,40 @@ public class AdminUserInfoManagementDAO {
 		DbConnection db=DbConnection.getInstance();
 		
 		try {
-		//1. JNDI 사용객체 생성
-		//2. DataSource 얻기
-		//3. Connection 얻기
 			con=db.getConn("jdbc/abn");
-		//4. 쿼리문 생성객체 얻기(Dynamic Query)
 			StringBuilder selectBoard=new StringBuilder();
 			selectBoard
-			.append("	select id, tel, email, rnum")
-			.append("	from(select id, tel, email,")
+			.append("	select id, tel, email, create_date, rnum")
+			.append("	from(select id, tel, email, create_date,")
 			.append("		row_number() over(order by create_date desc) rnum")
-			.append("		from member)")
-			.append("	where rnum between ? and ?");
-							
+			.append("		from member)");
+			/*.append("	where rnum between ? and ?");*/
+						
+			if(asVO.getKeyword() != null && !"".equals(asVO.getKeyword())) {
+				selectBoard
+				.append(" where instr(").append(columnNames[Integer.parseInt(asVO.getField())])
+				.append(",? ) > 0 ");
+			}//end if
+			selectBoard.append(" ) where rnum between ? and ? ");
+			
 			pstmt=con.prepareStatement(selectBoard.toString());
 			
-		//5. 바인드 변수에 값 설정
-			pstmt.setInt(1, asVO.getStartNum());
-			pstmt.setInt(2, asVO.getEndNum());
-		//6. 쿼리문 수행 후 결과 얻기
+			int bindIndex=0;
+			if(asVO.getKeyword() != null && !"".equals(asVO.getKeyword())) {
+				pstmt.setString(++bindIndex, asVO.getKeyword());
+			}//end if
+			
+			pstmt.setInt(++bindIndex, asVO.getStartNum());
+			pstmt.setInt(++bindIndex, asVO.getEndNum());
 			
 			rs=pstmt.executeQuery();
 			UserInfoVO uiVO=null;
 			while(rs.next()) {
 				uiVO=new UserInfoVO(rs.getString("id"), null, null, rs.getString("tel"),
-						rs.getString("email"), null, null,null,null,null);	
+						rs.getString("email"), rs.getDate("create_date"), null,null,null,null);	
 				list.add(uiVO);
-			}
+			}//end while
 		}finally {
-		//7. 연결끊기
 			db.closeCon(rs, pstmt, con);
 		}//end finally
 		return list;

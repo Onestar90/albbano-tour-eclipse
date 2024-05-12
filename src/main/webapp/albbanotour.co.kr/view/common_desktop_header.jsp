@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <section id="header_wrap">
     <div id="header">
         <div class="wrap_box">
@@ -118,7 +119,8 @@
                 <li><a href="logout.jsp"><i class="fa fa-power-off" aria-hidden="true"></i> 로그아웃</a></li>
                 <%} %>
                 
-                <li><a href="register.jsp"><i class="fa fa-user" aria-hidden="true"></i> 회원가입</a></li>
+                <li><a href="register.jsp"><i class="fa fa-user" aria-hidden="true"></i> 회원가입</a></li> 
+            
             </div>
 
         </div>

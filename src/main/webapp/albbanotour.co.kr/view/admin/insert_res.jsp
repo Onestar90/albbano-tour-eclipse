@@ -9,7 +9,9 @@
 <%
 RestaurantManagementDAO rDAO = RestaurantManagementDAO.getInstance();
 List<ResListVO> list = rDAO.resCat();
+String res_code =rDAO.selectMaxRes();
 pageContext.setAttribute("list", list);
+pageContext.setAttribute("res_code", res_code);
 %>
 <html>
 <head>
@@ -74,7 +76,7 @@ pageContext.setAttribute("list", list);
 <th>경도</th>
 </tr>
 <tr>
-<td><input type ="text" name ="res_code" /></td>
+<td><input type ="text" name ="res_code" value="${ res_code }" /></td>
 <td><select name ="res_cat" >
 <c:forEach var="cat" items="${ list }">
 <option value="${ cat.res_cat }">${ cat.res_cat }</option>

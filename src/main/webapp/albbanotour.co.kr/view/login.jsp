@@ -13,10 +13,10 @@ To change this template use File | Settings | File Templates.
 %>
 	<script>
 	alert("로그인 되었습니다.");
-	location.href = "login_ok.jsp";
+	location.href = "index_user.jsp";
 	</script>
 	
-<% } %>
+<% }%>
 
 <!DOCTYPE html>
 <html lang="ko">

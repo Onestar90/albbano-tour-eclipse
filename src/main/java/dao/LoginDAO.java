@@ -36,7 +36,7 @@ public class LoginDAO {
 		
 		try {
 			con = dbCon.getConn("jdbc/abn");
-			String query = "select count(*) from password where id = ? and password = ?";
+			String query = "select id from password where id = ? and password = ?";
 			
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, id);
@@ -47,6 +47,8 @@ public class LoginDAO {
 				//loginCon = true;
 			
 			loginCon=rs.next();//true-조회결과 있음, false-조회결과 없음
+			
+			System.out.println("====== " +loginCon);
 		}catch(Exception ex) {
 			System.out.println("Exception" + ex);
 		}finally {

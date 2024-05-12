@@ -1,8 +1,14 @@
+<%@page import="dao.SpotManagementDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
      info=""%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<%
+SpotManagementDAO sDAO = SpotManagementDAO.getInstance();
+String spot_code = sDAO.selectMaxSpot();
+request.setAttribute("spot_code", spot_code);
+%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -59,7 +65,7 @@
 </tr>
 </thead>
 <tbody>
-	<tr><td>관광지 코드: <input type="text" name ="spot_code" id ="spot_code"/></td></tr>
+	<tr><td>관광지 코드: <input type="text" name ="spot_code" id ="spot_code" value="${ spot_code }"/></td></tr>
 	<tr><td>관광지 이름: <input type="text" name ="spot_name" id  ="spot_name"/></td></tr>
 	<tr><td>관광지 설명: <input type="text" name ="spot_desc" id ="spot_desc"/></td></tr>
 	<tr><td>관광지 경도: <input type="text" name ="longitude" id ="longitude"/></td></tr>

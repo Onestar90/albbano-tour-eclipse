@@ -25,10 +25,24 @@
 	
 </style>
 <script type ="text/javascript">
-function submitForm(spot_code) {
+function submitModify(spot_code) {
 	var form = document.createElement('form');
 	form.method = 'POST';
 	form.action = 'modify_spot.jsp';
+
+	var input = document.createElement('input');
+	input.type = 'hidden';
+	input.name = 'spot_code';
+	input.value = spot_code;
+
+	form.appendChild(input);
+	document.body.appendChild(form);
+	form.submit();
+	}
+function submitDelete(spot_code) {
+	var form = document.createElement('form');
+	form.method = 'POST';
+	form.action = 'delete_spot.jsp';
 
 	var input = document.createElement('input');
 	input.type = 'hidden';
@@ -81,6 +95,7 @@ pageContext.setAttribute("sVO", sVO);
 </table>
 </div>
 </form>
-<input type ="button" value ="내용 수정" onclick="submitForm('${sVO.spot_code}')"/>
+<input type ="button" value ="관광지 수정" onclick="submitModify('${sVO.spot_code}')"/>
+<input type ="button" value ="삭제" onclick="submitDelete('${sVO.spot_code}')"/>
 </body>
 </html>

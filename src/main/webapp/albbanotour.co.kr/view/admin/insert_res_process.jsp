@@ -83,6 +83,7 @@ rDAO.insertRest(rVO);
 e.printStackTrace();
 }
 %>
+<a href="select_res.jsp">맛집리스트로 돌아가기</a>
 </div>
 </body>
 </html>
