@@ -112,7 +112,7 @@ pageContext.setAttribute("list", list);
 				<c:forEach var="spt" items="${ list }">
                     <div class="swiper-slide" style="width:285px !important;">
                         <a href="desc_spot.jsp?spot_code=${ spt.spot_code }">
-                            <img src=http://localhost/albbano-tour-eclipse/upload/<c:out value="${ spt.img_name}"/>
+                            <img src=http://192.168.10.221/albbano-tour-eclipse/upload/<c:out value="${ spt.img_name}"/>
                             
                             
                             

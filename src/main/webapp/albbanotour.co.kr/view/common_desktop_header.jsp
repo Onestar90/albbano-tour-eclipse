@@ -115,11 +115,12 @@
             	String id=(String)session.getAttribute("idKey");
             	if(id ==null ){%>
                 <li><a href="login.jsp"><i class="fa fa-power-off" aria-hidden="true"></i> 로그인</a></li>
+                <li><a href="register.jsp"><i class="fa fa-user" aria-hidden="true"></i> 회원가입</a></li> 
             	<%}else{%>
                 <li><a href="logout.jsp"><i class="fa fa-power-off" aria-hidden="true"></i> 로그아웃</a></li>
+                <li><a href="edit_profile.jsp"><i class="fa fa-user" aria-hidden="true"></i> 회원정보수정</a></li> 
                 <%} %>
                 
-                <li><a href="register.jsp"><i class="fa fa-user" aria-hidden="true"></i> 회원가입</a></li> 
             
             </div>
 

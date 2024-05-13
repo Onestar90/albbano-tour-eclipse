@@ -14,28 +14,23 @@ To change this template use File | Settings | File Templates.
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-CourseManagementDAO cmDAO = CourseManagementDAO.getInstance();
-List<CourseManagementVO> list_curs = new ArrayList<CourseManagementVO>();
-list_curs = cmDAO.selectAllCurs();
-
 String curs = request.getParameter("curs");
-
 String code = curs;
 
-if(curs == null){
-	code = list_curs.get(0).getCrsCode();
-}
+CourseManagementDAO cmDAO = CourseManagementDAO.getInstance();
 
 List<SpotListVO> list= new ArrayList<SpotListVO>();
 list = cmDAO.selectDetailSpot(code);
 
-CourseManagementVO cVO = cmDAO.selectCourseDetail(code);
+List<CourseManagementVO> list_curs = new ArrayList<CourseManagementVO>();
+list_curs = cmDAO.selectAllCurs();
 
 pageContext.setAttribute("list", list);
 pageContext.setAttribute("list_curs", list_curs);
-pageContext.setAttribute("cVO", cVO);
-pageContext.setAttribute("code", code);
 
+
+CourseManagementVO cVO = cmDAO.selectCourseDetail(code);
+pageContext.setAttribute("cVO", cVO);
 
 
 %>
@@ -117,42 +112,29 @@ pageContext.setAttribute("code", code);
 
 
         <div class="bg_vline"></div>
-        <p class="eng"><em>${ cVO.crsName }</em></p>
-        
-        
-       <div class="select_tour_course" style="float:right">
-      	 	<form method="post" action="tour_course.jsp">
-				<select id="curs" name="curs" size="1">
-					<c:forEach var="curs" items="${ list_curs }" varStatus="i">
-						<option value="${curs.crsCode }" <c:if test="${code eq curs.crsCode }">selected="selected"</c:if> >${curs.crsName }</option>	
-					</c:forEach>
-				</select> 
-				<input type="submit" value="선택" style="margin-left:1px">
-			</form>	
-       </div>
+        <p class="eng"><em>투어 코스</em></p>
        
-        <p class="stitle">${ cVO.crsDesc }</p>
+        <p class="stitle"></p>
 
 
         <div class="business">
             <div class="receive-btn">
-                <input name="image" type="submit" value="예약바로가기" alt="예약바로가기"
-                       onclick="location.href = 'booking.jsp' ">
+      
             </div>
         </div>
 
         <div class="lview" style="height: 50px;"></div>
 
         <div class="business">
-            <div class="course_title"><h5>코스안내</h5></div>
+        <c:forEach var="curs" items="${ list_curs }" varStatus="i">
+            <div class="course_title"><h5><c:out value="${curs.crsName }"/></h5></div>
             
                         <div class="course_box">
                             <div class="box_wrap">
                                 <dd>
                                     <ul>
-                                    <c:forEach var="spt" items="${ list }" varStatus="i">
-                                    	
-                                        <li><span>${ i.count }</span>${ spt.spot_name }</li>
+                                    <c:forEach var="spt" items="${ list }" varStatus="j">
+                                        <li><span>${ j.count }</span>${ spt.spot_name }</li>
                                         
                                     </c:forEach>
                                     </ul>
@@ -160,7 +142,7 @@ pageContext.setAttribute("code", code);
                                 </dd>
                             </div>
                         </div>
-           
+           </c:forEach>
 
 
             <!--타이틀 이미지 시작  -->
@@ -171,64 +153,6 @@ pageContext.setAttribute("code", code);
             </div>
             <!--타이틀 이미지 끝   -->
 
-            <div class="course_title"><h5>운행안내</h5></div>
-            <div class="box_normal">
-                <ul>
-                    <li>· 운행일 : 화, 목, 토, 일</li>
-                    <li>· 소요시간 : 7~8시간</li>
-                    <li>· 최소출발인원 : 15명</li>
-                    <li>· 인원 미달로 운행이 취소될 경우 전날 15시 이후 사전 연락드립니다.</li>
-                </ul>
-            </div>
-            <div class="lview" style="height: 50px;"></div>
-
-
-            <div class="course_title"><h5>요금안내</h5></div>
-            <div class="box_normal">
-                <ul>
-                    <li>· 금액 : ${ cVO.fare } 원</li>
-                    <!--					<li>· 성인은 19세 이상을 말하며, 소인은 7세~18세까지</li>-->
-                </ul>
-            </div>
-            <div class="lview" style="height: 50px;"></div>
-
-            <div class="lview" style="height: 50px;"></div>
-
-
-
-            <div class="course_title"><h5>안내사항 </h5></div>
-
-            <div class="box_normal">
-                <ul>
-                    <li>· 하루에 한번 운행되는 패키지형 투어 입니다.</li>
-                    <li>· 예약 시 투어비만 결제됩니다.</li>
-                    <li>· 중식은 자유중식입니다.</li>
-                    <li>· 투어 중 해설은 한국어로만 진행됩니다.</li>
-                    <li>· 당일 취소 및 투어 불참 시 환불이 되지 않습니다.(환불규정참조)</li>
-                    <li>· 교통편[기차,버스]은 18:00 이후 출발하는 티켓 예매를 추천드립니다. (단, 연휴 또는 주말에는 1시간이상 지연될 수 있습니다.)</li>
-                    <li>· 투어 종료 후 승차장소 중 선택하여 하차 가능합니다.(담당 해설사에게 전달 바랍니다.)</li>
-
-                    <li>· 여행자보험은 포함되어있지 않으니, 꼭 필요하다고 느끼시는 분들은 사전에 미리 직접 가입하시고 오시는 것을 추천해드립니다.</li>
-                    <li>· 좌석은 지정되어있지 않고, 승차 시 선착순으로 원하시는 자리에 앉는 자유석입니다.</li>
-                </ul>
-            </div>
-
-            <div class="lview" style="height: 50px;"></div>
-
-
-            <div class="course_title"><h5>환불규정 </h5></div>
-            <div class="box_normal">
-                <ul>
-                    <li>· 환불요청은 영업일 (09~18시) 기준으로 적용됩니다.</li>
-                    <li>· 투어 3일전 취소 : 100%</li>
-                    <li>· 투어 2일전 취소 : 90%</li>
-                    <li>· 투어 1일전 취소 : 80% (15시 이후 취소시 당일취소로 간주됩니다.)</li>
-                    <li>· 당일취소 및 불참 : 환불불가</li>
-                    <li>· 모객인원미달로 취소 : 100%환불</li>
-                    <li>· 천재지변으로 운행불가 : 100%환불</li>
-                    <li>· 무통장입금 : 환불 받을 계좌번호 고객센터로 전달, 매주 목요일<b>(17~18시)</b> 환불 진행</li>
-                </ul>
-            </div>
 
 
             <!--

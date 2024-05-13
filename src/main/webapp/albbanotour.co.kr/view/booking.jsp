@@ -217,7 +217,7 @@
                                 <div class="head">01. 투어선택 ◀◀코스를 선택하세요▶▶</div>
                                 <div class="list">
                                     <c:forEach var="tour" items="${tourList}" varStatus="i">
-   										<a href="#" href="#" onclick="loadCalendar(<c:out value='${currentYear}'/>, <c:out value='${currentMonth}'/>, <c:out value='${today}'/> )" class="roomli" data-rm-ix="${i.index}">
+   										<a href="#" onclick="event.preventDefault()" class="roomli" data-rm-ix="${i.index}">
         									<div class="media-left">
             									<div class="room-photo-frame">
                 									<img src="../front_util/images/tour_booking.png" class="room-photo-main">
@@ -241,7 +241,7 @@
                                         <nav>
 											<ul class="pager">
 											    <li>
-											        <a href="#" onclick="loadPreviousMonth()">
+											        <a href="#" onclick="event.preventDefault(); loadPreviousMonth()">
 											            <i class="fa fa-chevron-left" aria-hidden="true"></i>
 											        </a>
 											    </li>
@@ -253,7 +253,7 @@
 											        </strong>
 											    </li>
 											    <li>
-											        <a href="#" onclick="loadNextMonth()">
+											        <a href="#" onclick="event.preventDefault(); loadNextMonth()">
 											            <i class="fa fa-chevron-right" aria-hidden="true"></i>
 											        </a>
 											    </li>

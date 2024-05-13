@@ -42,8 +42,16 @@
 	
 
 	$(function(){
+		
+		$("#btnNoreadonly").click(function(){
+			alert("수정할까요?") 
+			$("input[name='ASK_TITLE']").prop("readonly", false);
+	            $("textarea[name='ASK_CONTENTS']").prop("readonly", false);
+		})
+		
+		
 		$("#btnUpdate").click(function(){
-			if(confirm("글을 수정하시겠습니까?")){
+			if(confirm("글이 수정되었습니다")){
 				$("#questionForm")[0].action="question_update_process.jsp";
 				$("#questionForm").submit();
 
@@ -57,6 +65,10 @@
 			}
 		})
 		
+		 $("#btnNoreadonly").click(function() {
+		        $("#btnUpdate").show();
+		        $("#btnNoreadonly").hide();
+		    });
 		
 		
 	})//ready
@@ -159,19 +171,20 @@ try {
 	<div class="write_div">
     <label for="wr_subject" class="sound_only">제목 <strong>필수</strong></label>
     <div id="autosave_wrapper write_div">
-        <input type="text" name="ASK_TITLE" maxlength="20" required class="frm_input full_input required" value="<%= qVo != null ? qVo.getASK_TITLE() : "" %>">
+        <input type="text" name="ASK_TITLE" maxlength="20" readonly required class="frm_input full_input required" value="<%= qVo != null ? qVo.getASK_TITLE() : "" %>">
     </div>
 </div>
 <div class="write_div">
     <label for="wr_content" class="sound_only">내용<strong>필수</strong></label>
     <div class="wr_content smarteditor2">
-        <textarea id="ASK_CONTENTS" name="ASK_CONTENTS" style="width:100%;height:300px">
+        <textarea id="ASK_CONTENTS" name="ASK_CONTENTS" style="width:100%;height:300px" readonly>
             <%= qVo != null ? qVo.getASK_CONTENTS() : "" %>
         </textarea>
     </div>
 </div>
                 <div class="btn_confirm write_div" style="text-align:center;">
-                <input type="button" value="수정" class="btn btn-info btn-sm" id="btnUpdate" />
+                <input type="button" value="수정하기" class="btn btn-info btn-sm" id="btnNoreadonly" />
+                <input type="button" value="수정완료" class="btn btn-info btn-sm" id="btnUpdate" style="display: none;" />
                  <input type="button" value="글삭제" class="btn btn-success btn-sm btnDelete" style="float: right;"/>   
                     <a href="qna.jsp" class="btn_cancel btn">취소</a>
                     

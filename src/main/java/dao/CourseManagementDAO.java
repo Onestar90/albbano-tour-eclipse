@@ -44,7 +44,7 @@ public class CourseManagementDAO {
 				cVO.setCrsCode(rs.getString("CRS_code"));
 				cVO.setCrsName(rs.getString("crs_name"));
 				cVO.setCrsDesc(rs.getString("crs_desc"));
-				cVO.setImgName(rs.getString("IMG_Name"));
+				
 				cVO.setFare(rs.getInt("fare"));
 				list.add(cVO);
 			}
@@ -73,7 +73,7 @@ public class CourseManagementDAO {
 			con = dbCon.getConn("jdbc/abn");
 
 			sb.append("	select s.SPOT_NAME	").append("	from SPOT s , TOUR_COURSE t 	")
-					.append("	where (s.SPOT_CODE=t.SPOT_CODE)	");
+					.append("	where (s.SPOT_CODE=t.SPOT_CODE) and 	");
 			pstmt = con.prepareStatement(sb.toString());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -94,7 +94,7 @@ public class CourseManagementDAO {
 	 * @return 
 	 * @throws SQLException
 	 */
-	public String selectDetailSpot(String crsCode) throws SQLException {
+	public List<SpotListVO> selectDetailSpot(String crsCode) throws SQLException {
 		List<SpotListVO> list = new ArrayList<SpotListVO>();
 		String spots="";
 		SpotListVO sVO = null;
@@ -120,7 +120,7 @@ public class CourseManagementDAO {
 		} finally {
 			dbCon.closeCon(rs, pstmt, con);
 		}
-		return  spots;
+		return  list;
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class CourseManagementDAO {
 				cmVO.setCrsCode(rs.getString("CRS_CODE"));
 				cmVO.setCrsName(rs.getString("CRS_NAME"));
 				cmVO.setCrsDesc(rs.getString("CRS_DESC"));
-				cmVO.setImgName(rs.getString("IMG_NAME"));
+				
 				cmVO.setCreateDate(rs.getDate("CREATE_DATE"));
 				cmVO.setFare(rs.getInt("FARE"));
 
@@ -207,12 +207,11 @@ public class CourseManagementDAO {
 		try {
 			con = dbCon.getConn("jdbc/abn");
 			String insert = // 'CURS_00001','동해안투어','대충 동해안 투어 한다는 내용','EAST_SEA',25000,sysdate,'N';
-					"insert into COURSE values(?,?,?,?,?,sysdate,'N')";
+					"insert into COURSE values(?,?,?,?,sysdate,'N')";
 			pstmt = con.prepareStatement(insert);
 			pstmt.setString(1, cVO.getCrsCode());
 			pstmt.setString(2, cVO.getCrsName());
 			pstmt.setString(3, cVO.getCrsDesc());
-			pstmt.setString(4, cVO.getImgName());
 			pstmt.setInt(5, cVO.getFare());
 
 			cnt = pstmt.executeUpdate();
