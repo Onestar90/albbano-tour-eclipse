@@ -5,7 +5,11 @@
   Time: 오전 11:17
   To change this template use File | Settings | File Templates.
 --%>
+<%@page import="vo.SpotListVO"%>
+<%@page import="java.util.List"%>
+<%@page import="dao.SpotDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -25,6 +29,12 @@
 </head>
 
 <body>
+<%
+SpotDAO sDAO =SpotDAO.getInstance();
+List<SpotListVO> list =sDAO.selectAlSpot();
+pageContext.setAttribute("list", list);
+%>
+
 <%@ include file="common_m_header.jsp" %>
 <%-- <%@ include file="common_desktop_header.jsp" %> --%>
 
@@ -163,68 +173,22 @@
         <div class="swiper-container2">
             <div class="swiper-wrapper">
 
-                <div class="swiper-slide" style="width:285px !important;">
-                    <a href="view/gallery02.html?bo_table=gallery&amp;wr_id=14">
-                        <img src="../front_util/images/thumb-b592950d84858733b19ce958b7aa1e61_1571968104_0715_285x220.jpg"
-                             alt="&nbsp;">
-                        <p class="txtBox">
-                            <span class="tit">감은사지삼층석탑</span>
-                            <span class="txt">&nbsp;</span>
-                            <span class="date">2019-10-25</span>
-                        </p>
-                    </a>
-                </div>
-
-
-                <div class="swiper-slide" style="width:285px !important;">
-                    <a href="view/gallery03.html?bo_table=gallery&amp;wr_id=13">
-                        <img src="../front_util/images/thumb-b592950d84858733b19ce958b7aa1e61_1571968085_2893_285x220.jpg"
-                             alt="&nbsp;">
-                        <p class="txtBox">
-                            <span class="tit">월정교</span>
-                            <span class="txt">&nbsp;</span>
-                            <span class="date">2019-10-25</span>
-                        </p>
-                    </a>
-                </div>
-
-                <div class="swiper-slide" style="width:285px !important;">
-                    <a href="view/gallery05.html?bo_table=gallery&amp;wr_id=11">
-                        <img src="../front_util/images/thumb-b592950d84858733b19ce958b7aa1e61_1571968027_3237_285x220.jpg"
-                             alt="&nbsp;">
-                        <p class="txtBox">
-                            <span class="tit">안압지</span>
-                            <span class="txt">&nbsp;</span>
-                            <span class="date">2019-10-25</span>
-                        </p>
-                    </a>
-                </div>
-
-
-                <div class="swiper-slide" style="width:285px !important;">
-                    <a href="view/gallery04.html?bo_table=gallery&amp;wr_id=10">
-                        <img src="../front_util/images/thumb-b592950d84858733b19ce958b7aa1e61_1571967995_9657_285x220.jpg"
-                             alt="&nbsp;">
-                        <p class="txtBox">
-                            <span class="tit">문무대왕릉</span>
-                            <span class="txt">&nbsp;</span>
-                            <span class="date">2019-10-25</span>
-                        </p>
-                    </a>
-                </div>
-
-
-                <div class="swiper-slide" style="width:285px !important;">
-                    <a href="desc_spot.jsp?bo_table=gallery&amp;wr_id=9">
-                        <img src="../front_util/images/thumb-b592950d84858733b19ce958b7aa1e61_1571967966_297_285x220.jpg"
-                             alt="&nbsp;">
-                        <p class="txtBox">
-                            <span class="tit">불국사</span>
-                            <span class="txt">&nbsp;</span>
-                            <span class="date">2019-10-25</span>
-                        </p>
-                    </a>
-                </div>
+               <c:forEach var="spt" items="${ list }">
+                    <div class="swiper-slide" style="width:285px !important;">
+                        <a href="desc_spot.jsp?spot_code=${ spt.spot_code }">
+                            <img src=http://localhost/albbano-tour-eclipse/upload/<c:out value="${ spt.img_name}"/>
+                            
+                            
+                            
+                                 alt="&nbsp;">
+                            <p class="txtBox">
+                                <span class="tit"><c:out value="${ spt.spot_name}" /></span>
+                                <span class="txt">&nbsp;</span>
+                                <span class="date"><c:out value="${ spt.create_date}" /></span>
+                            </p>
+                        </a>
+                    </div>
+				 </c:forEach>
             </div>
         </div>
     </section>

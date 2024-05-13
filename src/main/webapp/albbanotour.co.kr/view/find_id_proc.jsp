@@ -8,20 +8,20 @@
 request.setCharacterEncoding("UTF-8");
 
 String email = request.getParameter("email");
-String id = request.getParameter("id");
+String name = request.getParameter("name");
 
 UserInfoManagementDAO uiDAO = new UserInfoManagementDAO();
-String pass = uiDAO.searchPass(email, id);
+String id = uiDAO.searchId(name, email);
 
 %>
 
-<form name="pwSearch" method="post">
+<form name="idsearch" method="post">
 	<%
-		if(pass != null){
+		if(id != null){
 	%>
 	<div class="container">
 		<div class = "found-success">
-	      <h4>  회원님의 비밀번호는 <%=pass%> 입니다.</h4>  
+	      <h4>  회원님의 아이디는 <%=id%> 입니다.</h4>  
 	      <%-- <div class ="id"><%=id%></div> --%>
 	     </div>
 	     <div class = "found-login">
@@ -34,7 +34,7 @@ String pass = uiDAO.searchPass(email, id);
  %>
         <div class = "container">
       	<div class = "found-fail">
-	      <h4>  등록된 정보가 없습니다. 다시 입력 부탁드립니다. </h4>  
+	      <h4>  등록된 정보가 없습니다 </h4>  
 	     </div>
 	     <div class = "found-login">
  		    <input type="button" id="btnback" value="다시 찾기" onClick="history.back()"/>

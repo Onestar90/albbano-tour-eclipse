@@ -58,7 +58,7 @@
 <!-- 외부 CSS 적용 끝 -->
 
 <!-- 파비콘 설정 -->
-<link rel="icon" type="image/png" href="/favicon.png"/>
+<link rel="icon" type="image/png" href="../../favicon.png"/>
 
 <!-- 스크립트 로드 시작 -->
 <script src="../front_util/js/jquery-1.8.3.min.js"></script>

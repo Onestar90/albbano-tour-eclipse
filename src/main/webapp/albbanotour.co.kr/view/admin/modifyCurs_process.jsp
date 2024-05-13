@@ -1,3 +1,6 @@
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
+<%@page import="java.io.File"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.CourseManagementDAO"%>
@@ -33,10 +36,13 @@
 </head>
 <body>
 <div>
-    <% request.setCharacterEncoding("UTF-8"); %>
-    <jsp:useBean id="curVO" class="vo.CourseManagementVO" scope="page"/>
-    <jsp:setProperty property="*" name="curVO"/>
-    <%pageContext.setAttribute("curVO", curVO);
+ <% request.setCharacterEncoding("UTF-8"); %>
+ <jsp:useBean id="curVO" class="vo.CourseManagementVO" scope="page"/>
+ <jsp:setProperty property="*" name="curVO"/>
+ 
+    <%
+    
+    
     String[] crsSpotsArray = request.getParameterValues("spotValues");
 
     List<String> crsSpotsList = new ArrayList<>();
@@ -48,14 +54,15 @@
             }
         }
     }
-    String[] crsSpots = crsSpotsList.toArray(new String[0]);
+    String[] crsSpots = crsSpotsList.toArray(new String[5]);
 
     curVO.setCrsSpots(crsSpots);
     CourseManagementDAO cDAO = CourseManagementDAO.getInstance();
+    out.print(curVO);
     cDAO.updateCurs(curVO);
-	
+
     for (int i = 0; i < 5; i++) {
-    cDAO.updateTourCurs(curVO.getCrsCode(), crsSpots[i],i+1);
+   cDAO.updateTourCurs(curVO.getCrsCode(), crsSpots[i],i+1);
     }
 
     %>

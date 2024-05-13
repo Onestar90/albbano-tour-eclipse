@@ -7,6 +7,7 @@
      info=""%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+
 <%
 request.setCharacterEncoding("UTF-8");
 CourseManagementDAO cmDAO = CourseManagementDAO.getInstance();
@@ -79,18 +80,36 @@ pageContext.setAttribute("spots", spots);
     }
     
     function sendToProcessPage() {
-        // 폼 생성
         var form = document.createElement("form");
-        form.setAttribute("method", "post"); // GET 방식으로 변경
+        form.setAttribute("method", "post"); 
         form.setAttribute("action", "modifyCurs_process.jsp");
+        form.setAttribute("enctype", "multipart/form-data");
         
-        // 폼에 값 추가
+        var file = $("#imgName").val();
+		var selectedExt = file.substring(file.lastIndexOf(".")+1);
+
+		var extArr = ["png", "jpg", "gif", "jpeg", "bmp"];
+		var flag = false;
+
+		for(var i = 0; i < extArr.length; i++) {
+		if(selectedExt == extArr[i]) {
+		flag = true;
+		break;
+		} // end if
+		} // end for
+
+		if(!flag) {
+		alert(selectedExt + "는 업로드 가능한 파일의 확장자가 아닙니다.");
+		return;
+		} // end if
+
+        
         addInputToForm(form, "crsCode", $("input[name='crsCode']").val());
         addInputToForm(form, "crsName", $("input[name='crsName']").val());
         addInputToForm(form, "crsDesc", $("input[name='crsDesc']").val());
-        addInputToForm(form, "imgName", $("input[name='imgName']").val());
         addInputToForm(form, "fare", $("input[name='fare']").val());
-
+        addInputToForm1(form, "imgName", $("input[id='imgName']").val());
+        
         var spotValues = [];
         $(".spotList td").each(function() {
             spotValues.push($(this).text());
@@ -117,6 +136,13 @@ pageContext.setAttribute("spots", spots);
         input.setAttribute("value", value);
         form.appendChild(input);
     }
+    function addInputToForm1(form, id, value) {
+        var input = document.createElement("input");
+        input.setAttribute("type", "hidden");
+        input.setAttribute("id", id);
+        input.setAttribute("value", value);
+        form.appendChild(input);
+    }
 </script>
 </head>
 <body>
@@ -131,7 +157,6 @@ pageContext.setAttribute("spots", spots);
 <th>코스코드</th>
 <th>코스이름</th>
 <th>코스설명</th>
-<th>코스 이미지</th>
 <th>코스 요금</th>
 <th>해당 코스 관광지</th>
 </tr>
@@ -140,8 +165,7 @@ pageContext.setAttribute("spots", spots);
 <tr>
 <td><input type="text" value="${ cVO.crsCode}" name ="crsCode"/></td>
 <td><input type="text" value="${ cVO.crsName}" name ="crsName"/></td>
-<td><textarea style="width: 500px;" name ="crsDesc" >${ cVO.crsDesc}</textarea></td>
-<td><input type="text" value="${ cVO.imgName}" name ="imgName"/></td>
+<td><input type="text"  name ="crsDesc" value="${ cVO.crsDesc}" /></td>
 <td><input type="text" value="${ cVO.fare}" name ="fare"/></td>
 <td>코스 관광지 : 
         <select id="spotSelect" name="crsSpots"> 

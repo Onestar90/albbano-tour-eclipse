@@ -99,20 +99,37 @@ pageContext.setAttribute("list", list);
         addInputToForm(form, "crsName", $("input[name='crsName']").val());
         addInputToForm(form, "crsDesc", $("input[name='crsDesc']").val());
         addInputToForm(form, "fare", $("input[name='fare']").val());
-
+        addInputToForm1(form, "imgName", $("input[id='imgName']").val());
         var spotValues = [];
         $(".spotList td").each(function() {
             spotValues.push($(this).text());
         });
         addInputToForm(form, "spotValues", spotValues.join(","));
-
+        
         document.body.appendChild(form);
+        var currentRowCount = $(".spotList tr").length;
+
+        var maxRowCount = 5;
+        var flag =false;
+        if(currentRowCount!=maxRowCount){
+       	 flag = true;
+       	 alert("관광지의 개수는 5개가 모두 선택되어야 합니다.")
+       	 return;
+        }
+        
         form.submit();
     }
     function addInputToForm(form, name, value) {
         var input = document.createElement("input");
         input.setAttribute("type", "hidden");
         input.setAttribute("name", name);
+        input.setAttribute("value", value);
+        form.appendChild(input);
+    }
+    function addInputToForm1(form, id, value) {
+        var input = document.createElement("input");
+        input.setAttribute("type", "hidden");
+        input.setAttribute("id", id);
         input.setAttribute("value", value);
         form.appendChild(input);
     }
@@ -138,7 +155,6 @@ pageContext.setAttribute("list", list);
 <td>코스 설명 : <input type="text" name ="crsDesc" maxlength="333"/></td>
 </tr>
 <tr>
-<td>코스 이미지: <input type="file" name ="imgName" id ="imgName" style="width: 300px"/></td>
 </tr>
 <tr>
 <td>코스 요금 : <input type="text" name ="fare"/></td>
@@ -167,5 +183,6 @@ pageContext.setAttribute("list", list);
 <input type="button" onclick="sendToProcessPage()" value="값 전송">
 </div>
 </form>
+<a href ="select_curs.jsp">코스 리스트</a>
 </body>
 </html>

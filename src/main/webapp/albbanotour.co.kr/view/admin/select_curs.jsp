@@ -59,7 +59,6 @@ pageContext.setAttribute("list", list);
 <th>코스코드</th>
 <th>코스이름</th>
 <th>코스설명</th>
-<th>이미지 이름</th>
 <th>운임</th>
 </tr>
 <c:forEach var="cur" items="${list }" varStatus="i">
@@ -68,12 +67,11 @@ pageContext.setAttribute("list", list);
 <td >${ cur.crsCode  }</td>
 <td onclick="submitFrm('${cur.crsCode}')">${ cur.crsName }</td>
 <td>${ cur.crsDesc }</td>
-<td>${ cur.imgName }</td>
-<td>${ cur.fare }</td>
+<td>${ cur.fare }원</td>
 </tr>
 </c:forEach>
 </table>
-
+<a href ="insertCurs.jsp">코스추가</a>
 </div>
 </body>
 </html>

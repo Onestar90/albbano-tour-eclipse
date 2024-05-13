@@ -12,7 +12,7 @@ public class UserInfoManagementDAO {
 
 	private static UserInfoManagementDAO uiDAO;
 	
-	private UserInfoManagementDAO() {
+	public UserInfoManagementDAO() {
 		
 	}
 	
@@ -127,20 +127,75 @@ public class UserInfoManagementDAO {
 	 * @return
 	 * @throws SQLException
 	 */
-	/*
-	 * public String selectId(String id) throws SQLException{ String returnId="";
-	 * 
-	 * Connection con = null; PreparedStatement pstmt = null; ResultSet rs = null;
-	 * 
-	 * DbConnection db = DbConnection.getInstance();
-	 * 
-	 * try { con=db.getConn("jdbc/abn"); pstmt =
-	 * con.prepareStatement("select id from member where id=?"); pstmt.setString(1,
-	 * id); rs=pstmt.executeQuery(); if(rs.next()) { returnId=rs.getString("id"); }
-	 * }finally { db.closeCon(rs, pstmt, con); }
-	 * 
-	 * System.out.println("======================되나?"); return returnId; }
+	public String searchId(String name,String email) throws SQLException{
+		String id="";
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		DbConnection db = DbConnection.getInstance();
+		
+		try {
+			con=db.getConn("jdbc/abn");
+			
+			StringBuilder selectId = new StringBuilder();
+			selectId
+			.append("	select id	")
+			.append("	from member	")
+			.append("	where name=? and email=?	");
+			
+			pstmt = con.prepareStatement(selectId.toString());
+			pstmt.setString(1, name);
+			pstmt.setString(2, email);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				id=rs.getString("id");
+			}
+		}finally {
+			db.closeCon(rs, pstmt, con);
+		}
+		
+		return id;
+	}
+	 
+	/**
+	 * 비밀번호 찾기
+	 * @param email
+	 * @param id
+	 * @return
+	 * @throws SQLException
 	 */
-	
+	public String searchPass(String email,String id) throws SQLException{
+		String pass="";
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		DbConnection db = DbConnection.getInstance();
+		
+		try {
+			con=db.getConn("jdbc/abn");
+			
+			StringBuilder selectPass = new StringBuilder();
+			selectPass
+			.append("	SELECT p.password	")
+			.append("	FROM password p, member m	")
+			.append("	WHERE m.id=p.id AND m.email=? AND m.id=?	");
+			
+			pstmt = con.prepareStatement(selectPass.toString());
+			pstmt.setString(1, email);
+			pstmt.setString(2, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				pass=rs.getString("password");
+			}
+		}finally {
+			db.closeCon(rs, pstmt, con);
+		}
+		
+		return pass;
+	}
 	
 }

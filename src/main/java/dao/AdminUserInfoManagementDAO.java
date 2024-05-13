@@ -84,7 +84,7 @@ public class AdminUserInfoManagementDAO {
 			.append("	select id, tel, email, create_date, rnum")
 			.append("	from(select id, tel, email, create_date,")
 			.append("		row_number() over(order by create_date desc) rnum")
-			.append("		from member)");
+			.append("		from member");
 			/*.append("	where rnum between ? and ?");*/
 						
 			if(asVO.getKeyword() != null && !"".equals(asVO.getKeyword())) {

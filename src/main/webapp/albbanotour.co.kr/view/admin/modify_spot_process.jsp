@@ -71,6 +71,8 @@ SpotListVO.setLongitude(longitude);
 double latitude = Double.parseDouble(mr.getParameter("latitude"));
 SpotListVO.setLatitude(latitude);
 SpotManagementDAO smDAO = SpotManagementDAO.getInstance();
+
+out.print(SpotListVO);
 smDAO.updateSpot(SpotListVO);
 %>
 <%

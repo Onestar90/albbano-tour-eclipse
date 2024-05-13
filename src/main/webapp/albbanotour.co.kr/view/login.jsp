@@ -64,12 +64,16 @@ To change this template use File | Settings | File Templates.
                        maxLength="20" placeholder="PASSWORD">
                 <button type="submit" class="btn_submit">로그인</button>
                 <div id="login_info">
-                    <div class="login_if_auto chk_box">
+                    <!-- <div class="login_if_auto chk_box">
                         <input type="checkbox" name="auto_login" id="login_auto_login" class="selec_chk">
                         <label for="login_auto_login"><span></span> 로그인 기억하기 </label>
-                    </div>
+                    </div> -->
                     <div class="login_if_lpl">
-                        <a href="find_password.jsp" target="_blank" id="login_password_lost">비밀번호찾기 </a>
+                        <!-- <a href="find_password.jsp" target="_blank" id="login_password_lost">비밀번호찾기 </a>
+                        <a href="find_id.jsp" target="_blank" id="login_id_lost">아이디찾기 </a> -->
+                        
+						<a href="find_id.jsp" style="margin-right: 10px;">아이디찾기</a>
+                        <a href="find_password.jsp">비밀번호찾기</a>
                     </div>
                 </div>
             </fieldset>
@@ -78,13 +82,13 @@ To change this template use File | Settings | File Templates.
 </div>
 
 <script>
-    jQuery(function ($) {
+    /* jQuery(function ($) {
         $("#login_auto_login").click(function () {
             if (this.checked) {
                 this.checked = confirm("자동로그인을 사용하시면 다음부터 회원아이디와 비밀번호를 입력하실 필요가 없습니다.\n\n공공장소에서는 개인정보가 유출될 수 있으니 사용을 자제하여 주십시오.\n\n자동로그인을 사용하시겠습니까?");
             }
         });
-    });
+    }); */
 
     function flogin_submit(f) {
         if ($(document.body).triggerHandler('login_sumit', [f, 'flogin']) !== false) {

@@ -25,6 +25,7 @@ public class SpotManagementDAO {
 	}
 	/**
 	 * 사용자의 편의를 위해서 DB내의 max값을 가져와서 반환하는 method
+	 * 24.05.10 김일신
 	 * @return
 	 * @throws SQLException
 	 */
@@ -195,6 +196,14 @@ public class SpotManagementDAO {
 		}
 		return cnt;
 	}
+	
+	
+	/**
+	 * 관리자 화면에서 선택 한 관광지의 논리삭제를 수정하는 method 24.05.10 김일신
+	 * @param spot_code
+	 * @return
+	 * @throws SQLException
+	 */
 	public int deleteSpot(String spot_code) throws SQLException {
 		int cnt = 0;
 		DbConnection dbCon = DbConnection.getInstance();

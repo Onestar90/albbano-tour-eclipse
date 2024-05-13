@@ -24,6 +24,7 @@ public class CourseManagementDAO {
 		}
 		return cmDAO;
 	}
+	
 
 	public List<CourseManagementVO> selectAllCurs() throws SQLException {
 		List<CourseManagementVO> list = new ArrayList<CourseManagementVO>();
