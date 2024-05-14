@@ -348,6 +348,37 @@ public class NoticeDAO {
 		
 	}
 	
+	/**
+	    * 사용자의 편의를 위해서 DB내의 max값을 가져와서 반환하는 method
+	    * @return
+	    * @throws SQLException
+	    */
+	   public String selectMaxNotice() throws SQLException {
+	      String code ="";
+	      StringBuilder sb= new StringBuilder("NOTI_");
+	      DbConnection dbCon = DbConnection.getInstance();
+	      Connection con = null;
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      try {
+	         con = dbCon.getConn("jdbc/abn");
+	         String str ="select max(doc_No) doc_No from notice";
+	         pstmt =con.prepareStatement(str);
+	         rs =pstmt.executeQuery();
+	         if(rs.next()) {
+	            code =rs.getString("doc_No");
+	         }
+	         int num =Integer.parseInt(code.substring(5));
+	         sb.append(String.format("%05d", num+1));
+	         code =sb.toString();
+	      }finally {
+	         dbCon.closeCon(rs, pstmt, con);
+	      }
+	      
+	      return code;
+	   }
+	
+	
 	public void deleteNotice(String del_yn) throws SQLException {
 		
 		Connection con=null;

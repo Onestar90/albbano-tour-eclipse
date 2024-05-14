@@ -67,7 +67,7 @@ request.setAttribute("spot_code", spot_code);
 <tbody>
 	<tr><td>관광지 코드: <input type="text" name ="spot_code" id ="spot_code" value="${ spot_code }"/></td></tr>
 	<tr><td>관광지 이름: <input type="text" name ="spot_name" id  ="spot_name"/></td></tr>
-	<tr><td>관광지 설명: <input type="text" name ="spot_desc" id ="spot_desc"/></td></tr>
+	<tr><td>관광지 설명: <input type="text" name ="spot_desc" id ="spot_desc" maxlength="333"/></td></tr>
 	<tr><td>관광지 경도: <input type="text" name ="longitude" id ="longitude"/></td></tr>
 	<tr><td>관광지 위도: <input type="text" name ="latitude" id ="latitude"/></td></tr>
 	<tr><td>관광지 주소: <input type="text" name ="spt_loc" id ="spt_loc"/></td></tr>

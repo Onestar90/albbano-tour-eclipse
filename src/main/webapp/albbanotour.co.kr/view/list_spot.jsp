@@ -116,7 +116,7 @@ pageContext.setAttribute("list", list);
                             
                             
                             
-                                 alt="&nbsp;">
+                                 alt="&nbsp;" border="0" width="300" height="200">
                             <p class="txtBox">
                                 <span class="tit"><c:out value="${ spt.spot_name}" /></span>
                                 <span class="txt">&nbsp;</span>

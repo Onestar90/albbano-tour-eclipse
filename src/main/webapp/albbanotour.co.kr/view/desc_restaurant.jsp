@@ -16,7 +16,7 @@
 String resCode = request.getParameter("res_code");
 
  if( resCode==null){
- 	response.sendRedirect("http://localhost/albbano-tour-eclipse/albbanotour.co.kr/view/list_restaurant.jsp");
+ 	response.sendRedirect("list_restaurant.jsp");
  	return;
  }
 
@@ -123,12 +123,13 @@ pageContext.setAttribute("rVO", rVO);
     
     <div>
      <div id ="desc" style="width:50%; float: left; margin-left: 150px;">
-       <img src="${rVO.img_name }">
+       <img src=http://192.168.10.221/albbano-tour-eclipse/upload/<c:out value="${rVO.img_name }"/>  alt="&nbsp;" border="0" width="300" height="200">
+       
        ${rVO.res_loc }
        ${rVO.intro}
        ${rVO.busi_hour}
        ${rVO.holiday}
-       ${rVO.del_yn}
+
        
     </div>
     <div id="map" style="width:35%;height:450px; margin: 0 auto ; float: right; margin-right: 100px"></div>

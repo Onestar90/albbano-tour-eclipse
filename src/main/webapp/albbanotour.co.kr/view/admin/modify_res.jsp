@@ -49,7 +49,7 @@ pageContext.setAttribute("rVO", rVO);
 <table>
 <thead>
 <tr>
-	<th style="width:100px">코드</th>
+	<th style="width:100px">코드 :</th>
 	<th style="width:100px">맛집 카테고리</th>
 	<th style="width:100px">맛집 이름</th>
 	<th style="width:600px">소개</th>
@@ -62,23 +62,23 @@ pageContext.setAttribute("rVO", rVO);
 </tr>
 </thead>
 <tbody>
-<tr>
-	<td><input type="text" name ="res_code" value ="${ rVO.res_code }" readonly="readonly"/></td>
-	<td><select name ="res_cat" >
+
+<tr><td>맛집 코드 : <input type="text" name ="res_code" value ="${ rVO.res_code }" readonly="readonly"/></td></tr>
+<tr><td>맛집 카테고리 : <select name ="res_cat" >
 	<c:forEach var="cat" items="${ list }">
 	<option value="${ cat.res_cat }">${ cat.res_cat }</option>
 	</c:forEach>
 	</select>
-	</td>
-	<td><input type="text" name ="res_name" value ="${ rVO.res_name }"/></td>
-	<td><textarea name ="intro">${ rVO.intro }</textarea></td>
-	<td><input type="text" name ="holiday" value ="${ rVO.holiday }"></td>
-	<td><input type="text" name ="busi_hour" value ="${ rVO.busi_hour }"></td>
-	<td><input type="text" name ="res_loc" value ="${ rVO.res_loc }"></td>
-	<td><input type="file" name ="img_name" /></td>
-	<td><input type="text" name ="latitude" value ="${ rVO.latitude }"></td>
-	<td><input type="text" name ="longitude" value ="${ rVO.longitude }"></td>
-</tr>
+	</td></tr>
+<tr><td>맛집명 : <input type="text" name ="res_name" value ="${ rVO.res_name }"/></td></tr>
+<tr><td>맛집소개 : <textarea name ="intro">${ rVO.intro }</textarea></td></tr>
+<tr><td>휴일 : <input type="text" name ="holiday" value ="${ rVO.holiday }"></td></tr>
+<tr><td>영업시간 : <input type="text" name ="busi_hour" value ="${ rVO.busi_hour }"></td></tr>
+<tr><td>맛집 위치 : <input type="text" name ="res_loc" value ="${ rVO.res_loc }"></td></tr>
+<tr><td>이미지 : <input type="file" name ="img_name" /></td></tr>
+<tr><td>위도 : <input type="text" name ="latitude" value ="${ rVO.latitude }"></td></tr>
+<tr><td>경도 : <input type="text" name ="longitude" value ="${ rVO.longitude }"></td></tr>
+</tbody>
 </table>
 </div>
 <input type="submit" value ="내용 수정"/>

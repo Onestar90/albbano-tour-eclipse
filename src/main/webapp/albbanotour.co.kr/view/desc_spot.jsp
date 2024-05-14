@@ -101,7 +101,10 @@ pageContext.setAttribute("sVO", sVO);
     </section>
     <div>
     <div id ="desc" style="width:50%; float: left; margin-left: 150px;">
-    <img src="${sVO.img_name }">
+
+    <img src=http://192.168.10.221/albbano-tour-eclipse/upload/<c:out value="${sVO.img_name }"/>  alt="&nbsp;" border="0" width="300" height="200">
+    
+    
      ${sVO.spot_desc }
      <br>
      주소 : ${sVO.spt_loc } <%-- 위치위치 주소주소주소 --%>

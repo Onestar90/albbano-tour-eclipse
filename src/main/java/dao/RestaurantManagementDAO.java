@@ -30,33 +30,35 @@ public class RestaurantManagementDAO {
 
 	/**
 	 * 사용자의 편의를 위해서 DB내의 max값을 가져와서 반환하는 method
+	 * 
 	 * @return
 	 * @throws SQLException
 	 */
 	public String selectMaxRes() throws SQLException {
-		String code ="";
-		StringBuilder sb= new StringBuilder("REST_");
+		String code = "";
+		StringBuilder sb = new StringBuilder("REST_");
 		DbConnection dbCon = DbConnection.getInstance();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = dbCon.getConn("jdbc/abn");
-			String str ="select max(RES_CODE) RES_CODE from RESTAURANT";
-			pstmt =con.prepareStatement(str);
-			rs =pstmt.executeQuery();
-			if(rs.next()) {
-				code =rs.getString("RES_CODE");
+			String str = "select max(RES_CODE) RES_CODE from RESTAURANT";
+			pstmt = con.prepareStatement(str);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				code = rs.getString("RES_CODE");
 			}
-			int num =Integer.parseInt(code.substring(5));
-			sb.append(String.format("%05d", num+1));
-			code =sb.toString();
-		}finally {
+			int num = Integer.parseInt(code.substring(5));
+			sb.append(String.format("%05d", num + 1));
+			code = sb.toString();
+		} finally {
 			dbCon.closeCon(rs, pstmt, con);
 		}
-		
+
 		return code;
 	}
+
 	/**
 	 * 맛집을 추가하는 method 24.05.06 김일신
 	 * 
@@ -114,8 +116,6 @@ public class RestaurantManagementDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				rVO = new ResListVO();
-				// RES_CODE , RES_CAT, RES_NAME, HOLIDAY, BUSI_HOUR, RES_LOC,
-				// IMG_NAME, EDIT_DATE, LONGITUDE, LATITUDE, INTRO
 				rVO.setRes_code(rs.getString("RES_CODE"));
 				rVO.setRes_cat(rs.getString("RES_CAT"));
 				rVO.setRes_name(rs.getString("RES_NAME"));
@@ -192,14 +192,14 @@ public class RestaurantManagementDAO {
 		try {
 			con = dbCon.getConn("jdbc/abn");
 			StringBuilder sb = new StringBuilder();
-			
+
 			sb.append("	update  RESTAURANT  ")
-			.append("	set   RES_CAT = ? , RES_NAME = ? , HOLIDAY = ? , BUSI_HOUR =?, 	")
-			.append("	RES_LOC =? , IMG_NAME =? ,	LONGITUDE =? , LATITUDE= ?, INTRO=? , EDIT_DATE= sysdate ")
-			.append("	where RES_CODE = ? ");
+					.append("	set   RES_CAT = ? , RES_NAME = ? , HOLIDAY = ? , BUSI_HOUR =?, 	")
+					.append("	RES_LOC =? , IMG_NAME =? ,	LONGITUDE =? , LATITUDE= ?, INTRO=? , EDIT_DATE= sysdate ")
+					.append("	where RES_CODE = ? ");
 			pstmt = con.prepareStatement(sb.toString());
 			System.out.println(rVO);
-			
+
 			pstmt.setString(1, rVO.getRes_cat());
 			pstmt.setString(2, rVO.getRes_name());
 			pstmt.setString(3, rVO.getHoliday());
@@ -210,27 +210,25 @@ public class RestaurantManagementDAO {
 			pstmt.setDouble(8, rVO.getLatitude());
 			pstmt.setString(9, rVO.getIntro());
 			pstmt.setString(10, rVO.getRes_code());
-			
+
 			cnt = pstmt.executeUpdate();
-			System.out.println(sb);
-			
-			
-			
+
 		} finally {
 			dbCon.closeCon(null, pstmt, con);
 
 		}
-	
+
 		return cnt;
 	}
 
 	/**
 	 * 맛집 추가/수정페이지에서 사용자의 편의성을 위해 맛집 카테고리를 DB에서 가져오는 method 24.05.09 김일신
+	 * 
 	 * @return
 	 * @throws SQLException
 	 */
-	public List<ResListVO> resCat() throws SQLException{
-		List<ResListVO> list= new ArrayList<ResListVO>();
+	public List<ResListVO> resCat() throws SQLException {
+		List<ResListVO> list = new ArrayList<ResListVO>();
 		ResListVO rVO = null;
 		DbConnection dbCon = DbConnection.getInstance();
 		Connection con = null;
@@ -238,25 +236,25 @@ public class RestaurantManagementDAO {
 		ResultSet rs = null;
 		try {
 			con = dbCon.getConn("jdbc/abn");
-			String cat ="select RES_CAT from RESTAURANT_CAT ";
-			pstmt= con.prepareStatement(cat);
-			rs= pstmt.executeQuery();
-			while(rs.next()) {
-					rVO=new ResListVO();
+			String cat = "select RES_CAT from RESTAURANT_CAT ";
+			pstmt = con.prepareStatement(cat);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				rVO = new ResListVO();
 				rVO.setRes_cat(rs.getString("RES_CAT"));
 				list.add(rVO);
 			}
-		}finally {
+		} finally {
 			dbCon.closeCon(rs, pstmt, con);
 		}
-		
+
 		return list;
-		
+
 	}
-	
+
 	/**
-	 * 해당 맛집의 논리삭제를 변경하는 method
-	 * 24.05.10 김일신
+	 * 해당 맛집의 논리삭제를 변경하는 method 24.05.10 김일신
+	 * 
 	 * @param RES_CODE
 	 * @return
 	 * @throws SQLException
@@ -268,10 +266,10 @@ public class RestaurantManagementDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = dbCon.getConn("jdbc/abn");
-			String update ="update   RESTAURANT set      DEL_YN ='Y' where    RES_CODE = ?";
+			String update = "update   RESTAURANT set      DEL_YN ='Y' where    RES_CODE = ?";
 			pstmt = con.prepareStatement(update);
 			pstmt.setString(1, res_code);
-			
+
 			pstmt.executeUpdate();
 		} finally {
 			dbCon.closeCon(null, pstmt, con);

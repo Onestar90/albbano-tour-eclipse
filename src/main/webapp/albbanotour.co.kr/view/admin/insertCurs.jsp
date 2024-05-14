@@ -8,8 +8,10 @@
 <%
 request.setCharacterEncoding("UTF-8");
 CourseManagementDAO cmDAO = CourseManagementDAO.getInstance();
+String curCode = cmDAO.selectMaxCurs();
 List<SpotListVO> list = cmDAO.selectAllSpotNames();
 pageContext.setAttribute("list", list);
+pageContext.setAttribute("curCode", curCode);
 %>
 <!DOCTYPE html>
 <html>
@@ -146,7 +148,7 @@ pageContext.setAttribute("list", list);
 </thead>
 <tbody>
 <tr>
-<td>코스 코드 : <input type="text" name ="crsCode"/></td>
+<td>코스 코드 : <input type="text" name ="crsCode" value="${curCode }"/></td>
 </tr>
 <tr>
 <td>코스 이름 : <input type="text" name ="crsName"/></td>
