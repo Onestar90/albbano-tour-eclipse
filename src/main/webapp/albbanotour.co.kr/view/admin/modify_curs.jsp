@@ -17,7 +17,7 @@ pageContext.setAttribute("list", list);
 String crsCode= (String)request.getParameter("crsCode");
 CourseManagementDAO cDAO = CourseManagementDAO.getInstance();
 CourseManagementVO cVO= cDAO.selectCourseDetail(crsCode);
-String spots = cDAO.selectDetailSpot(crsCode);
+String spots = cDAO.selectAdminDetailSpot(crsCode);
 pageContext.setAttribute("cVO", cVO);
 pageContext.setAttribute("spots", spots);
 
@@ -83,32 +83,13 @@ pageContext.setAttribute("spots", spots);
         var form = document.createElement("form");
         form.setAttribute("method", "post"); 
         form.setAttribute("action", "modifyCurs_process.jsp");
-        form.setAttribute("enctype", "multipart/form-data");
         
-        var file = $("#imgName").val();
-		var selectedExt = file.substring(file.lastIndexOf(".")+1);
-
-		var extArr = ["png", "jpg", "gif", "jpeg", "bmp"];
-		var flag = false;
-
-		for(var i = 0; i < extArr.length; i++) {
-		if(selectedExt == extArr[i]) {
-		flag = true;
-		break;
-		} // end if
-		} // end for
-
-		if(!flag) {
-		alert(selectedExt + "는 업로드 가능한 파일의 확장자가 아닙니다.");
-		return;
-		} // end if
 
         
         addInputToForm(form, "crsCode", $("input[name='crsCode']").val());
         addInputToForm(form, "crsName", $("input[name='crsName']").val());
         addInputToForm(form, "crsDesc", $("input[name='crsDesc']").val());
         addInputToForm(form, "fare", $("input[name='fare']").val());
-        addInputToForm1(form, "imgName", $("input[id='imgName']").val());
         
         var spotValues = [];
         $(".spotList td").each(function() {

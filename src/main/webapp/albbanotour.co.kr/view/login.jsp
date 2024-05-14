@@ -64,12 +64,10 @@ To change this template use File | Settings | File Templates.
                        maxLength="20" placeholder="PASSWORD">
                 <button type="submit" class="btn_submit">로그인</button>
                 <div id="login_info">
-                    <div class="login_if_auto chk_box">
-                        <input type="checkbox" name="auto_login" id="login_auto_login" class="selec_chk">
-                        <label for="login_auto_login"><span></span> 로그인 기억하기 </label>
-                    </div>
+                    
                     <div class="login_if_lpl">
-                        <a href="find_password.jsp" target="_blank" id="login_password_lost">비밀번호찾기 </a>
+                        <a href="find_id.jsp" >아이디찾기 </a>|
+                        <a href="find_password.jsp" >비밀번호찾기 </a>
                     </div>
                 </div>
             </fieldset>

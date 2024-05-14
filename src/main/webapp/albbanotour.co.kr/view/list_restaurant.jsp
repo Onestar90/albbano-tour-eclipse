@@ -121,7 +121,7 @@
                     <div class="swiper-slide" style="width:285px !important;">
                         <a href="desc_restaurant.jsp?res_code=${ res.res_code }">
                             <img src="http://192.168.10.221/albbano-tour-eclipse/upload/${res.img_name }"
-                                 alt="&nbsp;">
+                                  alt="&nbsp;" border="0" width="300" height="200">
                             <p class="txtBox">
                                 <span class="tit"><c:out value="${res.res_name }"/></span>
                                 <span class="txt">&nbsp;</span>

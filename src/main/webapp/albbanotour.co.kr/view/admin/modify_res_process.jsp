@@ -39,6 +39,7 @@ request.setCharacterEncoding("UTF-8");
 %>
 <jsp:useBean id="rVO" class="vo.ResListVO" scope="page"/>
 <%
+try{
 File saveDir = new File("C:/dev/albbano-tour-eclipse/src/main/webapp/upload");
 int maxSize =1024*1024*100;
 //try{
@@ -72,19 +73,23 @@ if(!flag){
 	rVO.setIntro(intro);
 	rVO.setLongitude(longitude);
 	rVO.setLatitude(latitude);
-out.print(rVO);
 RestaurantManagementDAO rDAO = RestaurantManagementDAO.getInstance();
 rDAO.updateRes(rVO);
 }else{
 	out.println("파일은 5MByte까지만 가능합니다.");
 }//end else
 	%>
-<h3>수정완료</h3>
+맛집 정보 수정에 성공했습니다!<br>
+<a href="select_res.jsp">맛집 리스트로 돌아가기</a>
 	
 	<%
-//}catch(Exception e){
-//e.printStackTrace();
-//}
+}catch(Exception e){
+e.printStackTrace();
+%>
+맛집 정보 수정에 실패했습니다. 입력한 값을 다시한번 확인해주세요.<br>
+<a href="select_res.jsp">맛집 리스트로 돌아가기</a>
+<%
+}
 %>
 </div>
 </body>

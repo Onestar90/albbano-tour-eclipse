@@ -73,11 +73,20 @@ SpotListVO.setLatitude(latitude);
 SpotManagementDAO smDAO = SpotManagementDAO.getInstance();
 smDAO.insertSpot(SpotListVO);
 %>
+추가에 성공했습니다!<br>
+<a href="insertSpot.jsp">명소 추가 화면으로 돌아가기</a><br>
+<a href="select_spot.jsp">명소 리스트 화면으로 돌아가기</a>
 <%
 }else{
 	out.println("파일은 5MByte까지만 가능합니다.");
 }//end else
 }catch(Exception e){
+	%>
+	명소 추가에 실패했습니다.
+	입력한 값을 다시한번 확인해주세요.
+<a href="insertSpot.jsp">명소 추가 화면으로 돌아가기</a><br>
+<a href="select_spot.jsp">명소 리스트 화면으로 돌아가기</a>
+	<%
 e.printStackTrace();
 }
 %>

@@ -33,8 +33,7 @@ public class RestaurantReviewDAO {
 	
 	public int selecttotalCount(QnaSearchVO qsVO)throws SQLException{
 		
-		int totalCnt=0;
-		List<QnaVO> list = new ArrayList<QnaVO>();
+		int totalCnt=0;	
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;

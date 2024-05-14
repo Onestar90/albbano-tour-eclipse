@@ -14,15 +14,29 @@ To change this template use File | Settings | File Templates.
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-String code ="CURS_00001";
-
 CourseManagementDAO cmDAO = CourseManagementDAO.getInstance();
+List<CourseManagementVO> list_curs = new ArrayList<CourseManagementVO>();
+list_curs = cmDAO.selectAllCurs();
+
+String curs = request.getParameter("curs");
+
+String code = curs;
+
+if(curs == null){
+	code = list_curs.get(0).getCrsCode();
+}
+
 List<SpotListVO> list= new ArrayList<SpotListVO>();
-list =cmDAO.selectAllSpot();
-pageContext.setAttribute("list", list);
+list = cmDAO.selectDetailSpot(code);
+
 CourseManagementVO cVO = cmDAO.selectCourseDetail(code);
+
+pageContext.setAttribute("list", list);
+pageContext.setAttribute("list_curs", list_curs);
 pageContext.setAttribute("cVO", cVO);
-out.print(code);
+pageContext.setAttribute("code", code);
+
+
 
 %>
 <html lang="ko">
@@ -104,6 +118,19 @@ out.print(code);
 
         <div class="bg_vline"></div>
         <p class="eng"><em>${ cVO.crsName }</em></p>
+        
+        
+       <div class="select_tour_course" style="float:right">
+      	 	<form method="post" action="tour_course.jsp">
+				<select id="curs" name="curs" size="1">
+					<c:forEach var="curs" items="${ list_curs }" varStatus="i">
+						<option value="${curs.crsCode }" <c:if test="${code eq curs.crsCode }">selected="selected"</c:if> >${curs.crsName }</option>	
+					</c:forEach>
+				</select> 
+				<input type="submit" value="선택" style="margin-left:1px">
+			</form>	
+       </div>
+       
         <p class="stitle">${ cVO.crsDesc }</p>
 
 
@@ -124,7 +151,9 @@ out.print(code);
                                 <dd>
                                     <ul>
                                     <c:forEach var="spt" items="${ list }" varStatus="i">
+                                    	
                                         <li><span>${ i.count }</span>${ spt.spot_name }</li>
+                                        
                                     </c:forEach>
                                     </ul>
 

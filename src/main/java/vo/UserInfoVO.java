@@ -7,12 +7,75 @@ public class UserInfoVO {
 	private String id, pass, name, tel, email;
 	private Date create_date, modify_date;
 	private String email1,email2,ip;
+	private String newPass;
+	private String del_yn;
 	
+	public UserInfoVO(String id, String pass, String name, String tel, String email, Date create_date, Date modify_date,
+			String email1, String email2, String ip, String newPass, String del_yn) {
+		super();
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.tel = tel;
+		this.email = email;
+		this.create_date = create_date;
+		this.modify_date = modify_date;
+		this.email1 = email1;
+		this.email2 = email2;
+		this.ip = ip;
+		this.newPass = newPass;
+		this.del_yn = del_yn;
+	}
+
+
+
+	public String getDel_yn() {
+		return del_yn;
+	}
+
+
+
+	public void setDel_yn(String del_yn) {
+		this.del_yn = del_yn;
+	}
+
+
+
 	public UserInfoVO() {
 		super();
 	}
 	
 	
+
+	public String getNewPass() {
+		return newPass;
+	}
+
+
+
+	public void setNewPass(String newPass) {
+		this.newPass = newPass;
+	}
+
+
+
+	public UserInfoVO(String id, String pass, String name, String tel, String email, Date create_date, Date modify_date,
+			String email1, String email2, String ip, String newPass) {
+		super();
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.tel = tel;
+		this.email = email;
+		this.create_date = create_date;
+		this.modify_date = modify_date;
+		this.email1 = email1;
+		this.email2 = email2;
+		this.ip = ip;
+		this.newPass = newPass;
+	}
+
+
 
 
 
@@ -31,7 +94,9 @@ public class UserInfoVO {
 		this.ip = ip;
 	}
 	
-
+	
+	
+	
 	public String getEmail1() {
 		return email1;
 	}
@@ -71,7 +136,7 @@ public class UserInfoVO {
 	public String toString() {
 		return "UserInfoVO [id=" + id + ", pass=" + pass + ", name=" + name + ", tel=" + tel + ", email=" + email
 				+ ", create_date=" + create_date + ", modify_date=" + modify_date + ", email1=" + email1 + ", email2="
-				+ email2 + ", ip=" + ip + "]";
+				+ email2 + ", ip=" + ip + ", newPass=" + newPass + ", del_yn=" + del_yn + "]";
 	}
 
 

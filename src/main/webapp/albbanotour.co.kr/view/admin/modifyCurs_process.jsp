@@ -1,3 +1,4 @@
+<%@page import="java.sql.SQLException"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@page import="java.io.File"%>
@@ -42,7 +43,8 @@
  
     <%
     
-    
+    try{
+    	
     String[] crsSpotsArray = request.getParameterValues("spotValues");
 
     List<String> crsSpotsList = new ArrayList<>();
@@ -64,8 +66,18 @@
     for (int i = 0; i < 5; i++) {
    cDAO.updateTourCurs(curVO.getCrsCode(), crsSpots[i],i+1);
     }
-
     %>
+    	코스 수정에 성공했습니다.<br>
+    	<a href ="select_curs.jsp">코스 리스트로 돌아가기</a>
+    <%
+    }catch(SQLException se){
+    	se.printStackTrace();
+    	%>
+    	코스 수정에 실패하였습니다.
+    	<%
+    }
+    %>
+
     
 </div>
 </body>

@@ -34,7 +34,7 @@ try{
 		session.setAttribute("loginData", uiVO);
 		
 		pageContext.setAttribute("msg", "로그인 성공");
-		pageContext.setAttribute("url", "a_userInfo_list.jsp");
+		pageContext.setAttribute("url", "adminBoard.jsp");
 	}//end if
 }catch(Exception e){
 	pageContext.setAttribute("msg", "문제 발생 잠시 후 다시 시도해주세요.");

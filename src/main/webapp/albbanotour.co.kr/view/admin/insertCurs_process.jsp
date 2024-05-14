@@ -1,3 +1,4 @@
+<%@page import="java.sql.SQLException"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@page import="java.io.File"%>
@@ -41,6 +42,8 @@
 <div>
 
     <%
+    try{
+    	
     String[] crsSpotsArray = request.getParameterValues("spotValues");
 
     List<String> crsSpotsList = new ArrayList<>();
@@ -60,6 +63,17 @@
 
     for (int i = 0; i < 5; i++) {
    cDAO.insertTourCurs(curVO.getCrsCode(), crsSpots[i],i+1);
+    }
+    %>
+    코스 추가에 성공했습니다. <br>
+    <a href="select_curs.jsp">코스리스트로 돌아가기.</a>
+    <%
+    }catch(SQLException se){
+    	se.printStackTrace();
+    %>	
+    코스 추가에 실패했습니다.
+    잠시 후 시도해주세요.
+    <%
     }
 
     %>

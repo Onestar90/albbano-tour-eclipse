@@ -58,11 +58,8 @@ function submitDelete(spot_code) {
 <body>
 <%
 request.setCharacterEncoding("UTF-8");
-
-
 String spotcode = request.getParameter("spot_code");
 SpotManagementDAO sDAO = SpotManagementDAO.getInstance();
-
 SpotListVO sVO = sDAO.selectSpot(spotcode);
 pageContext.setAttribute("sVO", sVO);
 %>

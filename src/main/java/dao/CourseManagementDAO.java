@@ -24,6 +24,37 @@ public class CourseManagementDAO {
 		}
 		return cmDAO;
 	}
+	/**
+	 * 사용자의 편의를 위해서 DB내의 max값을 가져와서 반환하는 method
+	 * 24.05.13 김일신
+	 * @return
+	 * @throws SQLException
+	 */
+	public String selectMaxCurs() throws SQLException {
+		String code ="";
+		StringBuilder sb= new StringBuilder("CURS_");
+		DbConnection dbCon = DbConnection.getInstance();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dbCon.getConn("jdbc/abn");
+			String str ="select max(CRS_CODE) CRS_CODE from COURSE";
+			pstmt =con.prepareStatement(str);
+			rs =pstmt.executeQuery();
+			if(rs.next()) {
+				code =rs.getString("CRS_CODE");
+			}
+			System.err.print(code);
+			//int num =Integer.parseInt(code.substring(5));
+			//sb.append(String.format("%05d", num+1));
+			//code =sb.toString();
+		}finally {
+			dbCon.closeCon(rs, pstmt, con);
+		}
+		
+		return code;
+	}
 	
 
 	public List<CourseManagementVO> selectAllCurs() throws SQLException {
@@ -44,7 +75,7 @@ public class CourseManagementDAO {
 				cVO.setCrsCode(rs.getString("CRS_code"));
 				cVO.setCrsName(rs.getString("crs_name"));
 				cVO.setCrsDesc(rs.getString("crs_desc"));
-				cVO.setImgName(rs.getString("IMG_Name"));
+				
 				cVO.setFare(rs.getInt("fare"));
 				list.add(cVO);
 			}
@@ -73,7 +104,7 @@ public class CourseManagementDAO {
 			con = dbCon.getConn("jdbc/abn");
 
 			sb.append("	select s.SPOT_NAME	").append("	from SPOT s , TOUR_COURSE t 	")
-					.append("	where (s.SPOT_CODE=t.SPOT_CODE)	");
+					.append("	where (s.SPOT_CODE=t.SPOT_CODE) and 	");
 			pstmt = con.prepareStatement(sb.toString());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -94,7 +125,7 @@ public class CourseManagementDAO {
 	 * @return 
 	 * @throws SQLException
 	 */
-	public String selectDetailSpot(String crsCode) throws SQLException {
+	public List<SpotListVO> selectDetailSpot(String crsCode) throws SQLException {
 		List<SpotListVO> list = new ArrayList<SpotListVO>();
 		String spots="";
 		SpotListVO sVO = null;
@@ -117,6 +148,34 @@ public class CourseManagementDAO {
 			}
 			 spots =list.toString();
 
+		} finally {
+			dbCon.closeCon(rs, pstmt, con);
+		}
+		return  list;
+	}
+	public String selectAdminDetailSpot(String crsCode) throws SQLException {
+		List<SpotListVO> list = new ArrayList<SpotListVO>();
+		String spots="";
+		SpotListVO sVO = null;
+		StringBuilder sb = new StringBuilder();
+		DbConnection dbCon = DbConnection.getInstance();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dbCon.getConn("jdbc/abn");
+			sb.append("	select s.SPOT_NAME	").append("	from SPOT s , TOUR_COURSE t 	")
+			.append("	where CRS_CODE =? and (t.SPOT_CODE=s.SPOT_CODE)	").append("order by SEQ asc");
+			
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setString(1, crsCode);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				sVO = new SpotListVO(rs.getString("spot_name"));
+				list.add(sVO);
+			}
+			spots =list.toString();
+			
 		} finally {
 			dbCon.closeCon(rs, pstmt, con);
 		}
@@ -148,7 +207,7 @@ public class CourseManagementDAO {
 				cmVO.setCrsCode(rs.getString("CRS_CODE"));
 				cmVO.setCrsName(rs.getString("CRS_NAME"));
 				cmVO.setCrsDesc(rs.getString("CRS_DESC"));
-				cmVO.setImgName(rs.getString("IMG_NAME"));
+				
 				cmVO.setCreateDate(rs.getDate("CREATE_DATE"));
 				cmVO.setFare(rs.getInt("FARE"));
 
@@ -207,12 +266,11 @@ public class CourseManagementDAO {
 		try {
 			con = dbCon.getConn("jdbc/abn");
 			String insert = // 'CURS_00001','동해안투어','대충 동해안 투어 한다는 내용','EAST_SEA',25000,sysdate,'N';
-					"insert into COURSE values(?,?,?,?,?,sysdate,'N')";
+					"insert into COURSE values(?,?,?,?,sysdate,'N')";
 			pstmt = con.prepareStatement(insert);
 			pstmt.setString(1, cVO.getCrsCode());
 			pstmt.setString(2, cVO.getCrsName());
 			pstmt.setString(3, cVO.getCrsDesc());
-			pstmt.setString(4, cVO.getImgName());
 			pstmt.setInt(5, cVO.getFare());
 
 			cnt = pstmt.executeUpdate();
@@ -266,15 +324,14 @@ public class CourseManagementDAO {
 			con = dbCon.getConn("jdbc/abn");
 			StringBuilder update = new StringBuilder();
 			update.append("	update COURSE	").
-			append("	set    CRS_NAME =?, CRS_DESC=?, IMG_NAME=?, FARE=?	")
+			append("	set    CRS_NAME =?, CRS_DESC=?,  FARE=?	")
 			.append("	where  CRS_CODE =?  ");
 
 			pstmt = con.prepareStatement(update.toString());
 			pstmt.setString(1, cVO.getCrsName());
 			pstmt.setString(2, cVO.getCrsDesc());
-			pstmt.setString(3, cVO.getImgName());
-			pstmt.setInt(4, cVO.getFare());
-			pstmt.setString(5, cVO.getCrsCode());
+			pstmt.setInt(3, cVO.getFare());
+			pstmt.setString(4, cVO.getCrsCode());
 
 			cnt = pstmt.executeUpdate();
 
@@ -301,8 +358,6 @@ public class CourseManagementDAO {
 			update.append("	update  TOUR_COURSE	").
 			append("	set  SPOT_CODE= ? ").
 			append("	where  CRS_CODE=? and  seq =?	");
-			//update.append("	update  TOUR_COURSE	").append("	set  SPOT_CODE= '"+SPOT_CODE+"'" )
-			//.append("	where  CRS_CODE='"+CRS_CODE+"' and  seq ='"+seq+"'	");
 			pstmt = con.prepareStatement(update.toString());
 			pstmt.setString(1, SPOT_CODE);
 			pstmt.setString(2, CRS_CODE);
@@ -310,13 +365,34 @@ public class CourseManagementDAO {
 
 			cnt = pstmt.executeUpdate();
 			
-			System.out.println(update);
-			//System.out.println(SPOT_CODE);
-			//System.out.println(CRS_CODE);
 
 		} finally {
 			dbCon.closeCon(null, pstmt, con);
 		}
 		return cnt;
+	}
+	public int deleteCurs(String CRS_CODE) throws SQLException{
+		int cnt =0;
+		DbConnection dbCon = DbConnection.getInstance();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dbCon.getConn("jdbc/abn");
+			StringBuilder update = new StringBuilder();
+			update.append("	update COURSE	")
+			.append("	set   DEL_YN ='Y'	")
+			.append("	where CRS_CODE =?	");
+			pstmt=con.prepareStatement(update.toString());
+			pstmt.setString(1, CRS_CODE);
+			cnt=pstmt.executeUpdate();
+			
+		}finally {
+			dbCon.closeCon(null, pstmt, con);
+		}
+		
+		
+		return cnt;
+		
+		
 	}
 }

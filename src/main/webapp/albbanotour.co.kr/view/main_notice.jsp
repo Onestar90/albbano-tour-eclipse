@@ -121,11 +121,10 @@ pageContext.setAttribute("list", list);
                 </div>
 
                 <ul class="btn_bo_user">
-                   <!--   <li><a href="rss8497.php?bo_table=notice" class="btn_b01 btn"><i class="fa fa-rss"
+                    <li><a href="rss8497.php?bo_table=notice" class="btn_b01 btn"><i class="fa fa-rss"
                                                                                      aria-hidden="true"></i> RSS</a>
                     </li>
-                    -->
-                    <li><a href="registNotice.jsp" class="btn_b01 btn" >글쓰기</a></li>
+                   
                 </ul>
             </div>
             <!-- } 게시판 페이지 정보 및 버튼 끝 -->
@@ -163,6 +162,7 @@ pageContext.setAttribute("list", list);
                         </thead>
                         <tbody>
 							<c:forEach var="notice" items="${ list }">
+							<c:if test="${notice.del_yn ne 'y'}">
                         <tr class="bo_notice">
                             <td class="td_num2">
                                 <strong class="notice_icon"><i class="fa fa-bullhorn" aria-hidden="true"></i><span
@@ -191,7 +191,8 @@ pageContext.setAttribute("list", list);
                             <td class="td_datetime lview"><c:out value="${notice.create_Date}"/></td>
 
                         </tr>
-								</c:forEach>
+                        	</c:if>
+							</c:forEach>
                         </tbody>
                     </table>
                 </div>

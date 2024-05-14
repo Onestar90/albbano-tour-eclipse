@@ -24,12 +24,19 @@
 <!--jQuery CDN 끝-->
 <style type="text/css">
 	
-	
+	/* 코스 수정&삭제에서 폼으로 action값넣기 다르게 하는거 헷갈리고았는중임 ㅅㅂ.... */
 </style>
 <script type ="text/javascript">
 $(function(){
 });//ready
-function submitForm(crsCode) {
+function submitModifyForm(crsCode) {
+		
+	
+		form.appendChild(input);
+		document.body.appendChild(form);
+		form.submit();
+		}
+function submitDeleteForm(crsCode) {
 
 	
 		form.appendChild(input);
@@ -44,7 +51,7 @@ request.setCharacterEncoding("UTF-8");
 String crsCode= (String)request.getParameter("crsCode");
 CourseManagementDAO cDAO = CourseManagementDAO.getInstance();
 CourseManagementVO cVO= cDAO.selectCourseDetail(crsCode);
-String spots = cDAO.selectDetailSpot(crsCode);
+String spots = cDAO.selectAdminDetailSpot(crsCode);
 pageContext.setAttribute("cVO", cVO);
 pageContext.setAttribute("spots", spots);
 
@@ -76,7 +83,8 @@ pageContext.setAttribute("spots", spots);
 </tr>
 </tbody>
 </table>
-<input type="submit" value="코스 수정" id="btn" onclick="submitForm('${cVO.crsCode}')"/>
+<input type="submit" value="코스 수정" id="btn" onclick="submitModifyForm('${cVO.crsCode}')"/>
+<input type="submit" value="코스 삭제" id="btn" onclick="submitDeleteForm('${cVO.crsCode}')"/>
 </form>
 </div>
 </body>

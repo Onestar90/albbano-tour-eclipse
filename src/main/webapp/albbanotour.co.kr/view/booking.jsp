@@ -40,19 +40,6 @@
 <html lang="ko">
 <head>
     <title>투어예약 | 알빠노관광</title>
-
-    <script>
-        // 자바스크립트에서 사용하는 전역변수 선언
-        var g5_url = "../index_user.jsp";
-        var g5_bbs_url = "index_user.jsp";
-        var g5_is_member = "";
-        var g5_is_admin = "";
-        var g5_is_mobile = "";
-        var g5_bo_table = "booking";
-        var g5_sca = "";
-        var g5_editor = "smarteditor2";
-        var g5_cookie_domain = "";
-    </script>
     
     <script>
     window.onload = function() {

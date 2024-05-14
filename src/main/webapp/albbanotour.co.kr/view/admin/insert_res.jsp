@@ -29,7 +29,7 @@ pageContext.setAttribute("res_code", res_code);
 
 <!--jQuery CDN 끝-->
 <style type="text/css">
-	
+	.left{width: 80px;}
 	
 </style>
 <script type ="text/javascript">
@@ -63,35 +63,26 @@ pageContext.setAttribute("res_code", res_code);
 <div>
 <form action="insert_res_process.jsp" id ="frm" method="post" enctype="multipart/form-data" >
 <table>
+<thead>
 <tr>
-<th>맛집 코드</th>
-<th>맛집 카테고리</th>
-<th>맛집명</th>
-<th>맛집소개</th>
-<th>휴일</th>
-<th>영업시간</th>
-<th>맛집 위치</th>
-<th>이미지</th>
-<th>위도</th>
-<th>경도</th>
+<th>맛집 추가</th>
 </tr>
-<tr>
-<td><input type ="text" name ="res_code" value="${ res_code }" /></td>
-<td><select name ="res_cat" >
+</thead>
+<tbody>
+<tr><td>맛집 코드 :   <input type ="text" name ="res_code" value="${ res_code }" /></td></tr>
+<tr><td>맛집 카테고리 : <select name ="res_cat" >
 <c:forEach var="cat" items="${ list }">
 <option value="${ cat.res_cat }">${ cat.res_cat }</option>
-</c:forEach>
-</select>
-</td>
-<td><input type ="text" name ="res_name" /></td>
-<td><input type ="text" name ="intro" /></td>
-<td><input type ="text" name ="holiday" /></td>
-<td><input type ="text" name ="busi_hour" /></td>
-<td><input type ="text" name ="res_loc" /></td>
-<td><input type ="file" name ="img_name" id ="img_name"/></td>
-<td><input type ="text" name ="latitude" /></td>
-<td><input type ="text" name ="longitude" /></td>
-</tr>
+</c:forEach></select></td></tr>
+<tr><td>맛집명 :<input type ="text" name ="res_name" /></td></tr>
+<tr><td>맛집소개 :<input type ="text" name ="intro" /></td></tr>
+<tr><td>휴일 :<input type ="text" name ="holiday" /></td></tr>
+<tr><td>영업시간 :<input type ="text" name ="busi_hour" /></td></tr>
+<tr><td>맛집 위치 :<input type ="text" name ="res_loc" /></td></tr>
+<tr><td>이미지 :<input type ="file" name ="img_name" id ="img_name"/></td></tr>
+<tr><td>위도 :<input type ="text" name ="latitude" /></td></tr>
+<tr><td>경도 :<input type ="text" name ="longitude" /></td></tr>
+</tbody>
 </table>
 <input type="button" value="맛집 추가" id ="btn"/>
 </form>
