@@ -47,18 +47,25 @@
             }
         }
 
-        function requestPay() {
-            PortOne.requestPayment({
+        async function requestPay() {
+        	const response = await PortOne.requestPayment({
                 storeId: "store-78210a12-d8bc-46bd-8b0a-ce0679096a79",
-                paymentId: "testlw4mxlva",
+                paymentId: "testlw4dm9xl1vas",
                 orderName: "알빠노-동해안투어",
                 totalAmount: calculateTotalFee(),
                 currency: "KRW",
                 channelKey: "channel-key-c2db6c5c-a0f4-402e-a176-5ccdfd775929",
                 payMethod: "CARD",
-                card: {},
-                redirectUrl: "https://sdk-playground.portone.io/",
+                isTestChannel: true,
+                redirectUrl: "http://localhost:8080/albbano-tour/albbanotour.co.kr/view/list_reservation.jsp",
             });
+        	
+        	if (response.code != null) {
+        		return alert(response.message);
+        	}
+        	
+        	alert("결제가 성공적으로 완료되었습니다.");
+        	window.location.href = "http://localhost:8080/albbano-tour/albbanotour.co.kr/view/list_reservation.jsp";
         }
     </script>
 </head>

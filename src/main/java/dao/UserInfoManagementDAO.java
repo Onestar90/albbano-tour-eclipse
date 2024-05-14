@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import util.DbConnection;
+import vo.LoginVO;
 import vo.UserInfoVO;
 
 public class UserInfoManagementDAO {
@@ -157,7 +158,7 @@ public class UserInfoManagementDAO {
 		}
 		
 		return id;
-	}
+	}//searchId
 	 
 	/**
 	 * 비밀번호 찾기
@@ -196,6 +197,175 @@ public class UserInfoManagementDAO {
 		}
 		
 		return pass;
+	}//searchPass
+	
+	public UserInfoVO selectInfo(String userId) throws SQLException{
+		UserInfoVO uiVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		DbConnection db = DbConnection.getInstance();
+		
+		try {
+			con=db.getConn("jdbc/abn");
+			String sql = "select id, name, email, tel from member where id=?";
+					
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				uiVO = new UserInfoVO();
+				uiVO.setId(rs.getString("id"));
+				uiVO.setName(rs.getString("name"));
+				uiVO.setEmail(rs.getString("email"));
+				uiVO.setTel(rs.getString("tel"));
+						
+			}
+		}finally {
+			db.closeCon(rs, pstmt, con);
+		}
+		
+		return uiVO;
+	}
+
+	public boolean updatePass(UserInfoVO uiVO) throws SQLException{
+		int cnt=0;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		DbConnection db = DbConnection.getInstance();
+		
+		try {
+			con=db.getConn("jdbc/abn");
+			
+			StringBuilder selectPass = new StringBuilder();
+			selectPass
+			.append("	update password	")
+			.append("	set password= ?	")
+			.append("	WHERE id=? AND password=?	");
+			
+			pstmt = con.prepareStatement(selectPass.toString());
+			pstmt.setString(1, uiVO.getNewPass());
+			pstmt.setString(2, uiVO.getId());
+			pstmt.setString(3, uiVO.getPass());
+			cnt=pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			db.closeCon(null, pstmt, con);
+		}
+		
+		if(cnt>0) {
+			return true;
+		}else {
+			return false;
+		}
+	}//searchPass
+	
+	
+	/**
+	 * 회원정보 가져오기
+	 * @param lVO
+	 * @return
+	 * @throws SQLException
+	 */
+	/*	
+	
+	public UserInfoVO selectInfo(String userId) throws SQLException{
+		UserInfoVO uiVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		DbConnection db = DbConnection.getInstance();
+		
+		try {
+			con=db.getConn("jdbc/abn");
+			String sql = "select id, name, email, tel from member where id=?";
+					
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				uiVO = new UserInfoVO();
+				uiVO.setId(rs.getString("id"));
+				uiVO.setName(rs.getString("name"));
+				uiVO.setEmail(rs.getString("email"));
+				uiVO.setTel(rs.getString("tel"));
+						
+			}
+		}finally {
+			db.closeCon(rs, pstmt, con);
+		}
+		
+		return uiVO;
 	}
 	
+	public UserInfoVO selectInfoPw(LoginVO lVO) throws SQLException{
+		UserInfoVO uiVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		DbConnection db = DbConnection.getInstance();
+		
+		try {
+			con=db.getConn("jdbc/abn");
+			pstmt = con.prepareStatement("select password from password where id=?");
+			pstmt.setString(1, lVO.getId());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				uiVO = new UserInfoVO(
+						null,
+		                rs.getString("pass"), 
+		                null,
+		                null,
+		                null,
+		                null,
+		                null,
+		                null,
+		                null,
+		                null);
+			}
+		}finally {
+			db.closeCon(rs, pstmt, con);
+		}
+		
+		return uiVO;
+	}
+	
+	public int updateInfo(String name, String email, String tel ) throws SQLException{
+		int cnt=0;
+		int flag=0;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		DbConnection db = DbConnection.getInstance();
+		
+		try {
+			con=db.getConn("jdbc/abn");
+			String sql = "update member set  name=?, email=?, tel=? where id=? ";
+			pstmt = con.prepareStatement("update member set  name=?, email=?, tel=? where id=? ");
+			pstmt.setString(1, name);
+			pstmt.setString(2, email);
+			pstmt.setString(3, tel);
+			
+		}catch(Exception e){
+			flag=1;
+			e.printStackTrace();
+		}finally {
+			db.closeCon(null, pstmt, con);
+		}
+		
+		return flag;
+	}
+
+	
+*/
 }

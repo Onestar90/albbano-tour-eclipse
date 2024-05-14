@@ -204,118 +204,39 @@
             });
 
             // submit 최종 폼체크
-            function fregisterform_submit(f) {
-                // 회원아이디 검사
-                if (f.w.value == "") {
-                    var msg = reg_mb_id_check();
-                    if (msg) {
-                        alert(msg);
-                        f.mb_id.select();
-                        return false;
-                    }
-                }
-
-                if (f.w.value == "") {
-                    if (f.mb_password.value.length < 3) {
-                        alert("비밀번호를 3글자 이상 입력하십시오.");
-                        f.mb_password.focus();
-                        return false;
-                    }
-                }
-
-                if (f.mb_password.value != f.mb_password_re.value) {
-                    alert("비밀번호가 같지 않습니다.");
-                    f.mb_password_re.focus();
+            function fregisterform_submit(f){
+            	// 아이디 중복 확인
+                if (!checkId(f.id.value)) {
+                    alert("아이디는 영문자, 숫자, _ 만 입력 가능하며 최소 3자 이상이어야 합니다.");
+                    f.id.focus();
                     return false;
                 }
 
-                if (f.mb_password.value.length > 0) {
-                    if (f.mb_password_re.value.length < 3) {
-                        alert("비밀번호를 3글자 이상 입력하십시오.");
-                        f.mb_password_re.focus();
-                        return false;
-                    }
-                }
-
-                // 이름 검사
-                if (f.w.value == "") {
-                    if (f.mb_name.value.length < 1) {
-                        alert("이름을 입력하십시오.");
-                        f.mb_name.focus();
-                        return false;
-                    }
-
-                    /*
-                    var pattern = /([^가-힣\x20])/i;
-                    if (pattern.test(f.mb_name.value)) {
-                        alert("이름은 한글로 입력하십시오.");
-                        f.mb_name.select();
-                        return false;
-                    }
-                    */
-                }
-
-
-
-                // E-mail 검사
-                if ((f.w.value == "") || (f.w.value == "u" && f.mb_email.defaultValue != f.mb_email.value)) {
-                    var msg = reg_mb_email_check();
-                    if (msg) {
-                        alert(msg);
-                        f.reg_mb_email.select();
-                        return false;
-                    }
-                }
-
-                // 휴대폰번호 체크
-                var msg = reg_mb_hp_check();
-                if (msg) {
-                    alert(msg);
-                    f.reg_mb_hp.select();
+                // 비밀번호 확인
+                if (f.pass.value.length < 3) {
+                    alert("비밀번호를 3자 이상 입력하세요.");
+                    f.pass.focus();
                     return false;
                 }
 
-                if (typeof f.mb_icon != "undefined") {
-                    if (f.mb_icon.value) {
-                        if (!f.mb_icon.value.toLowerCase().match(/.(gif|jpe?g|png)$/i)) {
-                            alert("회원아이콘이 이미지 파일이 아닙니다.");
-                            f.mb_icon.focus();
-                            return false;
-                        }
-                    }
+                // 비밀번호 일치 여부 확인
+                if (f.pass.value !== f.mb_password_re.value) {
+			        alert("비밀번호가 일치하지 않습니다.");
+			        f.mb_password_re.focus();
+			        return false;
+			    }
+
+                // 이메일 도메인 선택 확인
+                if (f.email2.value === "") {
+                    alert("이메일 도메인을 선택하세요.");
+                    f.email2.focus();
+                    return false;
                 }
 
-                if (typeof f.mb_img != "undefined") {
-                    if (f.mb_img.value) {
-                        if (!f.mb_img.value.toLowerCase().match(/.(gif|jpe?g|png)$/i)) {
-                            alert("회원이미지가 이미지 파일이 아닙니다.");
-                            f.mb_img.focus();
-                            return false;
-                        }
-                    }
-                }
-
-                if (typeof (f.mb_recommend) != "undefined" && f.mb_recommend.value) {
-                    if (f.mb_id.value == f.mb_recommend.value) {
-                        alert("본인을 추천할 수 없습니다.");
-                        f.mb_recommend.focus();
-                        return false;
-                    }
-
-                    var msg = reg_mb_recommend_check();
-                    if (msg) {
-                        alert(msg);
-                        f.mb_recommend.select();
-                        return false;
-                    }
-                }
-
-                if (!chk_captcha()) return false;
-
-                document.getElementById("btn_submit").disabled = "disabled";
+                // 여기에 추가적인 검사 로직을 추가할 수 있습니다.
 
                 return true;
-            }
+            } 
 
             jQuery(function ($) {
                 //tooltip
