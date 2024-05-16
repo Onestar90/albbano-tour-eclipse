@@ -45,8 +45,11 @@ qsVO.setEndNum(endNum);
 List<QnaVO> list = qDao.selectAlladQna(qsVO);
 pageContext.setAttribute("list", list);
 %>
-
-
+<body>
+<div id="wrap">
+<div id ="left" style="float: left">
+<jsp:include page ="design1.jsp"/>
+</div>
 
 
 <section id="sub_visual">
@@ -64,7 +67,7 @@ pageContext.setAttribute("list", list);
 
 
         <div class="bg_vline"></div>
-        <p class="eng"><em></em> 질문답변</p>
+        <p class="eng"><em></em></p>
         <p class="stitle"></p>
 
 
@@ -169,6 +172,7 @@ pageContext.setAttribute("list", list);
 <%--스크롤_애니메이션_리셋--%>
 <script src="../front_util/js/wow.min.js"></script>
 <script> new WOW().init(); </script>
+</div>
 </body>
 
 </html>
