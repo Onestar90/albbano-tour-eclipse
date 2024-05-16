@@ -6,6 +6,22 @@
     info=""%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<%
+		AdminUserInfoManagementDAO aduiDAO = AdminUserInfoManagementDAO.getInstance();
+	try{
+		String userId=request.getParameter("id");
+		
+		UserInfoVO uiVO = aduiDAO.selectDetailBoard(userId);
+		
+		pageContext.setAttribute("uiVO", uiVO);
+	}catch(NumberFormatException nfe){
+	%>
+	<c:redirect url="userInfo_list.jsp"/>
+	<%	
+	}catch(SQLException se){
+		se.printStackTrace();
+	%>
+	<% }//end catch %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -47,32 +63,21 @@
 </head>
 <body>
 <div id="wrap">
-	<div id="header"></div>
-	<div id="boardContent">
-	<%
-		AdminUserInfoManagementDAO aduiDAO = AdminUserInfoManagementDAO.getInstance();
-	try{
-		String userId=request.getParameter("id");
-		
-		UserInfoVO uiVO = aduiDAO.selectDetailBoard(userId);
-		
-		pageContext.setAttribute("uiVO", uiVO);
-	}catch(NumberFormatException nfe){
-	%>
-	<c:redirect url="userInfo_list.jsp"/>
-	<%	
-	}catch(SQLException se){
-		se.printStackTrace();
-	%>
-	<% }//end catch %>
-	
+<div id ="left" style="float: left">
+<jsp:include page ="design1.jsp"/>
+</div>
+	<div id="boardContent" class="_payment-table-container_2hrxu_23"data-testid="paymnet-history-table-container">
 	<form method="post" name="frmDetail" id="frmDetail"> 
 	<input type="hidden" name="id" value="${uiVO.id }"/>
 	<input type="hidden" name="currentPage" value="${param.currentPage }"/>
-		<table>
-			<tr>
-				<td colspan="2"><h3>회원 정보</h3>
-			</tr>	
+		<table style="table-layout: fixed ;width: 20%" data-testid="table" class="_table_2bzgi_1 _fullWidth_2bzgi_5 _payment-table_8ouzs_4"
+	aria-live="polite" aria-busy="false">
+			<thead data-testid="tableHead"class=" _payment-table-head_8ouzs_8">
+<tr data-testid="payment-info-row-header"class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-info-row-header_8ouzs_29 _payment-table-header-row_2hrxu_38">
+<th style="width: 80%;" data-testid="payment-status-column-header"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--head--vertical--normal_1fpie_19 _font--pretendard_1fpie_24 _column-status_1lui6_10 _column_1lui6_4"><span
+		class="_typography_1uzvq_4 _font--pretendard_1uzvq_9 _type--b3_1uzvq_40 _weight--bold_1uzvq_84 "
+		data-testid="typography">회원 상세
+		</span></th></tr></thead>	
 			<tr>
 				<td>이름</td>
 				<td>
