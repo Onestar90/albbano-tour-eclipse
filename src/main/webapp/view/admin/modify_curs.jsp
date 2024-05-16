@@ -109,13 +109,6 @@ pageContext.setAttribute("spots", spots);
         input.setAttribute("value", value);
         form.appendChild(input);
     }
-    function addInputToForm1(form, id, value) {
-        var input = document.createElement("input");
-        input.setAttribute("type", "hidden");
-        input.setAttribute("id", id);
-        input.setAttribute("value", value);
-        form.appendChild(input);
-    }
 </script>
 </head>
 <body>

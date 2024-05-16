@@ -30,8 +30,15 @@
 $(function(){
 });//ready
 function submitModifyForm(crsCode) {
-		
+	var form = document.createElement('form');
+	form.method = 'POST';
+	form.action = 'modify_curs.jsp';
 	
+	var input = document.createElement('input');
+	input.type = 'hidden';
+	input.name = 'crsCode';
+	input.value = crsCode;
+
 		form.appendChild(input);
 		document.body.appendChild(form);
 		form.submit();
@@ -63,7 +70,7 @@ pageContext.setAttribute("cVO", cVO);
 pageContext.setAttribute("spots", spots);
 
 %>
-<form method="post" action="modify_curs.jsp?crsCode=${ cVO.crsCode }">
+<form>
 <div id="wrap">
 <div id ="left" style="float: left">
 <jsp:include page ="design1.jsp"/>
@@ -97,9 +104,9 @@ pageContext.setAttribute("spots", spots);
 </tbody>
 </table>
 </div>
-<input type="submit" value="코스 수정" id="btn" onclick="submitModifyForm('${cVO.crsCode}')"/>
-<input type="submit" value="코스 삭제" id="btn" onclick="submitDeleteForm('${cVO.crsCode}')"/>
 </div>
 </form>
+<input type="submit" value="코스 수정" onclick="submitModifyForm('${cVO.crsCode}')"/>
+<input type="submit" value="코스 삭제" onclick="submitDeleteForm('${cVO.crsCode}')"/>
 </body>
 </html>
