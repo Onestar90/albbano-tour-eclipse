@@ -198,7 +198,6 @@ public class RestaurantManagementDAO {
 					.append("	RES_LOC =? , IMG_NAME =? ,	LONGITUDE =? , LATITUDE= ?, INTRO=? , EDIT_DATE= sysdate ")
 					.append("	where RES_CODE = ? ");
 			pstmt = con.prepareStatement(sb.toString());
-			System.out.println(rVO);
 
 			pstmt.setString(1, rVO.getRes_cat());
 			pstmt.setString(2, rVO.getRes_name());

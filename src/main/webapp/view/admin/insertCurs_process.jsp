@@ -66,13 +66,14 @@
     }
     %>
     코스 추가에 성공했습니다. <br>
-    <a href="select_curs.jsp">코스리스트로 돌아가기.</a>
+    <c:redirect url ="select_curs.jsp"/>
     <%
     }catch(SQLException se){
     	se.printStackTrace();
     %>	
     코스 추가에 실패했습니다.
     잠시 후 시도해주세요.
+    <a href ="select_curs.jsp">코스 리스트 바로 가기</a>
     <%
     }
 

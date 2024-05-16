@@ -52,7 +52,6 @@
 
     curVO.setCrsSpots(crsSpots);
     CourseManagementDAO cDAO = CourseManagementDAO.getInstance();
-    out.print(curVO);
     cDAO.updateCurs(curVO);
 
     for (int i = 0; i < 5; i++) {
@@ -60,12 +59,13 @@
     }
     %>
     	코스 수정에 성공했습니다.<br>
-    	<a href ="select_curs.jsp">코스 리스트로 돌아가기</a>
+    	<c:redirect url ="select_curs.jsp"/>
     <%
     }catch(SQLException se){
     	se.printStackTrace();
     	%>
     	코스 수정에 실패하였습니다.
+    	<a href ="select_curs.jsp">코스 리스트로 돌아가기</a>
     	<%
     }
     %>

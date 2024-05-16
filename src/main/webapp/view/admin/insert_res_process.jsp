@@ -76,8 +76,7 @@ RestaurantManagementDAO rDAO = RestaurantManagementDAO.getInstance();
 rDAO.insertRest(rVO);
 %>
 맛집 추가에 성공했습니다!
-<a href="insert_res.jsp">맛집 추가 화면으로 돌아가기</a>
-<a href="select_res.jsp">맛집리스트로 돌아가기</a>
+<c:redirect url="select_res.jsp"/>
 <%
 }else{
 	out.println("파일은 5MByte까지만 가능합니다.");
