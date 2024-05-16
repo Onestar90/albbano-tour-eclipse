@@ -8,10 +8,8 @@
 <%
 request.setCharacterEncoding("UTF-8");
 CourseManagementDAO cmDAO = CourseManagementDAO.getInstance();
-String curCode = cmDAO.selectMaxCurs();
 List<SpotListVO> list = cmDAO.selectAllSpotNames();
 pageContext.setAttribute("list", list);
-pageContext.setAttribute("curCode", curCode);
 %>
 <!DOCTYPE html>
 <html>
@@ -139,40 +137,41 @@ pageContext.setAttribute("curCode", curCode);
 </head>
 <body>
 <form>
-<div>
-<table>
-<thead>
-<tr>
-<th>코스 추가</th>
-</tr>
-</thead>
+<div id="wrap">
+<div id ="left" style="float: left">
+<jsp:include page ="design1.jsp"/>
+</div>
+<div style="margin-top: 100px; padding: 50px" class="_payment-table-container_2hrxu_23"data-testid="paymnet-history-table-container">
+	<table  style="table-layout: fixed ;width: 100%" data-testid="table"class="_table_2bzgi_1 _fullWidth_2bzgi_5 _payment-table_8ouzs_4"
+								aria-live="polite" aria-busy="false">
+<thead data-testid="tableHead"class=" _payment-table-head_8ouzs_8">
+<tr data-testid="payment-info-row-header"class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-info-row-header_8ouzs_29 _payment-table-header-row_2hrxu_38">
+<th style="width: 80%;" data-testid="payment-status-column-header"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--head--vertical--normal_1fpie_19 _font--pretendard_1fpie_24 _column-status_1lui6_10 _column_1lui6_4"><span
+		class="_typography_1uzvq_4 _font--pretendard_1uzvq_9 _type--b3_1uzvq_40 _weight--bold_1uzvq_84 "
+		data-testid="typography">코스 추가</span></th></tr></thead>
 <tbody>
-<tr>
-<td>코스 코드 : <input type="text" name ="crsCode" value="${curCode }"/></td>
-</tr>
-<tr>
-<td>코스 이름 : <input type="text" name ="crsName"/></td>
-</tr>
-<tr>
-<td>코스 설명 : <input type="text" name ="crsDesc" maxlength="333"/></td>
-</tr>
-<tr>
-</tr>
-<tr>
-<td>코스 요금 : <input type="text" name ="fare"/></td>
-</tr>
-<tr>
-    <td>코스 관광지 : 
+<tr  data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+	<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>코스 코드 : <input type="text" name ="crsCode"/></span></div></td></tr>
+<tr  data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+	<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>코스 이름 : <input type="text" name ="crsName"/></span></div></td></tr>
+<tr  data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+	<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>코스 설명 : <input type="text" name ="crsDesc" maxlength="333"/></span></div></td></tr>
+<tr  data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+	<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>코스 요금 : <input type="text" name ="fare"/></span></div></td></tr>
+<tr  data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+	<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>코스 관광지 : 
         <select id="spotSelect" name="crsSpots"> 
             <c:forEach var="spt" items="${list}">
                 <option value="${spt.spot_code}">${spt.spot_name}</option>
             </c:forEach>
         </select>
-        <input type="button" value="추가" onclick="addSpotToList($('#spotSelect').val())"/>
-    </td>
-</tr>
+        <input type="button" value="추가" onclick="addSpotToList($('#spotSelect').val())"/></span></div></td></tr>
 </tbody>
-
 </table>
 </div>
 <div>
@@ -183,6 +182,7 @@ pageContext.setAttribute("curCode", curCode);
 </div>
 <div>
 <input type="button" onclick="sendToProcessPage()" value="값 전송">
+</div>
 </div>
 </form>
 <a href ="select_curs.jsp">코스 리스트</a>

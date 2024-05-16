@@ -79,6 +79,7 @@ pageContext.setAttribute("sVO", sVO);
 <tr data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
 <td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
 	<span>관광지 위치 : <input type="text"  name ="spt_loc" value ="${ sVO.spt_loc }"/></span></div></td></tr>
+</tbody>
 </table>
 </div>
 <input type ="submit" value ="내용 수정" />

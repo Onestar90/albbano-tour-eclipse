@@ -101,7 +101,7 @@ public class SpotManagementDAO {
 		ResultSet rs = null;
 		try {
 			con = dbCon.getConn("jdbc/abn");
-			String selectSpot = "select * from spot order by SPOT_CODE asc";
+			String selectSpot = "select * from spot where DEL_YN ='N'  order by SPOT_CODE asc";
 			pstmt = con.prepareStatement(selectSpot);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
