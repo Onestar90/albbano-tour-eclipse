@@ -88,8 +88,8 @@ pageContext.setAttribute("rVO", rVO);
 	<span>이미지 :<input type="file"  name ="img_name"/></span></div></td></tr>
 </tbody>
 </table>
-</div>
 <input type="submit" value ="내용 수정"/>
+</div>
 </div>
 </form>
 </body>

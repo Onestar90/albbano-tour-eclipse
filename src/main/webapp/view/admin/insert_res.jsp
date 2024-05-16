@@ -60,32 +60,58 @@ pageContext.setAttribute("res_code", res_code);
 </script>
 </head>
 <body>
-<div>
 <form action="insert_res_process.jsp" id ="frm" method="post" enctype="multipart/form-data" >
-<table>
-<thead>
-<tr>
-<th>맛집 추가</th>
-</tr>
-</thead>
+<div id="wrap">
+<div id ="left" style="float: left">
+<jsp:include page ="design1.jsp"/>
+</div>
+<div style="margin-top: 100px; padding: 50px" class="_payment-table-container_2hrxu_23"data-testid="paymnet-history-table-container">
+	<table  style="table-layout: fixed ;width: 100%" data-testid="table"class="_table_2bzgi_1 _fullWidth_2bzgi_5 _payment-table_8ouzs_4"
+								aria-live="polite" aria-busy="false">
+<thead data-testid="tableHead"class=" _payment-table-head_8ouzs_8">
+<tr data-testid="payment-info-row-header"class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-info-row-header_8ouzs_29 _payment-table-header-row_2hrxu_38">
+<th style="width: 80%;" data-testid="payment-status-column-header"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--head--vertical--normal_1fpie_19 _font--pretendard_1fpie_24 _column-status_1lui6_10 _column_1lui6_4"><span
+		class="_typography_1uzvq_4 _font--pretendard_1uzvq_9 _type--b3_1uzvq_40 _weight--bold_1uzvq_84 "
+		data-testid="typography">맛집 추가</th></span></th></tr></thead>
 <tbody>
-<tr><td>맛집 코드 :   <input type ="text" name ="res_code" value="${ res_code }" /></td></tr>
-<tr><td>맛집 카테고리 : <select name ="res_cat" >
+<tr  data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+	<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>맛집 코드 :<input type ="text" name ="res_code" value="${ res_code }" readonly="readonly"/></span></div></td></tr>
+<tr  data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+	<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>맛집 카테고리 : <select name ="res_cat" >
 <c:forEach var="cat" items="${ list }">
 <option value="${ cat.res_cat }">${ cat.res_cat }</option>
-</c:forEach></select></td></tr>
-<tr><td>맛집명 :<input type ="text" name ="res_name" /></td></tr>
-<tr><td>맛집소개 :<input type ="text" name ="intro" /></td></tr>
-<tr><td>휴일 :<input type ="text" name ="holiday" /></td></tr>
-<tr><td>영업시간 :<input type ="text" name ="busi_hour" /></td></tr>
-<tr><td>맛집 위치 :<input type ="text" name ="res_loc" /></td></tr>
-<tr><td>이미지 :<input type ="file" name ="img_name" id ="img_name"/></td></tr>
-<tr><td>위도 :<input type ="text" name ="latitude" /></td></tr>
-<tr><td>경도 :<input type ="text" name ="longitude" /></td></tr>
+</c:forEach></select></span></div></td></tr>
+<tr  data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+	<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>맛집명 :<input type ="text" name ="res_name" /></span></div></td></tr>
+<tr  data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+	<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>맛집소개 :<input type ="text" name ="intro" /></span></div></td></tr>
+<tr  data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+	<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>휴일 :<input type ="text" name ="holiday" /></span></div></td></tr>
+<tr  data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+	<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>영업시간 :<input type ="text" name ="busi_hour" /></span></div></td></tr>
+<tr  data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+	<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>맛집 위치 :<input type ="text" name ="res_loc" /></span></div></td></tr>
+<tr  data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+	<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>위도 :<input type ="text" name ="latitude" /></span></div></td></tr>
+<tr  data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+	<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>경도 :<input type ="text" name ="longitude" /></span></div></td></tr>
+<tr  data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+	<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>이미지 :<input type ="file" name ="img_name" id ="img_name"/></span></div></td></tr>
 </tbody>
 </table>
 <input type="button" value="맛집 추가" id ="btn"/>
-</form>
 </div>
+</div>
+</form>
 </body>
 </html>
