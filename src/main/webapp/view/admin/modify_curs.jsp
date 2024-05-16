@@ -25,17 +25,9 @@ pageContext.setAttribute("spots", spots);
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="icon" href="http://192.168.10.221/jsp_prj/common/favicon.ico" type="image/x-icon">
-<!--부트스트랩 시작-->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<!--부트스트랩 끝-->
-<link rel="stylesheet" href="https://192.168.10.221/jsp_prj/common/css/main.css" type="text/css" media="all" />
-<link rel="stylesheet" href="https://192.168.10.221/jsp_prj/common/css/board.css" type="text/css" media="all" />
+<title>코스 수정</title>
 <!--jQuery CDN 시작-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
 <!--jQuery CDN 끝-->
 <style type="text/css">
 	
@@ -127,35 +119,40 @@ pageContext.setAttribute("spots", spots);
 </script>
 </head>
 <body>
-<div> 
-<h3>투어 수정</h3>
-</div>
 <form>
-<div>
-<table>
-<thead>
-<tr>
-<th>코스코드</th>
-<th>코스이름</th>
-<th>코스설명</th>
-<th>코스 요금</th>
-<th>해당 코스 관광지</th>
-</tr>
-</thead>
+<div id="wrap">
+<div id ="left" style="float: left">
+<jsp:include page ="design1.jsp"/>
+</div>
+<div style="margin-top: 100px; padding: 50px" class="_payment-table-container_2hrxu_23"data-testid="paymnet-history-table-container">
+	<table  style="table-layout: fixed ;width: 100%" data-testid="table"class="_table_2bzgi_1 _fullWidth_2bzgi_5 _payment-table_8ouzs_4"
+								aria-live="polite" aria-busy="false">
+<thead data-testid="tableHead"class=" _payment-table-head_8ouzs_8">
+<tr data-testid="payment-info-row-header"class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-info-row-header_8ouzs_29 _payment-table-header-row_2hrxu_38">
+<th style="width: 80%;" data-testid="payment-status-column-header"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--head--vertical--normal_1fpie_19 _font--pretendard_1fpie_24 _column-status_1lui6_10 _column_1lui6_4"><span
+		class="_typography_1uzvq_4 _font--pretendard_1uzvq_9 _type--b3_1uzvq_40 _weight--bold_1uzvq_84 "
+		data-testid="typography">코스 수정</span></th></tr></thead>
 <tbody>
-<tr>
-<td><input type="text" value="${ cVO.crsCode}" name ="crsCode"/></td>
-<td><input type="text" value="${ cVO.crsName}" name ="crsName"/></td>
-<td><input type="text"  name ="crsDesc" value="${ cVO.crsDesc}" /></td>
-<td><input type="text" value="${ cVO.fare}" name ="fare"/></td>
-<td>코스 관광지 : 
-        <select id="spotSelect" name="crsSpots"> 
+<tr data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>코스코드 : <input type="text" value="${ cVO.crsCode}" name ="crsCode"/></span></div></td></tr> 
+<tr data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>코스이름 : <input type="text" value="${ cVO.crsName}" name ="crsName"/></span></div></td></tr>
+<tr data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>코스설명 : <input type="text"  name ="crsDesc" value="${ cVO.crsDesc}" /></span></div></td></tr>
+<tr data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>코스 요금: <input type="text" value="${ cVO.fare}" name ="fare"/></span></div></td></tr>
+<tr data-testid="payment-info-row" class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
+<td style="text-align: left" data-testid="iamport-merchant-id-column"class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div class="_container_1aijn_7">
+	<span>해당 코스 관광지 :  <select id="spotSelect" name="crsSpots"> 
             <c:forEach var="spt" items="${list}">
                 <option value="${spt.spot_code}">${spt.spot_name}</option>
             </c:forEach>
         </select>
-        <input type="button" value="추가" onclick="addSpotToList($('#spotSelect').val())"/>
-   </tr>
+        <input type="button" value="추가" onclick="addSpotToList($('#spotSelect').val())"/></span></div></td></tr>
 </tbody>
 </table>
 </div>
@@ -168,5 +165,7 @@ pageContext.setAttribute("spots", spots);
 <div>
 <input type="button" onclick="sendToProcessPage()" value="코스 수정">
 </div>
+</div>
 </form>
-   
+</body>
+</html> 

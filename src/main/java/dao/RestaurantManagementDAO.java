@@ -111,7 +111,7 @@ public class RestaurantManagementDAO {
 		ResultSet rs = null;
 		try {
 			con = dbCon.getConn("jdbc/abn");
-			String select = "select * from RESTAURANT where DEL_YN ='N' ";
+			String select = "select * from RESTAURANT where DEL_YN ='N' order by RES_CODE asc";
 			pstmt = con.prepareStatement(select);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {

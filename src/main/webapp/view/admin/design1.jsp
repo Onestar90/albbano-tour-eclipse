@@ -158,7 +158,7 @@
 												fill="#FFE0D2"></path></g></svg></span> <span class="_title_1nj6f_41">1 : 1 문의</span>
 												</a></li>
 							<li role="none">
-								<a class="_menu-item_1nj6f_7 " role="menuitem" aria-current="page" tabindex="-1"
+								<a class="_menu-item_1nj6f_7 " role="menuitem" aria-current="false" tabindex="-1"
 								href="http://127.0.0.1/view/admin/reservation_management.jsp">
 									<span class="_left-addon_1nj6f_36">
 										<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -177,7 +177,6 @@
 										</svg>
 									</span>
 									<span class="_title_1nj6f_41">예약 관리</span>
-									<div class="_trailer-tag_rcz8n_7 ">New</div>
 								</a>
 							</li>
 							<li role="none"><a class="_menu-item_1nj6f_7 "

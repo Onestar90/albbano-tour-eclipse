@@ -37,6 +37,8 @@ String res_code= request.getParameter("res_code");
 RestaurantManagementDAO rDAO = RestaurantManagementDAO.getInstance();
 rDAO.deleteRes(res_code);
 %>
+<c:redirect url="select_res.jsp"/>
+
 </div>
 </body>
 </html>

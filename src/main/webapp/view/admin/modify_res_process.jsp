@@ -80,7 +80,7 @@ rDAO.updateRes(rVO);
 }//end else
 	%>
 맛집 정보 수정에 성공했습니다!<br>
-<a href="select_res.jsp">맛집 리스트로 돌아가기</a>
+<c:redirect url ="select_res.jsp"/>
 	
 	<%
 }catch(Exception e){

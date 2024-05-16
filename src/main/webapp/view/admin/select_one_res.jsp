@@ -107,9 +107,9 @@ pageContext.setAttribute("rVO", rVO);
 	<img src ="http://127.0.0.1/upload/${ rVO.img_name }" width="200px" height="200px"/></span></div></td></tr>
 </tbody>
 </table>
-</div>
 <input type="button" value="맛집 수정" onclick="submitModify('${rVO.res_code}')">
 <input type="button" value="맛집 삭제" onclick="submitDelete('${rVO.res_code}')">
+</div>
 </div>
 </form>
 </body>

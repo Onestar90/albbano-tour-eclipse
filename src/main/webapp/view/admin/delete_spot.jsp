@@ -36,6 +36,7 @@ String spot_code =request.getParameter("spot_code");
 SpotManagementDAO sDAO = SpotManagementDAO.getInstance();
 sDAO.deleteSpot(spot_code);
 %>
+<c:redirect url="select_spot.jsp" />
 </div>
 </body>
 </html>
