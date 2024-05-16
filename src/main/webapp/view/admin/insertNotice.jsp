@@ -68,6 +68,9 @@ $(function(){
 </head>
 <body>
 	<div id="wrap">
+	<div id ="left" style="float: left">
+<jsp:include page ="design1.jsp"/>
+</div>
 		<!-- <div id="header"></div> -->
 		<div id="NoticeContent">
 		

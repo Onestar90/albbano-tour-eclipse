@@ -11,24 +11,13 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <title>질문답변 글쓰기 | 알빠노관광</title>
-
-    <script>
-        // 자바스크립트에서 사용하는 전역변수 선언
-        var g5_url = "https://cmtour.co.kr";
-        var g5_bbs_url = "https://cmtour.co.kr/bbs";
-        var g5_is_member = "1";
-        var g5_is_admin = "";
-        var g5_is_mobile = "";
-        var g5_bo_table = "qa";
-        var g5_sca = "";
-        var g5_editor = "smarteditor2";
-        var g5_cookie_domain = "";
-    </script>
-   
 </head>
 
 <body>
+<div id="wrap">
+<div id ="left" style="float: left">
+<jsp:include page ="design1.jsp"/>
+</div>
 <jsp:useBean id="qVO" class="vo.QnaVO" scope="page"/>
 <jsp:setProperty property="*" name="qVO"/>
 <% request.setCharacterEncoding("UTF-8"); %>
@@ -176,7 +165,7 @@ try {
     </div>
 </section>
 
-
+</div>
 
 </body>
 </html>
