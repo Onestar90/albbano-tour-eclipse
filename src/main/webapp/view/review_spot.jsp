@@ -19,18 +19,6 @@ To change this template use File | Settings | File Templates.
 <head>
     <title>관광지 리뷰 | 알빠노관광</title>
 
-    <script>
-        // 자바스크립트에서 사용하는 전역변수 선언
-        var g5_url = "index_user.jsp";
-        var g5_bbs_url = "index_user.jsp";
-        var g5_is_member = "1";
-        var g5_is_admin = "";
-        var g5_is_mobile = "";
-        var g5_bo_table = "";
-        var g5_sca = "";
-        var g5_editor = "";
-        var g5_cookie_domain = "";
-    </script>
 <%
 	String sptCode = request.getParameter("spt_code");
 	String sptName = request.getParameter("spt_name");
@@ -78,13 +66,7 @@ List<SpotReviewVO> list = new ArrayList<SpotReviewVO>();
 list = sDAO.selectSptAllReview(qsVO, sptCode);
 pageContext.setAttribute("list", list);
 
-
-
-
-
 %> 
-
-
 
 </head>
     <%@ include file="common_head.jsp" %>
@@ -110,11 +92,10 @@ pageContext.setAttribute("list", list);
                     <li>
                         <span>관광지</span>
                         <ul>
-                            <li><a href="/theme/cmtour/html/business/new_01.php" target="_self">관광지</a></li>
-                            <li><a href="/bbs/board.php?bo_table=booking" target="_self">맛집</a></li>
-                            <li><a href="/theme/cmtour/html/business/map_info_01.php" target="_self">투어예약</a></li>
-                            <li><a href="/bbs/board.php?bo_table=notice" target="_self">관광지</a></li>
-
+                            <li><a href="list_spot.jsp" target="_self">관광지</a></li>
+                            <li><a href="list_restaurant.jsp" target="_self">맛집</a></li>
+                            <li><a href="booking.jsp" target="_self">투어예약</a></li>
+                            <li><a href="main_notice.jsp" target="_self">고객센터</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -122,9 +103,7 @@ pageContext.setAttribute("list", list);
                     <li>
                         <span>관광지 리뷰</span>
                         <ul>
-                            <li><a href="/bbs/board.php?bo_table=notice" target="_self">관광지 리스트</a></li>
-
-                            <li><a href="/bbs/faq.php?fm_id=1" target="_self">관광지 리뷰</a></li>
+                            <li><a href="list_spot.jsp" target="_self">관광지 리스트</a></li>
 
                         </ul>
                     </li>
@@ -146,15 +125,12 @@ pageContext.setAttribute("list", list);
 
     <div class="scontents">
 
-
         <div class="bg_vline"></div>
         <p class="eng"><em></em> <%=sptName %> 리뷰</p>
         <p class="stitle"></p>
 
-
         <!-- FAQ 시작 { -->
         <div id="faq_hhtml"></div>
-
 
         <div class="select_bo_cate mview">
             <a class="sel" rel="선택">관광지 리뷰</a>
@@ -276,7 +252,7 @@ pageContext.setAttribute("list", list);
 <%@ include file="common_lower_container.jsp" %>
 
 <%--스크롤_애니메이션_리셋--%>
-<script src="../front_util/js/wow.min.js"></script>
+<script src="http://127.0.0.1/front_util/js/wow.min.js"></script>
 <script> new WOW().init(); </script>
 
 </body>

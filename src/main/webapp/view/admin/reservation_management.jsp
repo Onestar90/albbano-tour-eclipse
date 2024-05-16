@@ -700,19 +700,17 @@ document.addEventListener("DOMContentLoaded", function() {
 											승인 시각</th>
 										<th data-testid="cancel-payment-column-header"
 											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--head--vertical--normal_1fpie_19 _font--pretendard_1fpie_24 _column-cancel-payment_1lui6_50 _column_1lui6_4"></th>
-										
 									</tr>
 								</thead>
 								<tbody data-testid="tableBody"
 									class=" _payment-table-body_8ouzs_13">
-<tr data-testid="date-row"
-	class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10 _date-row_8027u_4 _started-date-row_8ouzs_23 _payment-table-date-row_2hrxu_43">
-	<c:forEach var="i" begin="1" end="7">
-		<td data-testid="tableCell"
-			class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _date-cell_8027u_10"></td>
-	</c:forEach>
-</tr>
-									
+									<tr data-testid="date-row"
+										class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10 _date-row_8027u_4 _started-date-row_8ouzs_23 _payment-table-date-row_2hrxu_43">
+										<c:forEach var="i" begin="1" end="7">
+											<td data-testid="tableCell"
+												class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _date-cell_8027u_10"></td>
+										</c:forEach>
+									</tr>
 									
 									<c:forEach var="item" items="${resvList}" varStatus="i">
 										<tr data-testid="payment-info-row"

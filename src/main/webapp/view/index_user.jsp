@@ -14,17 +14,6 @@
 <html lang="ko">
 <head>
     <title>알빠노관광</title>
-    <script>
-        var g5_url = "index.html";
-        var g5_bbs_url = "bbs/index.html";
-        var g5_is_member = "";
-        var g5_is_admin = "";
-        var g5_is_mobile = "";
-        var g5_bo_table = "";
-        var g5_sca = "";
-        var g5_editor = "";
-        var g5_cookie_domain = "";
-    </script>
     <%@ include file="common_head.jsp" %>
 </head>
 
@@ -317,7 +306,7 @@ pageContext.setAttribute("list", list);
 <%@ include file="common_lower_container.jsp" %>
 
 <%--스크롤_애니메이션_리셋--%>
-<script src="../front_util/js/wow.min.js"></script>
+<script src="http://127.0.0.1/front_util/js/wow.min.js"></script>
 <script> new WOW().init(); </script>
 
 </body>

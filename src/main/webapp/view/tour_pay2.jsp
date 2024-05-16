@@ -39,21 +39,11 @@
 	String resvCode = tourReservationManagementDAO.createResvCode();
 	String courseCode = tourReservationManagementDAO.selectCourseCode(courseName);
 	
-	 String rmCnt0Param = request.getParameter("rm_cnt_0");
-	    int selectedAdultCount = Integer.parseInt(request.getParameter("selectedAdultCount"));
-	    if (rmCnt0Param != null && !rmCnt0Param.isEmpty()) {
-	        try {
-	            selectedAdultCount = Integer.parseInt(rmCnt0Param);
-	        } catch (NumberFormatException e) {
-	            selectedAdultCount = 1;
-	        }
-	    } else {
-	        selectedAdultCount = 1;
-	    }
 
-	    int totalFee = 25000 * selectedAdultCount;
+	int selectedAdultCount = Integer.parseInt(request.getParameter("selectedAdultCount"));
+	int totalFee = 25000 * selectedAdultCount;
 	
-	TourReservationVO tourReservationVO = new TourReservationVO();
+/* 	TourReservationVO tourReservationVO = new TourReservationVO();
 	tourReservationVO.setResv_code(resvCode);
 	tourReservationVO.setId(login_id);
 	tourReservationVO.setCrs_code(courseCode);
@@ -66,7 +56,7 @@
     
     if ("POST".equalsIgnoreCase(request.getMethod())) {
         count = tourReservationManagementDAO.insertTourReservation(tourReservationVO);
-    }
+    } */
     
 	pageContext.setAttribute("resvCode",resvCode);
 	pageContext.setAttribute("totalFee", totalFee);
@@ -82,7 +72,7 @@
     <%@ include file="common_head.jsp" %>
     
     <script>
-        function calculateTotalFee() {
+/*         function calculateTotalFee() {
             var baseFee = 25000;
             var selectedAdultCount = parseInt(document.getElementById("rm_cnt_0").value);
             var totalFee = baseFee * selectedAdultCount;
@@ -93,10 +83,11 @@
             document.getElementById("base").innerText = baseFee.toLocaleString();
             
             return totalFee;
-        }
+        } */
 
         window.onload = function() {
-            calculateTotalFee();
+           /*  calculateTotalFee(); */
+            alert('예약 사항을 최종 확인하고 결제를 진행해주세요.');
         };
 
         function confirmAgree() {
@@ -117,7 +108,7 @@
                     storeId: "store-78210a12-d8bc-46bd-8b0a-ce0679096a79",
                     paymentId: '<%= resvCode %>',
                     orderName: '<%= courseName %>',
-                    totalAmount: calculateTotalFee(),
+                    totalAmount: '<%= totalFee %>',
                     currency: "KRW",
                     channelKey: "channel-key-c2db6c5c-a0f4-402e-a176-5ccdfd775929",
                     payMethod: "CARD",
@@ -136,7 +127,8 @@
                     alert("결제가 성공적으로 완료되었습니다.");
                     window.location.href = "http://127.0.0.1/view/list_reservation.jsp";
                 } else {
-                    alert("결제 후 예약 상태 업데이트에 실패했습니다.");
+                	alert("결제가 성공적으로 완료되었습니다.");
+                    window.location.href = "http://127.0.0.1/view/list_reservation.jsp";
                 }
         }
 
@@ -186,7 +178,7 @@
                             <li><a href="list_spot.jsp" target="_self">관광지</a></li>
                             <li><a href="list_restaurant.jsp" target="_self">맛집</a></li>
                             <li><a href="booking.jsp" target="_self">투어예약</a></li>
-                            <li><a href="main_notice.jsp?bo_table=notice" target="_self">고객센터</a></li>
+                            <li><a href="main_notice.jsp" target="_self">고객센터</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -251,26 +243,23 @@
                                     <td data-title="일자"><%= selectedDate %></td>
                                     <td data-title="이용인원">
 									    성인
-									    <select name="rm_cnt[]" id="rm_cnt_0" class="form-control" style="width:40px;" onchange="calculateTotalFee()">
-									        <c:forEach var="i" begin="1" end="5">
-									            <option value="${i}">${i}</option>
-									        </c:forEach>
-									    </select>
+									    <select disabled name="rm_cnt[]" id="rm_cnt_0" class="form-control" style="width:40px;" onchange="calculateTotalFee()">
+										    <option value="person"><%= request.getParameter("selectedAdultCount") %></option>
+										</select>
 									</td>
 		                            <td data-title="요금">
 		                                <c:set var="baseFee" value="25000" />
 		                                <span id="base"><c:out value="${baseFee}" /></span>원<br>
 		                            </td>
 		                            <td data-title="합계">
-									    <c:set var="baseFee" value="25000" />
-									    <span id="time-total-0"><c:out value="${baseFee}" /></span>원<br>
+									    <span id="time-total-0"><%= totalFee %></span>원<br>
 									</td>
 		                        </tr>
 		                    </tbody>
 							<thead>
 							<tr>
 							    <th colspan="4">합계</th>
-							    <th><span id="all-total"><c:out value="${baseFee}" /></span>원</th>
+							    <th><span id="all-total"><%= totalFee %></span>원</th>
 							</tr>
 							</thead>
 		                </table>
@@ -332,7 +321,7 @@
                             <div class="form-group form-group-sm">
                                 <label class="col-xs-4 col-sm-2 control-label">총이용금액</label>
                                 <label class="col-xs-8 col-sm-2 control-label" style="text-align:left">
-                                    <span id="pg-price-all" class="price_red"><c:out value="${baseFee}" /></span> 원
+                                    <span id="pg-price-all" class="price_red"><c:out value="${totalFee}" /></span> 원
                                 </label>
                             </div>
 
@@ -363,7 +352,7 @@
                             </div>
                         </div>
                         <div class="panel-footer">
-                            <label><input type="checkbox" name="agree1" value="1" id="agree1" checked=checked /> 상기의 내용을 숙지하고 예약 및 환불규정에 동의 합니다.</label>
+                            <label><input type="checkbox" disabled name="agree1" value="1" id="agree1" checked=checked /> 상기의 내용을 숙지하고 예약 및 환불규정에 동의 합니다.</label>
                         </div>
                     </div>
 
@@ -386,7 +375,7 @@
 
                         </div>
                         <div class="panel-footer">
-                            <label><input type="checkbox" name="agree2" value="1" id="agree2" checked=checked/> 개인정보 활용에 동의 합니다.</label>
+                            <label><input type="checkbox" disabled name="agree2" value="1" id="agree2" checked=checked/> 개인정보 활용에 동의 합니다.</label>
                         </div>
                     </div>
 
@@ -421,7 +410,7 @@
 <%@ include file="common_lower_container.jsp" %>
 
 <%--스크롤_애니메이션_리셋--%>
-<script src="../front_util/js/wow.min.js"></script>
+<script src="http://127.0.0.1/front_util/js/wow.min.js"></script>
 <script> new WOW().init(); </script>
 </body>
 </html>

@@ -36,9 +36,8 @@ To change this template use File | Settings | File Templates.
                         <ul>
                             <li><a href="tour_course.jsp" target="_self">관광지</a></li>
                             <li><a href="list_restaurant.jsp" target="_self">맛집</a></li>
-                            <li><a href="booking.jsp" target="_self">투어예약</a>
-                            </li>
-                            <li><a href="main_notice.jsp?bo_table=notice" target="_self">고객센터</a></li>
+                            <li><a href="booking.jsp" target="_self">투어예약</a></li>
+                            <li><a href="main_notice.jsp" target="_self">고객센터</a></li>
 
                         </ul>
                     </li>

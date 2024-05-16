@@ -24,17 +24,6 @@
 <html lang="ko">
 <head>
     <title>맛집리스트 | 알빠노관광</title>
-    <script>
-        var g5_url = "index_user.jsp";
-        var g5_bbs_url = "index_user.jsp";
-        var g5_is_member = "";
-        var g5_is_admin = "";
-        var g5_is_mobile = "";
-        var g5_bo_table = "";
-        var g5_sca = "";
-        var g5_editor = "";
-        var g5_cookie_domain = "";
-    </script>
     <%@ include file="common_head.jsp" %>
 </head>
 
@@ -46,11 +35,10 @@
 <section id="sub_visual">
     <div class="backgroundimg">
         <div class="visual_area"
-             style="background:url('../front_util/images/sub_visual02.jpg') no-repeat top center;">
+             style="background:url('http://127.0.0.1/front_util/images/sub_visual02.jpg') no-repeat top center;">
         </div>
     </div>
 </section>
-
 
 <section id="sub_wrapper">
     <div id="sub_menu">
@@ -63,10 +51,8 @@
                         <ul>
                             <li><a href="list_spot.jsp" target="_self">관광지</a></li>
                             <li><a href="list_restaurant.jsp" target="_self">맛집</a></li>
-                            <li><a href="booking.jsp" target="_self">투어예약</a>
-                            </li>
-                            <li><a href="main_notice.jsp?bo_table=notice" target="_self">고객센터</a></li>
-
+                            <li><a href="booking.jsp" target="_self">투어예약</a></li>
+                            <li><a href="main_notice.jsp" target="_self">고객센터</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -75,7 +61,6 @@
                         <span>맛집 리스트</span>
                         <ul>
                             <li><a href="void" target="_self">맛집 리스트</a></li>
-  
                         </ul>
                     </li>
                 </ul>
@@ -95,7 +80,7 @@
         <p class="normal_txt"></p>
     </div>
 
-    <script src="../front_util/js/g_slide.js"></script>
+    <script src="http://127.0.0.1/front_util/js/g_slide.js"></script>
 
 
     <div id="container">
@@ -129,15 +114,12 @@
                             </p>
                         </a>
                     </div>
-
   		 </c:forEach>
                 </div>
             </div>
            </form> 
         </section>
-
     </div>
-      
    
 </section>
 
@@ -152,7 +134,7 @@
 <%@ include file="common_lower_container.jsp" %>
 
 <%--스크롤_애니메이션_리셋--%>
-<script src="../front_util/js/wow.min.js"></script>
+<script src="http://127.0.0.1/front_util/js/wow.min.js"></script>
 <script> new WOW().init(); </script>
 </body>
 </html>

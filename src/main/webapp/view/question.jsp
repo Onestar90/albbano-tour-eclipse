@@ -22,24 +22,11 @@ if(login_id == null){ %>
 	}
 	%>
 
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <title>질문답변 글쓰기 | 알빠노관광</title>
 
-    <script>
-        // 자바스크립트에서 사용하는 전역변수 선언
-        var g5_url = "https://cmtour.co.kr";
-        var g5_bbs_url = "https://cmtour.co.kr/bbs";
-        var g5_is_member = "1";
-        var g5_is_admin = "";
-        var g5_is_mobile = "";
-        var g5_bo_table = "qa";
-        var g5_sca = "";
-        var g5_editor = "smarteditor2";
-        var g5_cookie_domain = "";
-    </script>
     <%@ include file="common_head.jsp" %>
 </head>
 
@@ -81,9 +68,9 @@ if(login_id == null){ %>
                     <li>
                         <span>질문답변</span>
                         <ul>
-                           <li><a href="main_notice.jsp?bo_table=notice" target="_self">공지사항</a></li>
-                            <li><a href="faq.jsp?fm_id=1" target="_self">자주 묻는 질문</a></li>
-                            <li><a href="qna.jsp?bo_table=qa" target="_self">질문답변</a></li>
+                            <li><a href="main_notice.jsp" target="_self">공지사항</a></li>
+                            <li><a href="faq.jsp" target="_self">자주 묻는 질문</a></li>
+                            <li><a href="qna.jsp" target="_self">질문답변</a></li>
                             <li><a href="question.jsp" target="_self">1:1문의</a></li>
                         </ul>
                     </li>
@@ -137,20 +124,11 @@ if(login_id == null){ %>
                 <div class="btn_confirm write_div" style="text-align:center;">
                     <a href="qna.jsp" class="btn_cancel btn">취소</a>
                     <button type="submit" id="submitBtn" class="btn_submit btn">작성완료</button>
-                    
-</div>
+				</div>
             </form>
-            
-       
-
-           
         </section>
-       
     </div>
 </section>
-
-
-
 
 <%--footer_jsp_적용_시작--%>
 <footer>
@@ -163,7 +141,7 @@ if(login_id == null){ %>
 <%@ include file="common_lower_container.jsp" %>
 
 <%--스크롤_애니메이션_리셋--%>
-<script src="../front_util/js/wow.min.js"></script>
+<script src="http://127.0.0.1/front_util/js/wow.min.js"></script>
 <script> new WOW().init(); </script>
 
 </body>

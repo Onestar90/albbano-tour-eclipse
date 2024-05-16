@@ -24,17 +24,6 @@ To change this template use File | Settings | File Templates.
 <head>
     <title>로그인 | 알빠노관광</title>
 
-    <script>
-        var g5_url = "../index.html";
-        var g5_bbs_url = "index.html";
-        var g5_is_member = "";
-        var g5_is_admin = "";
-        var g5_is_mobile = "";
-        var g5_bo_table = "";
-        var g5_sca = "";
-        var g5_editor = "";
-        var g5_cookie_domain = "";
-    </script>
     <%@ include file="common_head.jsp" %>
 </head>
 
@@ -43,8 +32,13 @@ To change this template use File | Settings | File Templates.
 <div id="mb_login" class="mbskin">
     <div class="mbskin_box">
         <h1>로그인</h1>
-        <div><a href="index_user.jsp"><h2 style="font-size: 2rem; margin: 20px auto"><img
-                src="../front_util/images/top_logo.png" alt="처음으로 "></h2></a></div>
+        <div>
+        <a href="index_user.jsp">
+	        <h2 style="font-size: 2rem; margin: 20px auto">
+	        	<img src="http://127.0.0.1/front_util/images/top_logo.png" alt="처음으로 ">
+	        </h2>
+        </a>
+        </div>
 
             <form name="idfind" action="find_id_proc.jsp" method="post">
 
@@ -56,17 +50,13 @@ To change this template use File | Settings | File Templates.
                 <label for="name" class="sound_only">이름<strong class="sound_only"> 필수</strong></label>
                 <input type="text" name="name" id="name" required class="frm_input required" size="20"
                        maxLength="20" placeholder="NAME">
-                <button type="submit" name="enter" value="찾기" onClick="id_search()">아이디 찾기</button>
+                <button type="submit" class="btn_b01 btn" name="enter" value="찾기" onClick="id_search()">아이디 찾기</button>
                 <!-- <button type="button" onclick="openIdSearchPage()">아이디 찾기</button> -->
-                <div id="login_info">
                     <!-- <div class="login_if_auto chk_box">
                         <input type="checkbox" name="auto_login" id="login_auto_login" class="selec_chk">
                         <label for="login_auto_login"><span></span> 로그인 기억하기 </label>
                     </div> -->
-                    <div class="login_if_lpl">
-                        <a href="find_password.jsp">비밀번호찾기 </a>
-                    </div>
-                </div>
+               	<button type="button" class="btn_b01 btn" name="enter" value="찾기" onClick="window.location.href='find_password.jsp';">비밀번호찾기</button>
             </fieldset>
             </form>
     </div>
@@ -84,16 +74,13 @@ function id_search(){
 		 alert("이름을 입력해주세요");
 		 return;	
 	}
-	
 }
  
-
 </script>
 <!-- } 로그인 끝 -->
 
-
 <%--스크롤_애니메이션_리셋--%>
-<script src="../front_util/js/wow.min.js"></script>
+<script src="http://127.0.0.1/front_util/js/wow.min.js"></script>
 <script> new WOW().init(); </script>
 
 </body>

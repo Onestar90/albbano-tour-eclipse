@@ -38,10 +38,10 @@
                     <li>
                         <span>맴버쉽</span>
                         <ul>
-                            <li><a href="/theme/cmtour/html/business/new_01.php" target="_self">관광지</a></li>
-                            <li><a href="/bbs/board.php?bo_table=booking" target="_self">맛집</a></li>
-                            <li><a href="/theme/cmtour/html/business/map_info_01.php" target="_self">투어예약</a></li>
-                            <li><a href="/bbs/board.php?bo_table=notice" target="_self">고객센터</a></li>
+                            <li><a href="list_spot.jsp" target="_self">관광지</a></li>
+                            <li><a href="list_restaurant.jsp" target="_self">맛집</a></li>
+                            <li><a href="booking.jsp" target="_self">투어예약</a></li>
+                            <li><a href="main_notice.jsp" target="_self">고객센터</a></li>
 
                         </ul>
                     </li>
@@ -50,18 +50,10 @@
                     <li>
                         <span>회원 가입</span>
                         <ul>
-                            <li><a href="https://cmtour.co.kr/bbs/login.php" target="_self">로그인</a></li>
-
-
-                            <li><a href="https://cmtour.co.kr/bbs/register.php" target="_self">회원가입</a></li>
-
-
-                            <li><a href="https://cmtour.co.kr/bbs/content.php?co_id=privacy" target="_self">개인정보처리방침</a>
-                            </li>
-
-
-                            <li><a href="https://cmtour.co.kr/bbs/content.php?co_id=provision" target="_self">이용약관</a>
-                            </li>
+							<li><a href="login.jsp" target="_self">로그인</a></li>
+                            <li><a href="register.jsp" target="_self">회원가입</a></li>
+                            <li><a href="policy.jsp" target="_self">개인정보처리방침</a></li>
+                            <li><a href="service_terms.jsp" target="_self">이용약관</a></li>
                         </ul>
                     </li>
                 </ul>

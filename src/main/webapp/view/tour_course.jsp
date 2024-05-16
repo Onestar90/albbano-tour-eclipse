@@ -35,26 +35,11 @@ pageContext.setAttribute("list", list);
 pageContext.setAttribute("list_curs", list_curs);
 pageContext.setAttribute("cVO", cVO);
 pageContext.setAttribute("code", code);
-
-
-
 %>
 <html lang="ko">
 <head>
-    <title>동해안투어 | 알빠노관광</title>
+    <title>투어코스 | 알빠노관광</title>
 
-    <script>
-        // 자바스크립트에서 사용하는 전역변수 선언
-        var g5_url = "../../../../index.html";
-        var g5_bbs_url = "../../../../index.html";
-        var g5_is_member = "";
-        var g5_is_admin = "";
-        var g5_is_mobile = "";
-        var g5_bo_table = "";
-        var g5_sca = "";
-        var g5_editor = "";
-        var g5_cookie_domain = "";
-    </script>
     <%@ include file="common_head.jsp" %>
 </head>
 
@@ -65,7 +50,7 @@ pageContext.setAttribute("code", code);
 <section id="sub_visual">
     <div class="backgroundimg">
         <div class="visual_area"
-             style="background:url('../front_util/images/sub_visual01.jpg') no-repeat top center;"></div>
+             style="background:url('http://127.0.0.1/front_util/images/sub_visual01.jpg') no-repeat top center;"></div>
     </div>
 </section>
 
@@ -81,7 +66,7 @@ pageContext.setAttribute("code", code);
                             <li><a href="list_spot.jsp" target="_self">관광지</a></li>
                             <li><a href="list_restaurant.jsp" target="_self">맛집</a></li>
                             <li><a href="booking.jsp" target="_self">투어</a></li>
-                            <li><a href="main_notice.jsp?bo_table=notice" target="_self">고객센터</a></li>
+                            <li><a href="main_notice.jsp" target="_self">고객센터</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -226,7 +211,6 @@ pageContext.setAttribute("code", code);
                     <li>· 당일취소 및 불참 : 환불불가</li>
                     <li>· 모객인원미달로 취소 : 100%환불</li>
                     <li>· 천재지변으로 운행불가 : 100%환불</li>
-                    <li>· 무통장입금 : 환불 받을 계좌번호 고객센터로 전달, 매주 목요일<b>(17~18시)</b> 환불 진행</li>
                 </ul>
             </div>
 
@@ -307,7 +291,7 @@ pageContext.setAttribute("code", code);
 <%@ include file="common_lower_container.jsp" %>
 
 <%--스크롤_애니메이션_리셋--%>
-<script src="../front_util/js/wow.min.js"></script>
+<script src="http://127.0.0.1/front_util/js/wow.min.js"></script>
 <script> new WOW().init(); </script>
 </body>
 </html>

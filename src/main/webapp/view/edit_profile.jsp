@@ -88,7 +88,7 @@ To change this template use File | Settings | File Templates.
         <p class="stitle"></p>
 
 		<c:if test="${ empty uiVO }">
-			<c:redirect url="http://http://192.168.10.223/albbano-tour-eclipse/view/index_user.jsp"/>
+			<c:redirect url="http://http://127.0.0.1/view/index_user.jsp"/>
 		</c:if>
 
         <!-- 회원정보 입력/수정 시작 { -->
@@ -107,10 +107,7 @@ To change this template use File | Settings | File Templates.
                 <input type="hidden" name="mb_nick_default" value="">
                 <input type="hidden" name="mb_nick" value="">
 
-                
-
                         <!-- <h2>회원정보 수정</h2> -->
-                        
 					    <ul>
 					     <li>
 					            <label for="pwd">기존 비밀번호<strong class="sound_only">필수</strong></label>
@@ -234,7 +231,7 @@ To change this template use File | Settings | File Templates.
 <%@ include file="common_sidebar.jsp" %>
 <%@ include file="common_lower_container.jsp" %>
 
-<script src="https://cmtour.co.kr/theme/cmtour/html/css_js/wow.min.js"></script>
+<script src="http://127.0.0.1/front_util/js/wow.min.js"></script>
 <script> new WOW().init(); </script>
 
 </body>
