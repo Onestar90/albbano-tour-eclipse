@@ -74,32 +74,11 @@ pageContext.setAttribute("list", list);
         
         form.setAttribute("method", "post");
         form.setAttribute("action", "insertCurs_process.jsp");
-        form.setAttribute("enctype", "multipart/form-data");
-        
-        var file = $("#imgName").val();
-		var selectedExt = file.substring(file.lastIndexOf(".")+1);
-
-		var extArr = ["png", "jpg", "gif", "jpeg", "bmp"];
-		var flag = false;
-
-		for(var i = 0; i < extArr.length; i++) {
-		if(selectedExt == extArr[i]) {
-		flag = true;
-		break;
-		} // end if
-		} // end for
-
-		if(!flag) {
-		alert(selectedExt + "는 업로드 가능한 파일의 확장자가 아닙니다.");
-		return;
-		} // end if
-
         
         addInputToForm(form, "crsCode", $("input[name='crsCode']").val());
         addInputToForm(form, "crsName", $("input[name='crsName']").val());
         addInputToForm(form, "crsDesc", $("input[name='crsDesc']").val());
         addInputToForm(form, "fare", $("input[name='fare']").val());
-        addInputToForm1(form, "imgName", $("input[id='imgName']").val());
         var spotValues = [];
         $(".spotList td").each(function() {
             spotValues.push($(this).text());
@@ -181,7 +160,7 @@ pageContext.setAttribute("list", list);
 <input type ="button" onclick="resetTable()" value ="테이블 리셋"/>
 </div>
 <div>
-<input type="button" onclick="sendToProcessPage()" value="값 전송">
+<input type="button" onclick="sendToProcessPage()" value="코스 추가">
 </div>
 </div>
 </form>

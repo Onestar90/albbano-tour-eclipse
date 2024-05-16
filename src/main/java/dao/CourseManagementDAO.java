@@ -206,7 +206,7 @@ public class CourseManagementDAO {
 		ResultSet rs = null;
 		try {
 			con = dbCon.getConn("jdbc/abn");
-			String select = " select SPOT_CODE, SPOT_NAME from spot order by SPOT_CODE asc";
+			String select = " select SPOT_CODE, SPOT_NAME from spot where DEL_YN ='N' order by SPOT_CODE asc";
 			pstmt = con.prepareStatement(select);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -242,7 +242,7 @@ public class CourseManagementDAO {
 			pstmt.setString(1, cVO.getCrsCode());
 			pstmt.setString(2, cVO.getCrsName());
 			pstmt.setString(3, cVO.getCrsDesc());
-			pstmt.setInt(5, cVO.getFare());
+			pstmt.setInt(4, cVO.getFare());
 
 			cnt = pstmt.executeUpdate();
 		} finally {

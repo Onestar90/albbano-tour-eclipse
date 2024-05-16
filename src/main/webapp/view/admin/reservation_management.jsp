@@ -5,8 +5,19 @@
   Time: 오후 1:03
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="vo.CourseManagementVO"%>
+<%@ page import="dao.TourDAO"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    TourDAO tourDAO = TourDAO.getInstance();
+    List<CourseManagementVO> tourList = new ArrayList<>();
+    tourList = tourDAO.selectAllTourList();
+	pageContext.setAttribute("tourList", tourList);
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -18,6 +29,48 @@
 <link rel="stylesheet" type="text/css" href="http://127.0.0.1/front_util/css/index.css">
 
 <script src="https://cdn.channel.io/plugin/ch-plugin-web.js" async="" defer=""></script>
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+    const detailsElement = document.querySelector('details._filter-details_1b2ys_62');
+
+    detailsElement.addEventListener('click', function(event) {
+        if (!event.target.closest('div[data-testid="dropdownItemCheckbox"]')) {
+            if (detailsElement.hasAttribute('open')) {
+                detailsElement.removeAttribute('open');
+            } else {
+                detailsElement.setAttribute('open', '');
+            }
+            event.preventDefault();
+        }
+    });
+
+    const checkboxElements = document.querySelectorAll('div[data-testid="dropdownItemCheckbox"]');
+
+    checkboxElements.forEach(function(checkboxElement) {
+        checkboxElement.addEventListener('click', function(event) {
+            event.stopPropagation();
+
+            const labelElement = checkboxElement.closest('label');
+            const isChecked = checkboxElement.getAttribute('aria-checked') === 'true';
+
+            checkboxElement.setAttribute('aria-checked', !isChecked);
+            labelElement.setAttribute('aria-checked', !isChecked);
+
+            if (isChecked) {
+                labelElement.classList.remove('_dropdownItem--selected_1e590_73');
+                labelElement.setAttribute('aria-checked', 'false');
+                checkboxElement.setAttribute('aria-checked', 'false');
+            } else {
+                labelElement.classList.add('_dropdownItem--selected_1e590_73');
+                labelElement.setAttribute('aria-checked', 'true');
+                checkboxElement.setAttribute('aria-checked', 'true');
+            }
+        });
+    });
+});
+</script>
+
 </head>
 <body>
 	<div id="root">
@@ -195,7 +248,7 @@
 											<path
 												d="M10.0012 11.6655C12.416 11.6655 14.3735 9.72568 14.3735 7.33276C14.3735 4.93984 12.416 3 10.0012 3C7.58645 3 5.62891 4.93984 5.62891 7.33276C5.62891 9.72568 7.58645 11.6655 10.0012 11.6655Z"
 												fill="#FFE0D2"></path>
-    <path
+    										<path
 												d="M10.0013 8.20274C9.38508 7.74446 8.65765 7.4556 7.89261 7.36538C7.12757 7.27517 6.35206 7.38679 5.64453 7.68897C5.71006 8.47237 5.98925 9.22339 6.45225 9.86168C6.91525 10.5 7.54464 11.0015 8.2731 11.3127C8.32298 10.7028 8.50279 10.1102 8.80068 9.57411C9.09857 9.03804 9.50777 8.57064 10.0013 8.20274Z"
 												fill="#FFBB9D"></path>
 											<path
@@ -270,32 +323,19 @@
 																			data-testid="dropdownItemContent"><span
 																			class="_text_1e590_24 _stretch_1e590_47"
 																			data-testid="dropdownItemText">전체</span></span>
-																	</div></span><span><div
-																		class="_dropdownItem_1e590_51 _dropdownItem-height--40_1e590_65    "
-																		role="checkbox" aria-checked="false"
-																		aria-disabled="false" data-testid="dropdownItem">
-																		<span class="_content_1e590_11"
-																			data-testid="dropdownItemContent"><span
-																			class="_text_1e590_24 _stretch_1e590_47"
-																			data-testid="dropdownItemText">동해안 투어</span></span>
-																	</div></span><span><div
-																		class="_dropdownItem_1e590_51 _dropdownItem-height--40_1e590_65    "
-																		role="checkbox" aria-checked="false"
-																		aria-disabled="false" data-testid="dropdownItem">
-																		<span class="_content_1e590_11"
-																			data-testid="dropdownItemContent"><span
-																			class="_text_1e590_24 _stretch_1e590_47"
-																			data-testid="dropdownItemText">가출 투어</span></span>
-																	</div></span><span><div
-																		class="_dropdownItem_1e590_51 _dropdownItem-height--40_1e590_65    "
-																		role="checkbox" aria-checked="false"
-																		aria-disabled="false" data-testid="dropdownItem">
-																		<span class="_content_1e590_11"
-																			data-testid="dropdownItemContent"><span
-																			class="_text_1e590_24 _stretch_1e590_47"
-																			data-testid="dropdownItemText">출가 투어</span></span>
 																	</div></span>
-															</div>
+																	<c:forEach var="tour" items="${tourList}" varStatus="i">
+																	<span><div
+																		class="_dropdownItem_1e590_51 _dropdownItem-height--40_1e590_65    "
+																		role="checkbox" aria-checked="false"
+																		aria-disabled="false" data-testid="dropdownItem">
+																		<span class="_content_1e590_11"
+																			data-testid="dropdownItemContent"><span
+																			class="_text_1e590_24 _stretch_1e590_47"
+																			data-testid="dropdownItemText"><c:out value="${tour.crsName}" /></span></span>
+																	</div></span>
+																	</c:forEach>
+																</div>
 														</div>
 													</div>
 												</details>
