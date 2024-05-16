@@ -7,6 +7,6 @@
 <title>맛집 리뷰 관리</title>
 </head>
 <body>
-마앗집리뷰우우 관리
+<h1>맛집 리뷰 관리</h1>
 </body>
 </html>

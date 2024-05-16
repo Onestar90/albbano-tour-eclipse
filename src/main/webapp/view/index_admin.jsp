@@ -74,7 +74,7 @@
 									</summary>
 									<ul class="_menu_1w85s_12" role="menu">
 										<li role="none">
-										<a class="_sub-menu-item_m12r4_7 " role="menuitem" aria-current="page" tabindex="-1"
+										<a class="_sub-menu-item_m12r4_7 " role="menuitem" aria-current="false" tabindex="-1"
 											href="select_spot.jsp">관광지 관리</a></li>
 										<li role="none">
 										<a class="_sub-menu-item_m12r4_7 " role="menuitem" aria-current="false" tabindex="-1"
