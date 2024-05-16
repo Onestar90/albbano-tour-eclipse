@@ -90,7 +90,7 @@ pageContext.setAttribute("sVO", sVO);
     <div>
     <div id ="desc" style="width:50%; float: left; margin-left: 150px;">
 
-    <img src=http://192.168.10.221/upload/<c:out value="${sVO.img_name }"/>  alt="&nbsp;" border="0" width="300" height="200">
+    <img src=http://127.0.0.1/upload/<c:out value="${sVO.img_name }"/>  alt="&nbsp;" border="0" width="300" height="200">
     
     
      ${sVO.spot_desc }
