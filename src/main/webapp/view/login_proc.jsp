@@ -16,7 +16,6 @@ LoginDAO loginDAO = LoginDAO.getInstance();
 	//비번 일방향 Hash로 암호화
 	//uiVO.setPass(DataEncrypt.messageDigest("MD5",uiVO.getPass()));
 	
-	
 	//System.out.println("-----------------"+id+", "+password+" ");
 	if(loginDAO.loginRegister(id, password)){
 		//복호화 

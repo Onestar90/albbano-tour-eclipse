@@ -32,17 +32,6 @@ uiDAO.randomPass(uiVO); */
 <head>
     <title>로그인 | 알빠노관광</title>
 
-    <script>
-        var g5_url = "../index.html";
-        var g5_bbs_url = "index.html";
-        var g5_is_member = "";
-        var g5_is_admin = "";
-        var g5_is_mobile = "";
-        var g5_bo_table = "";
-        var g5_sca = "";
-        var g5_editor = "";
-        var g5_cookie_domain = "";
-    </script>
     <%@ include file="common_head.jsp" %>
 </head>
 
@@ -75,12 +64,14 @@ uiDAO.randomPass(uiVO); */
 	%>
 	<div class="container">
 		<div class = "found-success">
-	      <h4>  회원님의 비밀번호는 <%=randomStr%> 입니다.</h4>  
+	      <h4>  회원님의 비밀번호는 <br/><br/> 
+	      <span style="font-size:20px; color:red"><%=randomStr%></span> 
+	      <br/><br/> 입니다.</h4>  
 	      <%-- <div class ="id"><%=id%></div> --%>
 	     </div>
 	     <div class = "found-login">
  		    <!-- <input type="button" id="btnLogin" value="로그인" onClick = 'login()'/> -->
-       		<input type="button" id="btnLogin" value="로그인" onclick="window.location.href='login.jsp'" />
+       		<input type="button" id="btnLogin" class="btn_submit" value="로그인" onclick="window.location.href='login.jsp'" />
        	</div>
        </div>
       <%

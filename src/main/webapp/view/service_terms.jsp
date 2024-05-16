@@ -11,18 +11,6 @@ To change this template use File | Settings | File Templates.
 <head>
     <title>서비스 이용약관 | 알빠노관광</title>
 
-    <script>
-        // 자바스크립트에서 사용하는 전역변수 선언
-        var g5_url = "../index.html";
-        var g5_bbs_url = "index.html";
-        var g5_is_member = "";
-        var g5_is_admin = "";
-        var g5_is_mobile = "";
-        var g5_bo_table = "";
-        var g5_sca = "";
-        var g5_editor = "";
-        var g5_cookie_domain = "";
-    </script>
     <%@ include file="common_head.jsp" %>
 </head>
 
@@ -33,7 +21,7 @@ To change this template use File | Settings | File Templates.
 <section id="sub_visual">
     <div class="backgroundimg">
         <div class="visual_area"
-             style="background:url('../front_util/images/sub_visual06.jpg') no-repeat top center;"></div>
+             style="background:url('http://127.0.0.1/front_util/images/sub_visual06.jpg') no-repeat top center;"></div>
     </div>
 </section>
 
@@ -51,10 +39,10 @@ To change this template use File | Settings | File Templates.
                     <li>
                         <span>맴버쉽</span>
                         <ul>
-                            <li><a href="list_spot.jsp" target="_self">관광지</a></li>
+                            <li><a href="tour_course.jsp" target="_self">관광지</a></li>
                             <li><a href="list_restaurant.jsp" target="_self">맛집</a></li>
-                            <li><a href="booking.jsp?bo_table=booking" target="_self">투어예약</a></li>
-                            <li><a href="main_notice.jsp?bo_table=notice" target="_self">고객센터</a></li>
+                            <li><a href="booking.jsp" target="_self">투어예약</a></li>
+                            <li><a href="main_notice.jsp" target="_self">고객센터</a></li>
 
                         </ul>
                     </li>
@@ -65,8 +53,8 @@ To change this template use File | Settings | File Templates.
                         <ul>
                             <li><a href="login.jsp" target="_self">로그인</a></li>
                             <li><a href="register.jsp" target="_self">회원가입</a></li>
-                            <li><a href="policy.jsp?co_id=privacy" target="_self">개인정보처리방침</a></li>
-                            <li><a href="service_terms.html?co_id=provision" target="_self">이용약관</a></li>
+                            <li><a href="policy.jsp" target="_self">개인정보처리방침</a></li>
+                            <li><a href="service_terms.jsp" target="_self">이용약관</a></li>
                         </ul>
                     </li>
                 </ul>

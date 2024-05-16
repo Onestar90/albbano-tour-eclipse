@@ -74,14 +74,14 @@
 									</summary>
 									<ul class="_menu_1w85s_12" role="menu">
 										<li role="none">
-										<a class="_sub-menu-item_m12r4_7 " role="menuitem" aria-current="page" tabindex="-1"
-											href="/payments">관광지 관리</a></li>
+										<a class="_sub-menu-item_m12r4_7 " role="menuitem" aria-current="false" tabindex="-1"
+											href="select_spot.jsp">관광지 관리</a></li>
 										<li role="none">
 										<a class="_sub-menu-item_m12r4_7 " role="menuitem" aria-current="false" tabindex="-1"
-											href="/payments/schedule">관광지 리뷰 관리</a></li>
+											href="review_manage_spot.jsp">관광지 리뷰 관리</a></li>
 										<li role="none">
 										<a class="_sub-menu-item_m12r4_7 " role="menuitem" aria-current="false" tabindex="-1" 
-											href="https://classic-admin.iamport.kr/receipts">관광 코스 관리</a></li>
+											href="select_curs.jsp">관광 코스 관리</a></li>
 									</ul>
 								</details></li>
 							<li role="none"><details class="_root_1w85s_7 ">
@@ -113,14 +113,14 @@
 									<ul class="_menu_1w85s_12" role="menu">
 										<li role="none"><a class="_sub-menu-item_m12r4_7 "
 											role="menuitem" aria-current="false" tabindex="-1"
-											href="/reconciliation/summary">맛집 관리</a></li>
+											href="select_res.jsp">맛집 관리</a></li>
 										<li role="none"><a class="_sub-menu-item_m12r4_7 "
 											role="menuitem" aria-current="false" tabindex="-1"
-											href="/reconciliation/list">맛집 리뷰 관리</a></li>
+											href="review_manage_res.jsp">맛집 리뷰 관리</a></li>
 									</ul>
 								</details></li>
 							<li role="none">
-							<a class="_menu-item_1nj6f_7 " role="menuitem" aria-current="false" tabindex="-1" href="/platform/trailer/">
+							<a class="_menu-item_1nj6f_7 " role="menuitem" aria-current="false" tabindex="-1" href="selectNotice.jsp">
 								<span class="_left-addon_1nj6f_36">
 								<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
     										<path d="M7.38708 8.47561L6.33317 17.1863C6.31469 17.3411 6.34729 17.4977 6.42617 17.6331C6.50505 17.7684 6.62606 17.8753 6.77141 17.9381C6.91676 18.0009 7.07879 18.0163 7.23369 17.9819C7.38859 17.9476 7.5282 17.8654 7.632 17.7474L10.829 14.1127L15.2209 9.19345C15.3137 9.08987 15.3747 8.96255 15.3967 8.82629C15.4188 8.69002 15.401 8.55042 15.3454 8.4237C15.2898 8.29698 15.1987 8.18836 15.0827 8.11047C14.9668 8.03258 14.8306 7.98861 14.6902 7.98369L8.24059 7.7523C8.03201 7.74633 7.82871 7.81727 7.67074 7.95114C7.51276 8.08502 7.41156 8.27212 7.38708 8.47561Z"
@@ -136,7 +136,7 @@
 								</a></li>
 							<li role="none"><a class="_menu-item_1nj6f_7 "
 								role="menuitem" aria-current="false" tabindex="-1"
-								href="/analytics/trailer/"><span
+								href="qna.jsp"><span
 									class="_left-addon_1nj6f_36"><svg width="20" height="20"
 											viewBox="0 0 20 20" fill="none"
 											xmlns="http://www.w3.org/2000/svg">
@@ -236,8 +236,7 @@
 				<header class="w-100% _header_1314p_7">
 					<span class="_title-section_1314p_25"><h1
 							class="_title_1314p_25">홈</h1>
-						<span role="doc-subtitle" class="_subtitle_1314p_35">2024.05.15
-							수요일</span></span>
+						<span role="doc-subtitle" class="_subtitle_1314p_35">2024.05.17 금요일</span></span>
 				</header>
 				<main class="_layout-main_jqb0o_4">
 					<div class="_main-contents-background_jqb0o_10">
@@ -247,42 +246,42 @@
 								<div class="_dashboard_19xms_17">
 									<div class="_information-wrapper_19xms_86">
 										<h3 class="_information-title_19xms_89">전체 회원 수</h3>
-										<span class="_information-amount_19xms_98">0<span
+										<span class="_information-amount_19xms_98">29<span
 											class="_information-amount-krw_19xms_106">명</span></span>
 									</div>
 									<div class="_information-wrapper_19xms_86">
 										<h3 class="_information-title_19xms_89">오늘 가입자 수</h3>
-										<span class="_information-amount_19xms_98">0<span
+										<span class="_information-amount_19xms_98">4<span
 											class="_information-amount-krw_19xms_106">명</span></span>
 									</div>
 									<div class="_information-wrapper_19xms_86">
 										<h3 class="_information-title_19xms_89">관광지 수</h3>
-										<span class="_information-amount_19xms_98">0<span
+										<span class="_information-amount_19xms_98">19<span
 											class="_information-amount-krw_19xms_106">개</span></span>
 									</div>
 									<div class="_information-wrapper_19xms_86">
 										<h3 class="_information-title_19xms_89">관광지 리뷰 수</h3>
-										<span class="_information-amount_19xms_98">0<span
+										<span class="_information-amount_19xms_98">32<span
 											class="_information-amount-krw_19xms_106">개</span></span>
 									</div>
 									<div class="_information-wrapper_19xms_86">
 										<h3 class="_information-title_19xms_89">맛집 수</h3>
-										<span class="_information-amount_19xms_98">0<span
+										<span class="_information-amount_19xms_98">10<span
 											class="_information-amount-krw_19xms_106">개</span></span>
 									</div>
 									<div class="_information-wrapper_19xms_86">
 										<h3 class="_information-title_19xms_89">맛집 리뷰 수</h3>
-										<span class="_information-amount_19xms_98">0<span
+										<span class="_information-amount_19xms_98">52<span
 											class="_information-amount-krw_19xms_106">개</span></span>
 									</div>
 									<div class="_information-wrapper_19xms_86">
 										<h3 class="_information-title_19xms_89">답변 예정 문의 수</h3>
-										<span class="_information-amount_19xms_98">0<span
+										<span class="_information-amount_19xms_98">3<span
 											class="_information-amount-krw_19xms_106">개</span></span>
 									</div>
 									<div class="_information-wrapper_19xms_86">
 										<h3 class="_information-title_19xms_89">예약 승인 대기 수</h3>
-										<span class="_information-amount_19xms_98">0<span
+										<span class="_information-amount_19xms_98">1<span
 											class="_information-amount-krw_19xms_106">개</span></span>
 									</div>
 								</div>
@@ -312,8 +311,8 @@
 												<div class="flex flex-col flex-basis-44px mr-4px">
 													<div
 														class="relative flex-1 flex flex-col justify-between t-p-b3-regular text-right color-gray8">
-														<div>10</div>
-														<div>5</div>
+														<div>100</div>
+														<div>50</div>
 														<div></div>
 													</div>
 													<div style="height: 50px;"></div>
@@ -323,14 +322,11 @@
 													<div class="flex-1 min-w-fit" style="padding: 0px;">
 														<div class="flex-1 h-full relative"
 															style="min-width: 618.663px;">
-															<svg class="absolute left-0 top-0 h-full"
-																width="618.6625366210938"
+																<svg class="absolute left-0 top-0 h-full" 
+																width="542.7750244140625" 
 																style="transform: translateX(0px);">
 																<g transform="translate(0,10)">
-																<polyline
-																	points="42.69,258.20 131.07,258.20 219.45,258.20 307.83,258.20 396.21,258.20 484.59,258.20 572.97,258.20"
-																	fill="none" stroke="#FC6B2D" stroke-width="3"
-																	opacity="1"></polyline></g></svg>
+																<polyline opacity="1" stroke-width="3" stroke="#FC6B2D" fill="none" points="3.82,258.20 14.47,207.27 25.11,195.72 35.76,209.20 46.40,216.41 57.04,199.62 67.69,187.63 78.33,180.23 88.98,172.39 99.62,158.75 110.27,151.64 120.91,162.91 131.55,150.64 142.20,135.80 152.84,128.22 163.49,120.59 174.13,132.98 184.78,124.75 195.42,139.16 206.07,155.06 216.71,143.62 227.35,128.88 238.00,140.60 248.64,148.46 259.29,139.63 269.93,150.12 280.58,140.58 291.22,129.82 301.86,121.69 312.51,106.73 323.15,93.04 333.80,84.48 344.44,70.99 355.09,87.95 365.73,72.75 376.37,61.17 387.02,70.44 397.66,59.41 408.31,70.70 418.95,59.72 429.60,45.06 440.24,32.15 450.89,20.40 461.53,3.47 472.17,16.03 482.82,23.85 493.46,14.26 504.11,22.32 514.75,34.23 525.40,46.66 536.04,35.38"></polyline></g></svg>
 														</div>
 													</div>
 													<div class="border-t border-t-gray3"
@@ -347,7 +343,7 @@
 																			class="t-p-caption-regular text-gray-8 flex justify-center"
 																			style="width: 88.3804px; z-index: 0;">
 																			<span class="px-3"
-																				style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 12px);">8일</span>
+																				style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 12px);">11일</span>
 																		</div>
 																	</div>
 																	<div class="flex justify-start"
@@ -356,7 +352,7 @@
 																			class="t-p-caption-regular text-gray-8 flex justify-center"
 																			style="width: 88.3804px; z-index: 1;">
 																			<span class="px-3"
-																				style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 12px);">9일</span>
+																				style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 12px);">12일</span>
 																		</div>
 																	</div>
 																	<div class="flex justify-start"
@@ -365,7 +361,7 @@
 																			class="t-p-caption-regular text-gray-8 flex justify-center"
 																			style="width: 88.3804px; z-index: 2;">
 																			<span class="px-3"
-																				style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 12px);">10일</span>
+																				style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 12px);">13일</span>
 																		</div>
 																	</div>
 																	<div class="flex justify-start"
@@ -374,7 +370,7 @@
 																			class="t-p-caption-regular text-gray-8 flex justify-center"
 																			style="width: 88.3804px; z-index: 3;">
 																			<span class="px-3"
-																				style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 12px);">11일</span>
+																				style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 12px);">14일</span>
 																		</div>
 																	</div>
 																	<div class="flex justify-start"
@@ -383,7 +379,7 @@
 																			class="t-p-caption-regular text-gray-8 flex justify-center"
 																			style="width: 88.3804px; z-index: 4;">
 																			<span class="px-3"
-																				style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 12px);">12일</span>
+																				style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 12px);">15일</span>
 																		</div>
 																	</div>
 																	<div class="flex justify-start"
@@ -392,7 +388,7 @@
 																			class="t-p-caption-regular text-gray-8 flex justify-center"
 																			style="width: 88.3804px; z-index: 5;">
 																			<span class="px-3"
-																				style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 12px);">13일</span>
+																				style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 12px);">16일</span>
 																		</div>
 																	</div>
 																	<div class="flex justify-start"
@@ -401,7 +397,7 @@
 																			class="t-p-caption-regular text-gray-8 flex justify-center"
 																			style="width: 88.3804px; z-index: 6;">
 																			<span class="px-3"
-																				style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 12px);">14일</span>
+																				style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 12px);">17일</span>
 																		</div>
 																	</div>
 																</div>
@@ -445,14 +441,14 @@
 													class="w-28px h-28px bg-gray-000 text-gray-fff flex justify-center items-center rounded-6px mr-18px">1</div>
 												<div class="w-115px">
 													<p class="t-p-b2-bold m-0 text-gray-10">동해안투어</p>
-													<p class="t-p-b2-bold m-0 text-gray-6">0</p>
+													<p class="t-p-b2-bold m-0 text-gray-6">97</p>
 												</div>
 												<div
-													class="t-g-b3-bold flex justify-center items-center w-48px h-32px border border-gray-3 rounded-6px mr-20px">-</div>
+													class="t-g-b3-bold flex justify-center items-center w-48px h-32px border border-gray-3 rounded-6px mr-20px">↑1</div>
 												<div
 													class="flex-1 self-stretch flex items-center justify-start">
 													<div class="h-20px rounded-10px"
-														style="width: max(8px, 0%); background-color: rgb(252, 107, 45); opacity: 1;"></div>
+														style="width: max(8px, 97%); background-color: rgb(252, 107, 45); opacity: 1;"></div>
 												</div>
 											</div>
 											<div class="flex items-center h-35px mb-16px">
@@ -460,14 +456,14 @@
 													class="w-28px h-28px bg-gray-000 text-gray-fff flex justify-center items-center rounded-6px mr-18px">2</div>
 												<div class="w-115px">
 													<p class="t-p-b2-bold m-0 text-gray-10">뭐시기투어</p>
-													<p class="t-p-b2-bold m-0 text-gray-6">0</p>
+													<p class="t-p-b2-bold m-0 text-gray-6">93</p>
 												</div>
 												<div
-													class="t-g-b3-bold flex justify-center items-center w-48px h-32px border border-gray-3 rounded-6px mr-20px">-</div>
+													class="t-g-b3-bold flex justify-center items-center w-48px h-32px border border-gray-3 rounded-6px mr-20px">↓1</div>
 												<div
 													class="flex-1 self-stretch flex items-center justify-start">
 													<div class="h-20px rounded-10px"
-														style="width: max(8px, 0%); background-color: rgb(252, 107, 45); opacity: 0.8;"></div>
+														style="width: max(8px, 93%); background-color: rgb(252, 107, 45); opacity: 0.8;"></div>
 												</div>
 											</div>
 											<div class="flex items-center h-35px mb-16px">
@@ -475,14 +471,14 @@
 													class="w-28px h-28px bg-gray-000 text-gray-fff flex justify-center items-center rounded-6px mr-18px">3</div>
 												<div class="w-115px">
 													<p class="t-p-b2-bold m-0 text-gray-10">근데 우리가</p>
-													<p class="t-p-b2-bold m-0 text-gray-6">0</p>
+													<p class="t-p-b2-bold m-0 text-gray-6">80</p>
 												</div>
 												<div
 													class="t-g-b3-bold flex justify-center items-center w-48px h-32px border border-gray-3 rounded-6px mr-20px">-</div>
 												<div
 													class="flex-1 self-stretch flex items-center justify-start">
 													<div class="h-20px rounded-10px"
-														style="width: max(8px, 0%); background-color: rgb(252, 107, 45); opacity: 0.6;"></div>
+														style="width: max(8px, 80%); background-color: rgb(252, 107, 45); opacity: 0.6;"></div>
 												</div>
 											</div>
 											<div class="flex items-center h-35px mb-16px">
@@ -490,14 +486,14 @@
 													class="w-28px h-28px bg-gray-000 text-gray-fff flex justify-center items-center rounded-6px mr-18px">4</div>
 												<div class="w-115px">
 													<p class="t-p-b2-bold m-0 text-gray-10">투어가</p>
-													<p class="t-p-b2-bold m-0 text-gray-6">0</p>
+													<p class="t-p-b2-bold m-0 text-gray-6">37</p>
 												</div>
 												<div
-													class="t-g-b3-bold flex justify-center items-center w-48px h-32px border border-gray-3 rounded-6px mr-20px">-</div>
+													class="t-g-b3-bold flex justify-center items-center w-48px h-32px border border-gray-3 rounded-6px mr-20px">NEW</div>
 												<div
 													class="flex-1 self-stretch flex items-center justify-start">
 													<div class="h-20px rounded-10px"
-														style="width: max(8px, 0%); background-color: rgb(252, 107, 45); opacity: 0.4;"></div>
+														style="width: max(8px, 37%); background-color: rgb(252, 107, 45); opacity: 0.4;"></div>
 												</div>
 											</div>
 											<div class="flex items-center h-35px mb-16px">
@@ -505,14 +501,14 @@
 													class="w-28px h-28px bg-gray-000 text-gray-fff flex justify-center items-center rounded-6px mr-18px">5</div>
 												<div class="w-115px">
 													<p class="t-p-b2-bold m-0 text-gray-10">5개나 있나?</p>
-													<p class="t-p-b2-bold m-0 text-gray-6">0</p>
+													<p class="t-p-b2-bold m-0 text-gray-6">12</p>
 												</div>
 												<div
-													class="t-g-b3-bold flex justify-center items-center w-48px h-32px border border-gray-3 rounded-6px mr-20px">-</div>
+													class="t-g-b3-bold flex justify-center items-center w-48px h-32px border border-gray-3 rounded-6px mr-20px">↓1</div>
 												<div
 													class="flex-1 self-stretch flex items-center justify-start">
 													<div class="h-20px rounded-10px"
-														style="width: max(8px, 0%); background-color: rgb(252, 107, 45); opacity: 0.2;"></div>
+														style="width: max(8px, 12%); background-color: rgb(252, 107, 45); opacity: 0.2;"></div>
 												</div>
 											</div>
 										</div>
@@ -528,100 +524,6 @@
 			class="select-none pointer-events-none z-pop-over fixed top-0 left-0 w-screen h-screen"></div>
 	</div>
 
-
-	<div class="ReactModalPortal"></div>
-	<script>
-		if (!wcs_add)
-			var wcs_add = {};
-		wcs_add["wa"] = "s_4b3f5e61d67";
-		if (!_nasa)
-			var _nasa = {};
-		if (window.wcs) {
-			wcs.inflow();
-			wcs_do(_nasa);
-		}
-	</script>
-	<script type="text/javascript" id="" charset="">
-		mixpanel.track("Page_View", {
-			page_name : "Login"
-		});
-	</script>
-
-	<script type="text/javascript" id="" charset="">
-		gtag("event", "LogIn_View");
-	</script>
-	<script type="text/javascript" id="" charset="">
-		var gtm_distinct_id = google_tag_manager["rm"]["101194497"](236);
-		"undefined" != typeof gtm_distinct_id && null != gtm_distinct_id
-				&& "" != gtm_distinct_id && gtm_distinct_id.includes("user")
-				&& mixpanel.identify(gtm_distinct_id);
-	</script>
-	<div id="ch-plugin" class="notranslate" style="z-index: 10 !important;">
-		<div id="ch-plugin-entry">
-			<div style="display: block !important;"></div>
-		</div>
-		<div id="ch-plugin-script" style="display: none;"
-			class="ch-messenger-hidden">
-			<iframe id="ch-plugin-script-iframe" title="Channel chat"
-				style="position: relative !important; height: 100% !important; width: 100% !important; border: none !important;"></iframe>
-		</div>
-		<style data-styled="active" data-styled-version="5.3.9"></style>
-	</div>
-	<script type="text/javascript" id="" charset="">
-		mixpanel.track("LogIn");
-	</script>
-	<script type="text/javascript" id="" charset="">
-		gtag("event", "LogIn");
-	</script>
-	<script type="text/javascript" id="" charset="">
-		gtag("event", "Admin_Home_View");
-	</script>
-	<script type="text/javascript" id="" charset="">
-		mixpanel.track("Page_View", {
-			page_name : "Admin_Home"
-		});
-	</script>
-
-	<script type="text/javascript" id="" charset="">
-		var gtm_distinct_id = google_tag_manager["rm"]["101194497"](259);
-		"undefined" != typeof gtm_distinct_id && null != gtm_distinct_id
-				&& "" != gtm_distinct_id && gtm_distinct_id.includes("user")
-				&& mixpanel.identify(gtm_distinct_id);
-	</script>
-	<div class="ReactModalPortal"></div>
-	<div class="ReactModalPortal"></div>
-	<div class="_toastGroup_1rcmd_29"></div>
-	<div class="ReactModalPortal"></div>
-	<script type="text/javascript" id="" charset="">
-		gtag("event", "Admin_Home_View");
-	</script>
-	<script type="text/javascript" id="" charset="">
-		mixpanel.track("Page_View", {
-			page_name : "Admin_Home"
-		});
-	</script>
-
-	<script type="text/javascript" id="" charset="">
-		var gtm_distinct_id = google_tag_manager["rm"]["101194497"](269);
-		"undefined" != typeof gtm_distinct_id && null != gtm_distinct_id
-				&& "" != gtm_distinct_id && gtm_distinct_id.includes("user")
-				&& mixpanel.identify(gtm_distinct_id);
-	</script>
-	<script type="text/javascript" id="" charset="">
-		gtag("event", "Admin_Home_View");
-	</script>
-	<script type="text/javascript" id="" charset="">
-		mixpanel.track("Page_View", {
-			page_name : "Admin_Home"
-		});
-	</script>
-
-	<script type="text/javascript" id="" charset="">
-		var gtm_distinct_id = google_tag_manager["rm"]["101194497"](278);
-		"undefined" != typeof gtm_distinct_id && null != gtm_distinct_id
-				&& "" != gtm_distinct_id && gtm_distinct_id.includes("user")
-				&& mixpanel.identify(gtm_distinct_id);
-	</script>
 	<div
 		class="_popover_g8ws0_1 _tooltip_1ezz8_7 _tooltip--variant-default_1ezz8_12 _unit-tooltip-text_1p5th_142"
 		aria-hidden="true"

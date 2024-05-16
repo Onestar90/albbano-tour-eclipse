@@ -18,27 +18,13 @@ if(login_id == null){ %>
 	alert("로그인이 필요한 페이지 입니다.");
 	location.href = "login.jsp";
 	</script>
-
 	<% }%>
 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <title>질문답변 1 페이지 | 알빠노관광</title>
+    <title>질문답변 | 알빠노관광</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-    
-        // 자바스크립트에서 사용하는 전역변수 선언
-        var g5_url = "../index.html";
-        var g5_bbs_url = "index.html";
-        var g5_is_member = "";
-        var g5_is_admin = "";
-        var g5_is_mobile = "";
-        var g5_bo_table = "qa";
-        var g5_sca = "";
-        var g5_editor = "smarteditor2";
-        var g5_cookie_domain = "";
-    </script>
     <script>
     window.onpageshow = function(event) { //뒤로가기시 페이지를 새로고침하는 코드
         if (event.persisted) {
@@ -77,11 +63,9 @@ if(login_id == null){ %>
 <body>
 <jsp:useBean id="qsVO" class="vo.QnaSearchVO" scope="page"/>
 <jsp:setProperty property="*" name="qsVO"/>
-
 	
 <%
 QnaDAO qDao = QnaDAO.getInstance();
-
 
 int totalCount=qDao.selecttotalCount(qsVO);
 int pageScale=10;
@@ -107,21 +91,12 @@ List<QnaVO> list = qDao.selectQna(qsVO, login_id);
 
 pageContext.setAttribute("list", list);
 
-
-
-
 String ASK_DOC_NO = request.getParameter("ASK_DOC_NO");
 String ID = request.getParameter("ID");
-
-
-
-
 
 QnaDAO qDAO= QnaDAO.getInstance();
 QnaVO qVO = qDAO.selectmyQna(ASK_DOC_NO, ID);
 pageContext.setAttribute("qVO", qVO);
-
-
 
 %> 
 <%@ include file="common_m_header.jsp" %>
@@ -130,10 +105,9 @@ pageContext.setAttribute("qVO", qVO);
 <section id="sub_visual">
     <div class="backgroundimg">
         <div class="visual_area"
-             style="background:url('../front_util/images/sub_visual05.jpg') no-repeat top center;"></div>
+             style="background:url('http://127.0.0.1/front_util/images/sub_visual05.jpg') no-repeat top center;"></div>
     </div>
 </section>
-
 
 <section id="sub_wrapper">
     <div id="sub_menu">
@@ -147,22 +121,21 @@ pageContext.setAttribute("qVO", qVO);
                           <li><a href="list_spot.jsp" target="_self">관광지</a></li>
                             <li><a href="list_restaurant.jsp" target="_self">맛집</a></li>
                             <li><a href="booking.jsp" target="_self">투어예약</a></li>
-                            <li><a href="main_notice.jsp?bo_table=notice" target="_self">고객센터</a></li>
-                        </ul>
+                            <li><a href="main_notice.jsp" target="_self">고객센터</a></li>
+                        </ul>?bo_table=notice
                     </li>
                 </ul>
                 <ul class="dep2">
                     <li>
                         <span>질문답변</span>
                         <ul>
-                         <li><a href="main_notice.jsp?bo_table=notice" target="_self">공지사항</a></li>
-                            <li><a href="faq.jsp?fm_id=1" target="_self">자주 묻는 질문</a></li>
-                            <li><a href="qna.jsp?bo_table=qa" target="_self">질문답변</a></li>
+                         <li><a href="main_notice.jsp" target="_self">공지사항</a></li>
+                            <li><a href="faq.jsp" target="_self">자주 묻는 질문</a></li>
+                            <li><a href="qna.jsp" target="_self">질문답변</a></li>
                             <li><a href="question.jsp" target="_self">1:1문의</a></li>
                         </ul>
                     </li>
                 </ul>
-
             </div>
         </div>
     </div>
@@ -180,15 +153,12 @@ pageContext.setAttribute("qVO", qVO);
 
     <div class="scontents">
 
-
         <div class="bg_vline"></div>
         <p class="eng"><em></em> 질문답변</p>
         <p class="stitle"></p>
 
-
         <!-- 게시판 목록 시작 { -->
         <div id="bo_list" style="width:100%">
-
 
             <!-- 게시판 페이지 정보 및 버튼 시작 { -->
             <div id="bo_btn_top">
@@ -203,8 +173,6 @@ pageContext.setAttribute("qVO", qVO);
 
             <!-- 게시판 카테고리 시작 { -->
             <!-- } 게시판 카테고리 끝 -->
-
-           
 
                 <div class="tbl_head01 tbl_wrap">
                     <table>
@@ -272,15 +240,10 @@ pageContext.setAttribute("qVO", qVO);
                                     </td>
                                 </tr>
                             </c:forEach>
-
-
        </form>                  
                    </tbody>
                     </table>
                 </div>
-
-           
-
          
         </div>
 
@@ -293,8 +256,6 @@ pageContext.setAttribute("qVO", qVO);
 		 <a href="qna.jsp?currentPage=<%= i %>" class="pg_page"><%= i %></a> 
 		<%} %>
 </span></nav>
-
-
 
         <!-- } 게시판 목록 끝 -->
 
@@ -312,7 +273,7 @@ pageContext.setAttribute("qVO", qVO);
 <%@ include file="common_lower_container.jsp" %>
 
 <%--스크롤_애니메이션_리셋--%>
-<script src="../front_util/js/wow.min.js"></script>
+<script src="http://127.0.0.1/front_util/js/wow.min.js"></script>
 <script> new WOW().init(); </script>
 </body>
 

@@ -155,7 +155,7 @@
                             <li><a href="list_spot.jsp" target="_self">관광지</a></li>
                             <li><a href="list_restaurant.jsp" target="_self">맛집</a></li>
                             <li><a href="booking.jsp" target="_self">투어예약</a></li>
-                            <li><a href="main_notice.jsp?bo_table=notice" target="_self">고객센터</a></li>
+                            <li><a href="main_notice.jsp" target="_self">고객센터</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -390,7 +390,7 @@
 <%@ include file="common_lower_container.jsp" %>
 
 <%--스크롤_애니메이션_리셋--%>
-<script src="../front_util/js/wow.min.js"></script>
+<script src="http://127.0.0.1/front_util/js/wow.min.js"></script>
 <script> new WOW().init(); </script>
 </body>
 </html>

@@ -14,29 +14,12 @@
 <%@page import="dao.ResListDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
-
-
    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 
     <title>맛집 리뷰 | 알빠노관광</title>
-
-    <script>
-        // 자바스크립트에서 사용하는 전역변수 선언
-        var g5_url = "index_user.jsp";
-        var g5_bbs_url = "index_user.jsp";
-        var g5_is_member = "1";
-        var g5_is_admin = "";
-        var g5_is_mobile = "";
-        var g5_bo_table = "";
-        var g5_sca = "";
-        var g5_editor = "";
-        var g5_cookie_domain = "";
-        
-    
-    </script>
     
 <%
          String resCode = request.getParameter("res_code");
@@ -50,10 +33,8 @@
          pageContext.setAttribute("login_id",login_id);
 %>
     
-    
 <jsp:useBean id="qsVO" class="vo.QnaSearchVO" scope="page"/>
 <jsp:setProperty property="*" name="qsVO"/>
-
 	
 <%
 RestaurantReviewDAO rrDAO = RestaurantReviewDAO.getInstance();
@@ -86,22 +67,13 @@ list = rrDAO.selectResAllReview(qsVO, resCode);
 
 pageContext.setAttribute("list", list);
 
-
-
-
-
 %> 
-    
-
-    
     <%@ include file="common_head.jsp" %>
 </head>
 
 <body>
 <%@ include file="common_m_header.jsp" %>
 <%@ include file="common_desktop_header.jsp" %>
-
-
 
 <section id="sub_visual">
     <div class="backgroundimg">
@@ -115,8 +87,6 @@ pageContext.setAttribute("list", list);
    
         <div class="sub_location">
         
-        
-        
             <div>
                 <div class="cen"><a href="index_user.jsp"><i class="fa fa-home" aria-hidden="true"></i></a>
                 </div>
@@ -124,11 +94,10 @@ pageContext.setAttribute("list", list);
                     <li>
                         <span>맛집</span>
                         <ul>
-                            <li><a href="/theme/cmtour/html/business/new_01.php" target="_self">관광지</a></li>
-                            <li><a href="/bbs/board.php?bo_table=booking" target="_self">맛집</a></li>
-                            <li><a href="/theme/cmtour/html/business/map_info_01.php" target="_self">투어예약</a></li>
-                            <li><a href="/bbs/board.php?bo_table=notice" target="_self">관광지</a></li>
-
+                            <li><a href="list_spot.jsp" target="_self">관광지</a></li>
+                            <li><a href="list_restaurant.jsp" target="_self">맛집</a></li>
+                            <li><a href="booking.jsp" target="_self">투어예약</a></li>
+                            <li><a href="main_notice.jsp" target="_self">고객센터</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -136,17 +105,10 @@ pageContext.setAttribute("list", list);
                     <li>
                         <span>맛집 리뷰</span>
                         <ul>
-                            <li><a href="/bbs/board.php?bo_table=notice" target="_self">맛집 리스트</a></li>
-
-
-                            <li><a href="/bbs/faq.php?fm_id=1" target="_self">맛집 리뷰</a></li>
-
-
-
+                            <li><a href="void" target="_self">맛집 리스트</a></li>
                         </ul>
                     </li>
                 </ul>
-
             </div>
         </div>
     </div>
@@ -164,15 +126,12 @@ pageContext.setAttribute("list", list);
 
     <div class="scontents">
 
-
         <div class="bg_vline"></div>
         <p class="eng"><em></em> <%=resName %> 리뷰</p>
         <p class="stitle"></p>
 
-
         <!-- FAQ 시작 { -->
         <div id="faq_hhtml"></div>
-
 
         <div class="select_bo_cate mview">
             <a class="sel" rel="선택">맛집 리뷰</a>
@@ -186,11 +145,8 @@ pageContext.setAttribute("list", list);
             <h2>맛집 분류</h2>
             <ul id="bo_cate_ul">
                 <li>
-                
                 	<a href="review_write_res.jsp?res_code=<%=resCode %>&res_name=<%=resName %>" id="bo_cate_on" style="background-color: white">
-                	
                 	<span class="sound_only">열린 분류 </span>리뷰 작성</a>
-                	
                 	
                 </li>
             </ul>
@@ -203,24 +159,17 @@ pageContext.setAttribute("list", list);
                 
                 <c:if test="${ not empty list}">
                  <c:forEach var="review" items="${ list }" varStatus="i">
-     							
-                  	
                     <li>
                         <h3>
-
                             <a href="#none" onclick="return faq_open(this);" style="display: block;">
                             
                                 <span class="tit_bg" style="position: static">제목</span>
                                 <p  style="    display: inline;">                           
                                    <c:out value=" ${review.res_title }"/>
-                                   
                                    <span class="id" style="float: right;">작성자 : <c:out value=" ${review.id }"/></span>
-                        
                                    <br>
                                 </p>
-   	  
                           			 별점 : <span class="starRating" ><c:out value="${review.star}"/>점</span>
-		 							
                             </a>
                         </h3>
                         <div class="con_inner">
@@ -231,7 +180,6 @@ pageContext.setAttribute("list", list);
          
                             <div class="con_closer">
                             	<c:if test="${review.id eq login_id }">
-                            	
 
                                 <a href="review_update_res.jsp?res_code=<%=resCode%>&res_name=<%=resName%>&res_doc_no=${review.res_doc_no }" style="background-color: white">
                                 <span class="sound_only">열린 분류 </span>수정</a>
@@ -253,7 +201,6 @@ pageContext.setAttribute("list", list);
                     	</li>
 				    </c:if>
                     
-                    
                 </ol>
             </section>
         </div>
@@ -266,11 +213,7 @@ pageContext.setAttribute("list", list);
 		<%} %>
 		
 		</span>
-		
 		</nav>
-		
-    
-
 
         <script src="https://cmtour.co.kr/js/viewimageresize.js"></script>
         <script>
@@ -330,7 +273,7 @@ pageContext.setAttribute("list", list);
 <%@ include file="common_lower_container.jsp" %>
 
 <%--스크롤_애니메이션_리셋--%>
-<script src="../front_util/js/wow.min.js"></script>
+<script src="http://127.0.0.1/front_util/js/wow.min.js"></script>
 <script> new WOW().init(); </script>
 
 </body>
