@@ -99,7 +99,7 @@ pageContext.setAttribute("list", list);
 				<c:forEach var="spt" items="${ list }">
                     <div class="swiper-slide" style="width:285px !important;">
                         <a href="desc_spot.jsp?spot_code=${ spt.spot_code }">
-                            <img src=http://192.168.10.221/upload/<c:out value="${ spt.img_name}"/>
+                            <img src=http://127.0.0.1/upload/<c:out value="${ spt.img_name}"/>
                            
                                alt="&nbsp;" border="0" width="300" height="200"/>
                             <p class="txtBox">
