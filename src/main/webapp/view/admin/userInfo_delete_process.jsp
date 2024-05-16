@@ -43,7 +43,7 @@
 	if(cnt==1 && cnt1==1){
 	%>
 	alert("회원을 삭제하였습니다.");
-	location.href="http://192.168.10.223/albbano-tour-eclipse/view/admin/userInfo_list.jsp?currentPage=${ param.currentPage }";
+	location.href="http://localhost/view/admin/userInfo_list.jsp";
 	<%
 	}else{
 		%>

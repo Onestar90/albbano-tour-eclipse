@@ -5,18 +5,48 @@
   Time: 오후 1:03
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="vo.CourseManagementVO"%>
-<%@ page import="dao.TourDAO"%>
+<%@page import="vo.CourseManagementVO"%>
+<%@page import="dao.TourDAO"%>
+<%@ page import="vo.TourReservationVO"%>
+<%@ page import="dao.TourReservationManagementDAO"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-    TourDAO tourDAO = TourDAO.getInstance();
-    List<CourseManagementVO> tourList = new ArrayList<>();
-    tourList = tourDAO.selectAllTourList();
+	TourDAO tourDAO = TourDAO.getInstance();
+	List<CourseManagementVO> tourList = new ArrayList<>();
+	tourList = tourDAO.selectAllTourList();
 	pageContext.setAttribute("tourList", tourList);
+
+    TourReservationManagementDAO tourReservationManagementDAO = TourReservationManagementDAO.getInstance();
+    List<TourReservationVO> resvList = new ArrayList<>();
+    resvList = tourReservationManagementDAO.selectAllTourReservationList();
+	pageContext.setAttribute("resvList", resvList);
+	
+	int totalCount = resvList.size();
+	int countResvPending = 0;
+	int countResvCompleted = 0;
+	int countResvFailed = 0;
+	int countResvCancelled = 0;
+
+	for (TourReservationVO item : resvList) {
+	    switch (item.getResv_flag()) {
+	        case 0:
+	            countResvPending++;
+	            break;
+	        case 1:
+	            countResvCompleted++;
+	            break;
+	        case 2:
+	            countResvFailed++;
+	            break;
+	        case 3:
+	            countResvCancelled++;
+	            break;
+	    }
+	}
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -70,7 +100,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
-
 </head>
 <body>
 	<div id="root">
@@ -84,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
 					<nav class="_navigation-container_pupui_1">
 						<ul class="_menubar_g1ej3_1 " role="menubar">
 							<li role="none">
-							<a class="_menu-item_1nj6f_7 " role="menuitem" aria-current="false" tabindex="-1" onclick="top.location='javascript:location.reload()'">
+							<a class="_menu-item_1nj6f_7 " role="menuitem" aria-current="false" tabindex="-1" href="http://127.0.0.1/view/index_admin.jsp">
 									<span class="_left-addon_1nj6f_36"> 
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path d="M5.00002 9.74062V16.2635C5.00002 16.4586 5.0814 16.6457 5.2263 16.7838C5.3712 16.9219 5.56777 16.9996 5.77288 17H7.80573C8.01083 16.9996 8.20741 16.9219 8.35231 16.7838C8.49721 16.6457 8.57859 16.4586 8.57859 16.2635V14.3881C8.57859 14.1928 8.66016 14.0055 8.80537 13.8673C8.95057 13.7292 9.14752 13.6516 9.35287 13.6516H10.6472C10.7494 13.6507 10.8509 13.6691 10.9457 13.7057C11.0404 13.7423 11.1266 13.7964 11.1993 13.8649C11.2719 13.9334 11.3296 14.0149 11.369 14.1047C11.4083 14.1945 11.4286 14.2908 11.4286 14.3881V16.258C11.4286 16.4531 11.51 16.6403 11.6549 16.7784C11.7998 16.9164 11.9963 16.9942 12.2014 16.9946H14.2286C14.4334 16.9938 14.6296 16.9159 14.7742 16.7779C14.9188 16.6398 15 16.4529 15 16.258V9.73518C15 9.5402 14.9186 9.3532 14.7736 9.21533C14.6287 9.07746 14.4321 9 14.2271 9H5.77145C5.66959 9.00018 5.56878 9.0195 5.4748 9.05687C5.38083 9.09423 5.29554 9.1489 5.22385 9.21773C5.15216 9.28656 5.09548 9.36818 5.05707 9.45792C5.01866 9.54765 4.99927 9.64373 5.00002 9.74062Z"
@@ -132,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function() {
 											href="select_spot.jsp">관광지 관리</a></li>
 										<li role="none">
 										<a class="_sub-menu-item_m12r4_7 " role="menuitem" aria-current="false" tabindex="-1"
-											href="/payments/schedule">관광지 리뷰 관리</a></li>
+											href="review_manage_spot.jsp">관광지 리뷰 관리</a></li>
 										<li role="none">
 										<a class="_sub-menu-item_m12r4_7 " role="menuitem" aria-current="false" tabindex="-1" 
 											href="select_curs.jsp">관광 코스 관리</a></li>
@@ -170,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function() {
 											href="select_res.jsp">맛집 관리</a></li>
 										<li role="none"><a class="_sub-menu-item_m12r4_7 "
 											role="menuitem" aria-current="false" tabindex="-1"
-											href="/reconciliation/list">맛집 리뷰 관리</a></li>
+											href="review_manage_res.jsp">맛집 리뷰 관리</a></li>
 									</ul>
 								</details></li>
 							<li role="none">
@@ -270,7 +299,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				</div>
 				<div class="_sidebar-bottom-container_txlxk_37">
 					<div>
-						<button type="button" class="_feedback-button_txlxk_48" style="align-items:center" onclick="window.open('http://127.0.0.1/view/index_user.jsp')">
+						<button type="button" class="_feedback-button_txlxk_48" style="align-items:center" onclick="window.location.href='http://localhost/view/admin/a_logout.jsp'">
 							<span class="_feedback-message_txlxk_66" style="font-size:14px">로그아웃</span>
 						</button>
 					</div>
@@ -591,7 +620,7 @@ document.addEventListener("DOMContentLoaded", function() {
 												class="_typography_1uzvq_4 _font--pretendard_1uzvq_9 _type--b2_1uzvq_36 _weight--bold_1uzvq_84 "
 												data-testid="typography">전체</span><span
 												class="_tag_vwbjt_7 _variant--number_vwbjt_26 _color--black_vwbjt_38 _fill--solid_vwbjt_38 "
-												data-testid="tag">5</span>
+												data-testid="tag"><%= totalCount %></span>
 										</button>
 										<button data-testid="tab-header" 
 											class="_tab-header_57ua2_4 _horizontal_57ua2_19 _tab-header_iuomt_4" 
@@ -600,7 +629,7 @@ document.addEventListener("DOMContentLoaded", function() {
 												class="_typography_1uzvq_4 _font--pretendard_1uzvq_9 _type--b2_1uzvq_36 _weight--bold_1uzvq_84 " 
 												data-testid="typography">결제예정</span>
 												<span class="_tag_vwbjt_7 _variant--number_vwbjt_26 _color--blue_vwbjt_56 _fill--solid_vwbjt_38 " 
-												data-testid="tag">0</span>
+												data-testid="tag"><%= countResvPending %></span>
 										</button>
 										<button data-testid="tab-header"
 											class="_tab-header_57ua2_4 _horizontal_57ua2_19 _tab-header_iuomt_4"
@@ -609,7 +638,7 @@ document.addEventListener("DOMContentLoaded", function() {
 												class="_typography_1uzvq_4 _font--pretendard_1uzvq_9 _type--b2_1uzvq_36 _weight--bold_1uzvq_84 "
 												data-testid="typography">결제완료</span>
 												<span class="_tag_vwbjt_7 _variant--number_vwbjt_26 _color--green_vwbjt_83 _fill--solid_vwbjt_38 "
-												data-testid="tag">3</span>
+												data-testid="tag"><%= countResvCompleted %></span>
 										</button>
 										<button data-testid="tab-header"
 											class="_tab-header_57ua2_4 _horizontal_57ua2_19 _tab-header_iuomt_4"
@@ -618,7 +647,7 @@ document.addEventListener("DOMContentLoaded", function() {
 												class="_typography_1uzvq_4 _font--pretendard_1uzvq_9 _type--b2_1uzvq_36 _weight--bold_1uzvq_84 "
 												data-testid="typography">결제실패</span><span
 												class="_tag_vwbjt_7 _variant--number_vwbjt_26 _color--grey_vwbjt_47 _fill--solid_vwbjt_38 "
-												data-testid="tag">1</span>
+												data-testid="tag"><%= countResvFailed %></span>
 										</button>
 										<button data-testid="tab-header"
 											class="_tab-header_57ua2_4 _horizontal_57ua2_19 _tab-header_iuomt_4"
@@ -627,7 +656,7 @@ document.addEventListener("DOMContentLoaded", function() {
 												class="_typography_1uzvq_4 _font--pretendard_1uzvq_9 _type--b2_1uzvq_36 _weight--bold_1uzvq_84 "
 												data-testid="typography">결제취소</span><span
 												class="_tag_vwbjt_7 _variant--number_vwbjt_26 _color--red_vwbjt_74 _fill--solid_vwbjt_38 "
-												data-testid="tag">1</span>
+												data-testid="tag"><%= countResvCancelled %></span>
 										</button>
 									</nav>
 								</div>
@@ -676,253 +705,91 @@ document.addEventListener("DOMContentLoaded", function() {
 								</thead>
 								<tbody data-testid="tableBody"
 									class=" _payment-table-body_8ouzs_13">
-									<tr data-testid="date-row"
-										class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _date-row_8027u_4 _started-date-row_8ouzs_23 _payment-table-date-row_2hrxu_43">
-										<td data-testid="tableCell"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _date-cell_8027u_10"></td>
-										<td data-testid="tableCell"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _date-cell_8027u_10"></td>
-										<td data-testid="tableCell"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _date-cell_8027u_10"></td>
-										<td data-testid="tableCell"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _date-cell_8027u_10"></td>
-										<td data-testid="tableCell"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _date-cell_8027u_10"></td>
-										<td data-testid="tableCell"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _date-cell_8027u_10"></td>
-										<td data-testid="tableCell"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _date-cell_8027u_10"><span
-											class="_tag_vwbjt_7 _variant--number_vwbjt_26 _color--black_vwbjt_38 _fill--solid_vwbjt_38 _date-tag_8027u_19"
-											data-testid="date-tag">2024.05.14</span></td>
-									</tr>
-									<tr data-testid="payment-info-row"
-										class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
-										<td data-testid="payment-status-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-status_1lui6_10 _column_1lui6_4"><span
-											class="_tag_vwbjt_7 _variant--text-normal_vwbjt_13 _color--red_vwbjt_74 _fill--solid_vwbjt_38 "
-											data-testid="tag">결제취소</span></td>
-										<td data-testid="iamport-merchant-id-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div
-												class="_container_1aijn_7">
-												<span>RESV_00005</span>
-											</div></td>
-										<td data-testid="order-name-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-order-name_1lui6_22 _column_1lui6_4"><span
-											class="_ellipsis-two-line_a7yez_1">알빠노-가출투어</span></td>
-										<td data-testid="buyer-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-buyer_1lui6_26 _column_1lui6_4"><span
-											class="_ellipsis-two-line_a7yez_1" data-testid="buyer-info">감자탕</span></td>
-										<td data-testid="buyer-person-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-buyer_1lui6_26 _column_1lui6_4">
-											<div class="_wrapper_39jul_7">	
-												<span class="_container_t52sn_7" data-testid="amount-content">
-												<span class="_amount_t52sn_13 ">1</span>
-												<span class="_currency_t52sn_35">명</span>
-												</span>
-											</div>
+<tr data-testid="date-row"
+	class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10 _date-row_8027u_4 _started-date-row_8ouzs_23 _payment-table-date-row_2hrxu_43">
+	<c:forEach var="i" begin="1" end="7">
+		<td data-testid="tableCell"
+			class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _date-cell_8027u_10"></td>
+	</c:forEach>
+</tr>
+									
+									
+									<c:forEach var="item" items="${resvList}" varStatus="i">
+										<tr data-testid="payment-info-row"
+											class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10 _payment-table-row_8ouzs_17 ">
+											<td data-testid="payment-status-column"
+												class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-status_1lui6_10 _column_1lui6_4">
+												<c:choose>
+													<c:when test="${item.resv_flag == 0}">
+														<span class="_tag_vwbjt_7 _variant--number_vwbjt_26 _color--blue_vwbjt_56 _fill--solid_vwbjt_38" data-testid="tag">
+															결제예정
+														</span>
+													</c:when>
+													<c:when test="${item.resv_flag == 1}">
+														<span class="_tag_vwbjt_7 _variant--number_vwbjt_26 _color--green_vwbjt_83 _fill--solid_vwbjt_38" data-testid="tag">
+															결제완료
+														</span>
+													</c:when>
+													<c:when test="${item.resv_flag == 2}">
+														<span class="_tag_vwbjt_7 _variant--text-normal_vwbjt_13 _color--grey_vwbjt_47 _fill--solid_vwbjt_38" data-testid="tag">
+															결제실패
+														</span>
+													</c:when>
+													<c:when test="${item.resv_flag == 3}">
+														<span class="_tag_vwbjt_7 _variant--text-normal_vwbjt_13 _color--red_vwbjt_74 _fill--solid_vwbjt_38" data-testid="tag">
+															결제취소
+														</span>
+													</c:when>
+													<c:otherwise>
+														<span class="_tag_vwbjt_7" data-testid="tag">
+															<c:out value="${item.resv_flag}"/>
+														</span>
+													</c:otherwise>
+												</c:choose>
 											</td>
-										<td data-testid="payment-amount-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-amount_1lui6_36 _column_1lui6_4">
-											<div class="_wrapper_39jul_7">
-												<span class="_container_t52sn_7" data-testid="amount-content">
-												<span class="_amount_t52sn_13 ">100</span>
-												<span class="_currency_t52sn_35">KRW</span>
-												</span>
-											</div>
-										</td>
-										
-										<td data-testid="event-time-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-event-time_1lui6_43 _column_1lui6_4"><span
-											class="_typography_1uzvq_4 _font--gotham_1uzvq_12 _type--b2_1uzvq_36 _weight--regular_1uzvq_87 "
-											data-testid="typography">17:15:25</span></td>
-										<td data-testid="cancel-payment-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24  _column_1lui6_4"><span
-											class="_cancel-text_1h0fb_7">취소</span></td>
-									</tr>
-									<tr data-testid="payment-info-row"
-										class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
-										<td data-testid="payment-status-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-status_1lui6_10 _column_1lui6_4"><span
-											class="_tag_vwbjt_7 _variant--text-normal_vwbjt_13 _color--grey_vwbjt_47 _fill--solid_vwbjt_38 "
-											data-testid="tag">결제실패</span></td>
-										<td data-testid="iamport-merchant-id-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div
-												class="_container_1aijn_7">
-												<span>RESV_00004</span>
-											</div></td>
-										<td data-testid="order-name-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-order-name_1lui6_22 _column_1lui6_4"><span
-											class="_ellipsis-two-line_a7yez_1">알빠노-출가투어</span></td>
-										<td data-testid="buyer-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-buyer_1lui6_26 _column_1lui6_4"><span
-											class="_ellipsis-two-line_a7yez_1" data-testid="buyer-info">참치스님</span></td>
-										
-										<td data-testid="buyer-person-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-buyer_1lui6_26 _column_1lui6_4">
-											<div class="_wrapper_39jul_7">	
-												<span class="_container_t52sn_7" data-testid="amount-content">
-												<span class="_amount_t52sn_13 ">1</span>
-												<span class="_currency_t52sn_35">명</span>
-												</span>
-											</div>
+											<td data-testid="iamport-merchant-id-column"
+												class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4">
+												<div class="_container_1aijn_7">
+													<span><c:out value="${item.resv_code}"/></span>
+												</div>
 											</td>
-										<td data-testid="payment-amount-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-amount_1lui6_36 _column_1lui6_4">
-											<div class="_wrapper_39jul_7">
-												<span class="_container_t52sn_7" data-testid="amount-content">
-												<span class="_amount_t52sn_13 ">100</span>
-												<span class="_currency_t52sn_35">KRW</span>
-												</span>
-											</div>
-										</td>
-										
-										<td data-testid="event-time-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-event-time_1lui6_43 _column_1lui6_4"><span
-											class="_typography_1uzvq_4 _font--gotham_1uzvq_12 _type--b2_1uzvq_36 _weight--regular_1uzvq_87 "
-											data-testid="typography">17:12:24</span></td>
-										<td data-testid="cancel-payment-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24  _column_1lui6_4"><span
-											class="_cancel-text_1h0fb_7">취소</span></td>
-										
-									</tr>
-									<tr data-testid="payment-info-row"
-										class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
-										<td data-testid="payment-status-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-status_1lui6_10 _column_1lui6_4"><span
-											class="_tag_vwbjt_7 _variant--text-normal_vwbjt_13 _color--green_vwbjt_83 _fill--solid_vwbjt_38 "
-											data-testid="tag">결제완료</span></td>
-										<td data-testid="iamport-merchant-id-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div
-												class="_container_1aijn_7">
-												<span>RESV_00003</span>
-											</div></td>
-										<td data-testid="order-name-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-order-name_1lui6_22 _column_1lui6_4"><span
-											class="_ellipsis-two-line_a7yez_1">알빠노-동해안투어</span></td>
-										<td data-testid="buyer-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-buyer_1lui6_26 _column_1lui6_4"><span
-											class="_ellipsis-two-line_a7yez_1" data-testid="buyer-info">제육볶음</span></td>
-										
-										<td data-testid="buyer-person-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-buyer_1lui6_26 _column_1lui6_4">
-											<div class="_wrapper_39jul_7">	
-												<span class="_container_t52sn_7" data-testid="amount-content">
-												<span class="_amount_t52sn_13 ">1</span>
-												<span class="_currency_t52sn_35">명</span>
-												</span>
-											</div>
+											<td data-testid="order-name-column"
+												class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-order-name_1lui6_22 _column_1lui6_4">
+												<span class="_ellipsis-two-line_a7yez_1"><c:out value="${item.crs_name}"/></span>
 											</td>
-										<td data-testid="payment-amount-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-amount_1lui6_36 _column_1lui6_4">
-											<div class="_wrapper_39jul_7">
-												<span class="_container_t52sn_7" data-testid="amount-content">
-												<span class="_amount_t52sn_13 ">100</span>
-												<span class="_currency_t52sn_35">KRW</span>
-												</span>
-											</div>
-										</td>
-										
-										<td data-testid="event-time-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-event-time_1lui6_43 _column_1lui6_4"><span
-											class="_typography_1uzvq_4 _font--gotham_1uzvq_12 _type--b2_1uzvq_36 _weight--regular_1uzvq_87 "
-											data-testid="typography">17:10:17</span></td>
-										<td data-testid="cancel-payment-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24  _column_1lui6_4"><span
-											class="_cancel-text_1h0fb_7">취소</span></td>
-										
-									</tr>
-									<tr data-testid="payment-info-row"
-										class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
-										<td data-testid="payment-status-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-status_1lui6_10 _column_1lui6_4"><span
-											class="_tag_vwbjt_7 _variant--text-normal_vwbjt_13 _color--green_vwbjt_83 _fill--solid_vwbjt_38 "
-											data-testid="tag">결제완료</span></td>
-										<td data-testid="iamport-merchant-id-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div
-												class="_container_1aijn_7">
-												<span>RESV_00002</span>
-											</div></td>
-										<td data-testid="order-name-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-order-name_1lui6_22 _column_1lui6_4"><span
-											class="_ellipsis-two-line_a7yez_1">알빠노-동해안투어</span></td>
-										<td data-testid="buyer-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-buyer_1lui6_26 _column_1lui6_4"><span
-											class="_ellipsis-two-line_a7yez_1" data-testid="buyer-info">김치찌개</span></td>
-										
-										<td data-testid="buyer-person-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-buyer_1lui6_26 _column_1lui6_4">
-											<div class="_wrapper_39jul_7">	
-												<span class="_container_t52sn_7" data-testid="amount-content">
-												<span class="_amount_t52sn_13 ">1</span>
-												<span class="_currency_t52sn_35">명</span>
-												</span>
-											</div>
+											<td data-testid="buyer-column"
+												class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-buyer_1lui6_26 _column_1lui6_4">
+												<span class="_ellipsis-two-line_a7yez_1" data-testid="buyer-info"><c:out value="${item.id}"/></span>
 											</td>
-										<td data-testid="payment-amount-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-amount_1lui6_36 _column_1lui6_4">
-											<div class="_wrapper_39jul_7">
-												<span class="_container_t52sn_7" data-testid="amount-content">
-												<span class="_amount_t52sn_13 ">100</span>
-												<span class="_currency_t52sn_35">KRW</span>
-												</span>
-											</div>
-										</td>
-										
-										<td data-testid="event-time-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-event-time_1lui6_43 _column_1lui6_4"><span
-											class="_typography_1uzvq_4 _font--gotham_1uzvq_12 _type--b2_1uzvq_36 _weight--regular_1uzvq_87 "
-											data-testid="typography">16:38:04</span></td>
-										<td data-testid="cancel-payment-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24  _column_1lui6_4"><span
-											class="_cancel-text_1h0fb_7">취소</span></td>
-										
-									</tr>
-									<tr data-testid="payment-info-row"
-										class="_tableRow_1tqkb_4 _table-direction--vertical_1tqkb_10   _payment-table-row_8ouzs_17 ">
-										<td data-testid="payment-status-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-status_1lui6_10 _column_1lui6_4"><span
-											class="_tag_vwbjt_7 _variant--text-normal_vwbjt_13 _color--green_vwbjt_83 _fill--solid_vwbjt_38 "
-											data-testid="tag">결제완료</span></td>
-										<td data-testid="iamport-merchant-id-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-iamport-merchant-id_1lui6_19 _column_1lui6_4"><div
-												class="_container_1aijn_7">
-												<span>RESV_00001</span>
-											</div></td>
-										<td data-testid="order-name-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-order-name_1lui6_22 _column_1lui6_4"><span
-											class="_ellipsis-two-line_a7yez_1">알빠노-동해안투어</span></td>
-										<td data-testid="buyer-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-buyer_1lui6_26 _column_1lui6_4"><span
-											class="_ellipsis-two-line_a7yez_1" data-testid="buyer-info">부대찌개</span></td>
-										
-										<td data-testid="buyer-person-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-buyer_1lui6_26 _column_1lui6_4">
-											<div class="_wrapper_39jul_7">	
-												<span class="_container_t52sn_7" data-testid="amount-content">
-												<span class="_amount_t52sn_13 ">1</span>
-												<span class="_currency_t52sn_35">명</span>
-												</span>
-											</div>
+											<td data-testid="buyer-person-column"
+												class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-buyer_1lui6_26 _column_1lui6_4">
+												<div class="_wrapper_39jul_7">	
+													<span class="_container_t52sn_7" data-testid="amount-content">
+														<span class="_amount_t52sn_13 "><c:out value="${item.person}"/></span>
+														<span class="_currency_t52sn_35">명</span>
+													</span>
+												</div>
 											</td>
-										<td data-testid="payment-amount-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-amount_1lui6_36 _column_1lui6_4">
-											<div class="_wrapper_39jul_7">
-												<span class="_container_t52sn_7" data-testid="amount-content">
-												<span class="_amount_t52sn_13 ">100</span>
-												<span class="_currency_t52sn_35">KRW</span>
-												</span>
-											</div>
-										</td>
-										
-										<td data-testid="event-time-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-event-time_1lui6_43 _column_1lui6_4"><span
-											class="_typography_1uzvq_4 _font--gotham_1uzvq_12 _type--b2_1uzvq_36 _weight--regular_1uzvq_87 "
-											data-testid="typography">16:08:40</span></td>
-										<td data-testid="cancel-payment-column"
-											class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24  _column_1lui6_4"><span
-											class="_cancel-text_1h0fb_7">취소</span></td>
-									</tr>
-								</tbody>
+											<td data-testid="payment-amount-column"
+												class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-amount_1lui6_36 _column_1lui6_4">
+												<div class="_wrapper_39jul_7">
+													<span class="_container_t52sn_7" data-testid="amount-content">
+														<span class="_amount_t52sn_13 "><c:out value="${item.fare}"/></span>
+														<span class="_currency_t52sn_35">KRW</span>
+													</span>
+												</div>
+											</td>
+											<td data-testid="event-time-column"
+												class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column-event-time_1lui6_43 _column_1lui6_4">
+												<span class="_typography_1uzvq_4 _font--gotham_1uzvq_12 _type--b2_1uzvq_36 _weight--regular_1uzvq_87" data-testid="typography"><c:out value="${item.create_date}"/></span>
+											</td>
+											<td data-testid="cancel-payment-column"
+												class="_tableCell_1fpie_7 _align--center_1fpie_217 _variant--body--vertical--normal_1fpie_104 _font--pretendard_1fpie_24 _column_1lui6_4">
+												<span class="_cancel-text_1h0fb_7">취소</span>
+											</td>
+										</tr>
+									</c:forEach>
+									</tbody>
 							</table>
 							<button
 								class="_button_11kek_7 _height--40_11kek_43 _font--pretendard_11kek_28 _size--full-width_11kek_79 _height--40_scibe_11 _variant--secondary_scibe_27  _show-more-button_2hrxu_47">
@@ -933,7 +800,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				</main>
 			</div>
 		</div>
-		<div
-			class="select-none pointer-events-none z-pop-over fixed top-0 left-0 w-screen h-screen"></div>
+		<div class="select-none pointer-events-none z-pop-over fixed top-0 left-0 w-screen h-screen"></div>
 	</div>
+	</body>
 </html>

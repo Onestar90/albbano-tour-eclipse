@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class TourReservationVO {
 	
-	private String resv_code, id, crs_code, logic;
+	private String resv_code, id, crs_code, logic, crs_name;
 	private int fare, person, resv_flag;
 	private Date create_date, tour_date;
 	
@@ -39,6 +39,24 @@ public class TourReservationVO {
 		this.tour_date = tour_date;
 	}
 
+	public TourReservationVO(String resv_code, String id, String crs_name, int fare, int resv_flag, Date create_date) {
+		super();
+		this.resv_code = resv_code;
+		this.id = id;
+		this.crs_name = crs_name;
+		this.fare = fare;
+		this.resv_flag = resv_flag;
+		this.create_date = create_date;
+	}
+	
+	public String getCrs_name() {
+		return crs_name;
+	}
+
+	public void setCrs_name(String crs_name) {
+		this.crs_name = crs_name;
+	}
+
 	public Date getTour_date() {
 		return tour_date;
 	}
@@ -46,6 +64,7 @@ public class TourReservationVO {
 	public void setTour_date(Date tour_date) {
 		this.tour_date = tour_date;
 	}
+
 
 	public String getResv_code() {
 		return resv_code;
