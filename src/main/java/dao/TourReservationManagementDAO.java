@@ -130,7 +130,7 @@ public class TourReservationManagementDAO {
 	    return isDuplicate;
 	}
 	
-	public List<TourReservationVO> selectAllTourReservationList(String id) throws ClassNotFoundException, SQLException {
+	public List<TourReservationVO> selectAllTourReservationList() throws ClassNotFoundException, SQLException {
 		List<TourReservationVO> list = new ArrayList<TourReservationVO>();
 		TourReservationVO trVO = null;
 		DbConnection dbCon = DbConnection.getInstance();
@@ -143,20 +143,18 @@ public class TourReservationManagementDAO {
 			Class.forName("oracle.jdbc.OracleDriver");
             con = dbCon.getConn("jdbc/abn");
 
-            String sql = "select * from RESERVATION" ;
+            String sql = "select resv_flag, resv_code, c.crs_name, id, person, r.fare, r.create_date from RESERVATION r, COURSE c where r.CRS_CODE = c.CRS_CODE" ;
             pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, id);
             rs=pstmt.executeQuery();
             while(rs.next()) {
             	trVO = new TourReservationVO();
-            	trVO.setResv_code(rs.getString("resv_code"));  
-            	trVO.setCrs_code(rs.getString("crs_code"));
-            	trVO.setLogic(rs.getString("logic"));
-            	trVO.setFare(rs.getInt("fare"));
-            	trVO.setPerson(rs.getInt("person"));
             	trVO.setResv_flag(rs.getInt("resv_flag"));
+            	trVO.setResv_code(rs.getString("resv_code"));  
+            	trVO.setCrs_name(rs.getString("crs_name"));
+            	trVO.setId(rs.getString("id"));
+            	trVO.setPerson(rs.getInt("person"));
+            	trVO.setFare(rs.getInt("fare"));
             	trVO.setCreate_date(rs.getDate("create_date"));
-            	
      	
             	list.add(trVO);
             }}finally{
