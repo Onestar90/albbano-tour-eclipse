@@ -50,6 +50,10 @@ $(function(){
 </script>
 </head>
 <body>
+<div id="wrap">
+<div id ="left" style="float: left">
+<jsp:include page ="design1.jsp"/>
+</div>
 <% request.setCharacterEncoding("UTF-8"); 
 String docno= request.getParameter("doc_No");
 //out.println(docno);
@@ -86,5 +90,6 @@ pageContext.setAttribute("ntVO", ntVO);
 
 <input type="submit" value="공지사항 수정"/>
 </form>
+</div> 
 </body>
 </html>
