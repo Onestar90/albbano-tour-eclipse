@@ -122,7 +122,7 @@ pageContext.setAttribute("qVO", qVO);
                             <li><a href="list_restaurant.jsp" target="_self">맛집</a></li>
                             <li><a href="booking.jsp" target="_self">투어예약</a></li>
                             <li><a href="main_notice.jsp" target="_self">고객센터</a></li>
-                        </ul>?bo_table=notice
+                        </ul>
                     </li>
                 </ul>
                 <ul class="dep2">

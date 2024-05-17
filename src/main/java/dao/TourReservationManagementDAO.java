@@ -51,7 +51,7 @@ public class TourReservationManagementDAO {
 	
 	public int insertTourReservation(TourReservationVO tourReservationVO) throws SQLException {
 	    int count = 0;
-	    String insertQuery = "INSERT INTO RESERVATION VALUES (?,?,?,?,?,?,0,SYSDATE,'N')";
+	    String insertQuery = "INSERT INTO RESERVATION VALUES (?,?,?,?,?,?,1,SYSDATE,'N')";
 	    DbConnection dbConnection = DbConnection.getInstance();
 	    
 	    java.sql.Date sqlTourDate = new java.sql.Date(tourReservationVO.getTour_date().getTime());

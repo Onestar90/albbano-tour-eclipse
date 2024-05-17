@@ -76,13 +76,13 @@
 									<ul class="_menu_1w85s_12" role="menu">
 										<li role="none">
 										<a class="_sub-menu-item_m12r4_7 " role="menuitem" aria-current="false" tabindex="-1"
-											href="select_spot.jsp">관광지 관리</a></li>
+											href="http://127.0.0.1/view/admin/select_spot.jsp">관광지 관리</a></li>
 										<li role="none">
 										<a class="_sub-menu-item_m12r4_7 " role="menuitem" aria-current="false" tabindex="-1"
-											href="review_manage_spot.jsp">관광지 리뷰 관리</a></li>
+											href="http://127.0.0.1/view/admin/review_manage_spot.jsp">관광지 리뷰 관리</a></li>
 										<li role="none">
 										<a class="_sub-menu-item_m12r4_7 " role="menuitem" aria-current="false" tabindex="-1" 
-											href="select_curs.jsp">관광 코스 관리</a></li>
+											href="http://127.0.0.1/view/admin/select_curs.jsp">관광 코스 관리</a></li>
 									</ul>
 								</details></li>
 							<li role="none"><details class="_root_1w85s_7 ">
@@ -114,10 +114,10 @@
 									<ul class="_menu_1w85s_12" role="menu">
 										<li role="none"><a class="_sub-menu-item_m12r4_7 "
 											role="menuitem" aria-current="false" tabindex="-1"
-											href="select_res.jsp">맛집 관리</a></li>
+											href="http://127.0.0.1/view/admin/select_res.jsp">맛집 관리</a></li>
 										<li role="none"><a class="_sub-menu-item_m12r4_7 "
 											role="menuitem" aria-current="false" tabindex="-1"
-											href="review_manage_res.jsp">맛집 리뷰 관리</a></li>
+											href="http://127.0.0.1/view/admin/review_manage_res.jsp">맛집 리뷰 관리</a></li>
 									</ul>
 								</details></li>
 							<li role="none">

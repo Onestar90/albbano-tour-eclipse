@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class RestaurantReviewVO {
 
-	private String res_doc_no ,res_code, res_title, id, star, res_contents;
+	private String res_doc_no ,res_code, res_title, id, star, res_contents, res_name;
 	private Date create_date;
 	
 	public RestaurantReviewVO() {
@@ -22,6 +22,24 @@ public class RestaurantReviewVO {
 		this.star = star;
 		this.res_contents = res_contents;
 		this.create_date = create_date;
+	}
+
+	
+	public RestaurantReviewVO(String res_doc_no, String res_title, String id, String star, String res_name) {
+		super();
+		this.res_doc_no = res_doc_no;
+		this.res_title = res_title;
+		this.id = id;
+		this.star = star;
+		this.res_name = res_name;
+	}
+	
+	public String getRes_name() {
+		return res_name;
+	}
+
+	public void setRes_name(String res_name) {
+		this.res_name = res_name;
 	}
 
 	public String getRes_doc_no() {

@@ -5,7 +5,7 @@ import java.util.Date;
 public class SpotReviewVO {
 	
 
-	private String spot_doc_no, spot_code, spot_title, star, id, spot_contents;
+	private String spot_doc_no, spot_code, spot_title, star, id, spot_contents, spot_name;
 	private Date create_date, edit_date;
 	
 	public SpotReviewVO() {
@@ -23,6 +23,15 @@ public class SpotReviewVO {
 		this.id = id;
 		this.spot_contents = spot_contents;
 		this.edit_date = edit_date;
+	}
+	
+	public SpotReviewVO(String spot_doc_no, String spot_title, String star, String id, String spot_name) {
+		super();
+		this.spot_doc_no = spot_doc_no;
+		this.spot_title = spot_title;
+		this.star = star;
+		this.id = id;
+		this.spot_name = spot_name;
 	}
 
 	public String getSpot_doc_no() {
@@ -87,6 +96,14 @@ public class SpotReviewVO {
 
 	public void setEdit_date(Date edit_date) {
 		this.edit_date = edit_date;
+	}
+
+	public String getSpot_name() {
+		return spot_name;
+	}
+
+	public void setSpot_name(String spot_name) {
+		this.spot_name = spot_name;
 	}
 
 	

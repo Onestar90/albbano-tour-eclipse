@@ -274,7 +274,38 @@ public int selecttotalCount(QnaSearchVO qsVO)throws SQLException{
 	}
 	
 	
-	
+	public List<SpotReviewVO> selectSptAllReview()throws SQLException {
+		List<SpotReviewVO> list = new ArrayList<SpotReviewVO>();
+		SpotReviewVO sVO = null;
+		DbConnection dbCon = DbConnection.getInstance();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try{
+		
+		con =dbCon.getConn("jdbc/abn");
+		String selectspot =
+				"select SPOT_DOC_NO, s.SPOT_NAME, SPOT_TITLE, id, STAR from SPOT_REVIEW sr, SPOT s where sr.SPOT_CODE = s.SPOT_CODE ";
+		pstmt= con.prepareStatement(selectspot);
+	    
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			sVO = new SpotReviewVO();
+        	sVO.setSpot_doc_no(rs.getString("spot_doc_no"));
+        	sVO.setSpot_name(rs.getString("spot_name"));
+        	sVO.setSpot_title(rs.getString("spot_title"));
+        	sVO.setId(rs.getString("id"));
+        	sVO.setStar(rs.getString("star"));
+
+        	list.add(sVO);
+		}
+		}finally {
+			dbCon.closeCon(rs, pstmt, con);
+		}
+		return list;
+		
+	}
 	
 	
 	

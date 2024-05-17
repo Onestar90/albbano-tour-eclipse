@@ -13,6 +13,7 @@ import vo.QnaSearchVO;
 import vo.QnaVO;
 import vo.ResListVO;
 import vo.RestaurantReviewVO;
+import vo.SpotReviewVO;
 
 public class RestaurantReviewDAO {
 	
@@ -267,6 +268,39 @@ public class RestaurantReviewDAO {
 				dbCon.closeCon(rs, pstmt, con);
 			}
 		return flag;
+	}
+	
+	public List<RestaurantReviewVO> selectResAllReview()throws SQLException {
+		List<RestaurantReviewVO> list = new ArrayList<>();
+		RestaurantReviewVO sVO = null;
+		DbConnection dbCon = DbConnection.getInstance();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try{
+		
+		con =dbCon.getConn("jdbc/abn");
+		String selectQuery =
+				"select RES_DOC_NO, r.RES_NAME, RES_TITLE, STAR, ID from RESTAURANT_REVIEW rr, RESTAURANT r where rr.RES_CODE = r.RES_CODE";
+		pstmt= con.prepareStatement(selectQuery);
+	    
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			sVO = new RestaurantReviewVO();
+        	sVO.setRes_doc_no(rs.getString("res_doc_no"));
+        	sVO.setRes_name(rs.getString("res_name"));
+        	sVO.setRes_title(rs.getString("res_title"));
+        	sVO.setId(rs.getString("id"));
+        	sVO.setStar(rs.getString("star"));
+
+        	list.add(sVO);
+		}
+		}finally {
+			dbCon.closeCon(rs, pstmt, con);
+		}
+		return list;
+		
 	}
 	
 	
