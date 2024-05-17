@@ -75,13 +75,13 @@
 									<ul class="_menu_1w85s_12" role="menu">
 										<li role="none">
 										<a class="_sub-menu-item_m12r4_7 " role="menuitem" aria-current="false" tabindex="-1"
-											href="select_spot.jsp">관광지 관리</a></li>
+											href="http://127.0.0.1/view/admin/select_spot.jsp">관광지 관리</a></li>
 										<li role="none">
 										<a class="_sub-menu-item_m12r4_7 " role="menuitem" aria-current="false" tabindex="-1"
-											href="review_manage_spot.jsp">관광지 리뷰 관리</a></li>
+											href="http://127.0.0.1/view/admin/review_manage_spot.jsp">관광지 리뷰 관리</a></li>
 										<li role="none">
 										<a class="_sub-menu-item_m12r4_7 " role="menuitem" aria-current="false" tabindex="-1" 
-											href="select_curs.jsp">관광 코스 관리</a></li>
+											href="http://127.0.0.1/view/admin/select_curs.jsp">관광 코스 관리</a></li>
 									</ul>
 								</details></li>
 							<li role="none"><details class="_root_1w85s_7 ">
@@ -113,14 +113,14 @@
 									<ul class="_menu_1w85s_12" role="menu">
 										<li role="none"><a class="_sub-menu-item_m12r4_7 "
 											role="menuitem" aria-current="false" tabindex="-1"
-											href="select_res.jsp">맛집 관리</a></li>
+											href="http://127.0.0.1/view/admin/select_res.jsp">맛집 관리</a></li>
 										<li role="none"><a class="_sub-menu-item_m12r4_7 "
 											role="menuitem" aria-current="false" tabindex="-1"
-											href="review_manage_res.jsp">맛집 리뷰 관리</a></li>
+											href="http://127.0.0.1/view/admin/review_manage_res.jsp">맛집 리뷰 관리</a></li>
 									</ul>
 								</details></li>
 							<li role="none">
-							<a class="_menu-item_1nj6f_7 " role="menuitem" aria-current="false" tabindex="-1" href="selectNotice.jsp">
+							<a class="_menu-item_1nj6f_7 " role="menuitem" aria-current="false" tabindex="-1" href="http://127.0.0.1/view/admin/selectNotice.jsp">
 								<span class="_left-addon_1nj6f_36">
 								<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
     										<path d="M7.38708 8.47561L6.33317 17.1863C6.31469 17.3411 6.34729 17.4977 6.42617 17.6331C6.50505 17.7684 6.62606 17.8753 6.77141 17.9381C6.91676 18.0009 7.07879 18.0163 7.23369 17.9819C7.38859 17.9476 7.5282 17.8654 7.632 17.7474L10.829 14.1127L15.2209 9.19345C15.3137 9.08987 15.3747 8.96255 15.3967 8.82629C15.4188 8.69002 15.401 8.55042 15.3454 8.4237C15.2898 8.29698 15.1987 8.18836 15.0827 8.11047C14.9668 8.03258 14.8306 7.98861 14.6902 7.98369L8.24059 7.7523C8.03201 7.74633 7.82871 7.81727 7.67074 7.95114C7.51276 8.08502 7.41156 8.27212 7.38708 8.47561Z"
@@ -136,7 +136,7 @@
 								</a></li>
 							<li role="none"><a class="_menu-item_1nj6f_7 "
 								role="menuitem" aria-current="false" tabindex="-1"
-								href="qna.jsp"><span
+								href="http://127.0.0.1/view/admin/qna.jsp"><span
 									class="_left-addon_1nj6f_36"><svg width="20" height="20"
 											viewBox="0 0 20 20" fill="none"
 											xmlns="http://www.w3.org/2000/svg">
